@@ -76,12 +76,6 @@
     <Reference Include="UnityEngine.HoloLens">
       <HintPath>Library\UnityAssemblies\UnityEngine.HoloLens.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEditor.iOS.Extensions.Xcode">
-      <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.iOS.Extensions.Common">
-      <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Common.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\_Character\BeltWeapons.cs" />
@@ -114,6 +108,11 @@
     <Compile Include="Assets\Downloads\Nature Pack\Standard Assets\Utility\FOVKick.cs" />
     <Compile Include="Assets\Downloads\Nature Pack\Standard Assets\Utility\LerpControlledBob.cs" />
     <Compile Include="Assets\Movement.cs" />
+    <Compile Include="Assets\NewBuildingSystem\Scripts\BuildingManager.cs" />
+    <Compile Include="Assets\NewBuildingSystem\Scripts\Foundation.cs" />
+    <Compile Include="Assets\NewBuildingSystem\Scripts\FoundationCollider.cs" />
+    <Compile Include="Assets\NewBuildingSystem\Scripts\TerrainColIgnore.cs" />
+    <Compile Include="Assets\NewBuildingSystem\Scripts\VerticFoundation.cs" />
     <Compile Include="Assets\PLayerControl.cs" />
     <Compile Include="Assets\Resources\Stone\Stone.cs" />
     <Compile Include="Assets\Resources\Tree\Tree.cs" />

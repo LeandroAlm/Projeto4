@@ -7,6 +7,15 @@ TagManager:
   - Tree
   - terrain
   - Stone
+  - SouthCollider
+  - WestColliderVert
+  - NorthColliderVert
+  - EastCollider
+  - Foundation
+  - NortCollider
+  - EastColliderVert
+  - SouthColliderVert
+  - WestCollider
   layers:
   - Default
   - TransparentFX
@@ -18,7 +27,7 @@ TagManager:
   - 
   - Terrain
   - Tree
-  - 
+  - Foundation2
   - 
   - 
   - 
