@@ -202,7 +202,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1613038828832044}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 115.932144, y: 0, z: 80.63174}
+  m_LocalPosition: {x: 82.89602, y: 0, z: 149.68149}
   m_LocalScale: {x: 3, y: 0.06503575, z: 3}
   m_Children:
   - {fileID: 4213901042177876}
@@ -316,7 +316,7 @@ Transform:
   m_GameObject: {fileID: 1142715515221210}
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: -0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0.498}
-  m_LocalScale: {x: 1.0000005, y: 1.0000652, z: 1.0000005}
+  m_LocalScale: {x: 1, y: 1.0000652, z: 1.0000005}
   m_Children: []
   m_Father: {fileID: 4213901042177876}
   m_RootOrder: 4
@@ -531,10 +531,10 @@ MonoBehaviour:
   isSnapped: 0
   mousePosX: 0
   mousePosY: 0
-  col1: {fileID: 0}
-  col2: {fileID: 0}
-  col3: {fileID: 0}
-  col4: {fileID: 0}
+  col1: {fileID: 65817819988610842}
+  col2: {fileID: 65786239256486386}
+  col3: {fileID: 65428791866725794}
+  col4: {fileID: 65781146103259500}
   InitialRot: {x: 0, y: 0, z: 0, w: 0}
 --- !u!114 &114747508396785576
 MonoBehaviour:

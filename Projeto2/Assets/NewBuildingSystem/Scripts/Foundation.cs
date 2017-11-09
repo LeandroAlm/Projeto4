@@ -38,6 +38,8 @@ public class Foundation : MonoBehaviour {
                     this.transform.position = new Vector3(hit.point.x, 1.5f, hit.point.z +0.5f);
                     InitialRot = this.transform.rotation;
                 }
+                
+               
             }
         }
 
@@ -53,17 +55,17 @@ public class Foundation : MonoBehaviour {
             BuildingManager.isBuilding = false;
         }
        
-        if(isPlaced && BuildingManager.PreV)
-        {
-            //col1.enabled = false;
-            //col2.enabled = false;
-            //col3.enabled = false;
-            //col1.enabled = false;
+        //if(isPlaced && BuildingManager.PreV)
+        //{
+        //    col1.enabled = false;
+        //    col2.enabled = false;
+        //    col3.enabled = false;
+        //    col1.enabled = false;
 
-        }
+        //}
        
         //Realese Snapping
-        if (isSnapped && !isPlaced && Mathf.Abs(mousePosX - Input.GetAxis("Mouse X")) > 0.2f || Mathf.Abs(mousePosY - Input.GetAxis("Mouse Y")) > 0.2f)
+        if (isSnapped && !isPlaced && Mathf.Abs(mousePosX - Input.GetAxis("Mouse X")) > 0.3f || Mathf.Abs(mousePosY - Input.GetAxis("Mouse Y")) > 0.3f)
         {
             isSnapped = false;
         }

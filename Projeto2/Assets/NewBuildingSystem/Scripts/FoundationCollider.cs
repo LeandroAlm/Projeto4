@@ -69,21 +69,21 @@ public class FoundationCollider : MonoBehaviour {
             {
                 switch (this.transform.tag)
                 {
-                    case "WestColliderVert":
+                    case "WestCollider":
                             other.transform.position = new Vector3(transform.parent.parent.position.x - (sizeX / 2), 1, transform.parent.position.z);
                             other.transform.eulerAngles = new Vector3(90, 0, -90);
                         break;
 
-                    case "EastColliderVert":
+                    case "EastCollider":
                             other.transform.position = new Vector3(transform.parent.parent.position.x + (sizeX / 2), 1, transform.parent.position.z);
                             other.transform.eulerAngles = new Vector3(-90, 0, 90);
                         break;
 
-                    case "NorthColliderVert":
+                    case "NortCollider":
                         other.transform.position = new Vector3(transform.parent.parent.position.x, 1, transform.parent.position.z + (sizeZ / 2));
                         break;
 
-                    case "SouthColliderVert":
+                    case "SouthCollider":
                         other.transform.position = new Vector3(transform.parent.parent.position.x, 1, transform.parent.position.z - (sizeZ / 2));
                         break;
                 }
