@@ -18,16 +18,19 @@ public class InstaceHouse : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        if (!isPlaced)
-        {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-            if (Physics.Raycast(ray, out hit))
-            {
-                this.transform.position = new Vector3(hit.point.x, 0, hit.point.z);
+        //if (!isPlaced)
+        //{
+        //BuildingManager.isBuilding = true;
 
-            }
+
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit))
+        {
+            this.transform.position = new Vector3(hit.point.x, 0, hit.point.z);
+
         }
+        //}
 
         if (Input.GetMouseButtonDown(0))
         {

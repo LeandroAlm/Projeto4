@@ -114,6 +114,7 @@
     <Compile Include="Assets\Downloads\Nature Pack\Standard Assets\Utility\FOVKick.cs" />
     <Compile Include="Assets\Downloads\Nature Pack\Standard Assets\Utility\LerpControlledBob.cs" />
     <Compile Include="Assets\Movement.cs" />
+    <Compile Include="Assets\NewBuildingSystem\Other\Scripts\AutoBuild.cs" />
     <Compile Include="Assets\NewBuildingSystem\Other\Scripts\FadeOutRoof.cs" />
     <Compile Include="Assets\NewBuildingSystem\Other\Scripts\InstaceHouse.cs" />
     <Compile Include="Assets\NewBuildingSystem\Scripts\AutomaticBuild.cs" />
