@@ -78,6 +78,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="Projeto2.Plugins.csproj">
+      <Project>{B39BF8E6-C1D0-93A9-8525-7D61E77AD5C8}</Project>
+      <Name>Projeto2.Plugins</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="Assets\_Character\BeltWeapons.cs" />
     <Compile Include="Assets\_Character\Farm.cs" />
     <Compile Include="Assets\_Character\HealthBar.cs" />
@@ -108,6 +114,9 @@
     <Compile Include="Assets\Downloads\Nature Pack\Standard Assets\Utility\FOVKick.cs" />
     <Compile Include="Assets\Downloads\Nature Pack\Standard Assets\Utility\LerpControlledBob.cs" />
     <Compile Include="Assets\Movement.cs" />
+    <Compile Include="Assets\NewBuildingSystem\Other\Scripts\FadeOutRoof.cs" />
+    <Compile Include="Assets\NewBuildingSystem\Other\Scripts\InstaceHouse.cs" />
+    <Compile Include="Assets\NewBuildingSystem\Scripts\AutomaticBuild.cs" />
     <Compile Include="Assets\NewBuildingSystem\Scripts\BuildingManager.cs" />
     <Compile Include="Assets\NewBuildingSystem\Scripts\Foundation.cs" />
     <Compile Include="Assets\NewBuildingSystem\Scripts\FoundationCollider.cs" />
@@ -123,6 +132,7 @@
     <None Include="Assets\Downloads\LowpolyVegetationPackFree\Readme.txt" />
     <None Include="Assets\Downloads\Mega Fantasy Props Pack\README.txt" />
     <None Include="Assets\Downloads\Nature Pack\Standard Assets\Characters\FirstPersonCharacter\FirstPersonCharacterGuidelines.txt" />
+    <None Include="Assets\Plugins\Pixelplacement\iTween\ReadMe!\ReadMe!.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

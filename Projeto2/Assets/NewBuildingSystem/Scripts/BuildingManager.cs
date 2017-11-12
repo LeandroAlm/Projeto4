@@ -6,6 +6,9 @@ public class BuildingManager : MonoBehaviour {
 
     public GameObject foundationPrefab;
     public GameObject foundationPrefab2;
+    public GameObject foundationPrefab3;
+
+
 
     public static bool isBuilding;
 
@@ -20,7 +23,7 @@ public class BuildingManager : MonoBehaviour {
       
 
 
-        if (Input.GetKeyDown(KeyCode.Alpha1) && !isBuilding)
+        if (Input.GetKeyDown(KeyCode.Alpha4) && !isBuilding)
         {
             PreH = true;
             PreV = false;
@@ -31,7 +34,7 @@ public class BuildingManager : MonoBehaviour {
             //mainCamera.transform.position =  Vector3.Lerp(new Vector3(mainCamera.transform.position.x, mainCamera.transform.position.y , mainCamera.transform.position.z ),  new Vector3(mainCamera.transform.position.x, mainCamera.transform.position.y + 6.0f, mainCamera.transform.position.z - 4.0f), Time.deltaTime / 2);
         }
 
-        if (Input.GetKeyDown(KeyCode.Alpha2) && !isBuilding)
+        if (Input.GetKeyDown(KeyCode.Alpha5) && !isBuilding)
         {
             PreV = true;
             PreH = false;
@@ -39,6 +42,19 @@ public class BuildingManager : MonoBehaviour {
             Instantiate(foundationPrefab2, Vector3.zero, foundationPrefab2.transform.rotation);
 
         }
+
+
+        if (Input.GetKeyDown(KeyCode.Alpha3) && !isBuilding)
+        {
+            
+            isBuilding = true;
+            Instantiate(foundationPrefab3, Vector3.zero, foundationPrefab3.transform.rotation);
+
+          
+
+        }
+
+        
 
     }
 }

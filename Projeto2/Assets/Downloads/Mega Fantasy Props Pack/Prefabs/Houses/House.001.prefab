@@ -12,12 +12,12 @@ GameObject:
   - component: {fileID: 2309268}
   - component: {fileID: 6410544}
   m_Layer: 0
-  m_Name: wood_wall.014 (1)
+  m_Name: part16
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &118592
 GameObject:
   m_ObjectHideFlags: 0
@@ -30,12 +30,12 @@ GameObject:
   - component: {fileID: 2362394}
   - component: {fileID: 6414930}
   m_Layer: 0
-  m_Name: wood_wall.007 (2)
+  m_Name: part13
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &130560
 GameObject:
   m_ObjectHideFlags: 0
@@ -48,12 +48,12 @@ GameObject:
   - component: {fileID: 2360462}
   - component: {fileID: 6443414}
   m_Layer: 0
-  m_Name: wood_column.004 (2)
+  m_Name: part11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &135408
 GameObject:
   m_ObjectHideFlags: 0
@@ -66,12 +66,12 @@ GameObject:
   - component: {fileID: 2346658}
   - component: {fileID: 6480828}
   m_Layer: 0
-  m_Name: platform.003
+  m_Name: part01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &140432
 GameObject:
   m_ObjectHideFlags: 0
@@ -84,12 +84,12 @@ GameObject:
   - component: {fileID: 2311008}
   - component: {fileID: 6489720}
   m_Layer: 0
-  m_Name: wood_wall.014
+  m_Name: part17
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &153614
 GameObject:
   m_ObjectHideFlags: 0
@@ -102,12 +102,12 @@ GameObject:
   - component: {fileID: 2341482}
   - component: {fileID: 6424718}
   m_Layer: 0
-  m_Name: wood_wall.016 (1)
+  m_Name: part06
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &160036
 GameObject:
   m_ObjectHideFlags: 0
@@ -120,12 +120,12 @@ GameObject:
   - component: {fileID: 2307058}
   - component: {fileID: 6473882}
   m_Layer: 0
-  m_Name: wood_wall.018
+  m_Name: part05
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &167446
 GameObject:
   m_ObjectHideFlags: 0
@@ -138,12 +138,12 @@ GameObject:
   - component: {fileID: 2386034}
   - component: {fileID: 6446426}
   m_Layer: 0
-  m_Name: wood_wall.016 (2)
+  m_Name: part07
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &167768
 GameObject:
   m_ObjectHideFlags: 0
@@ -156,12 +156,12 @@ GameObject:
   - component: {fileID: 2328642}
   - component: {fileID: 6463450}
   m_Layer: 0
-  m_Name: wood_wall.007 (1)
+  m_Name: part15
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &169906
 GameObject:
   m_ObjectHideFlags: 0
@@ -189,12 +189,12 @@ GameObject:
   - component: {fileID: 2301260}
   - component: {fileID: 6427108}
   m_Layer: 0
-  m_Name: wood_wall.007
+  m_Name: part14
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &180126
 GameObject:
   m_ObjectHideFlags: 0
@@ -207,12 +207,12 @@ GameObject:
   - component: {fileID: 2312690}
   - component: {fileID: 6492188}
   m_Layer: 0
-  m_Name: wood_column.004
+  m_Name: part10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &185174
 GameObject:
   m_ObjectHideFlags: 0
@@ -225,12 +225,12 @@ GameObject:
   - component: {fileID: 2374782}
   - component: {fileID: 6474582}
   m_Layer: 0
-  m_Name: platform.003 (1)
+  m_Name: part02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &186080
 GameObject:
   m_ObjectHideFlags: 0
@@ -243,12 +243,12 @@ GameObject:
   - component: {fileID: 2342316}
   - component: {fileID: 6430690}
   m_Layer: 0
-  m_Name: wood_wall.018 (1)
+  m_Name: part08
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &187130
 GameObject:
   m_ObjectHideFlags: 0
@@ -261,12 +261,12 @@ GameObject:
   - component: {fileID: 2363148}
   - component: {fileID: 6435076}
   m_Layer: 0
-  m_Name: wood_column.004 (1)
+  m_Name: part09
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &189326
 GameObject:
   m_ObjectHideFlags: 0
@@ -279,12 +279,12 @@ GameObject:
   - component: {fileID: 2391238}
   - component: {fileID: 6489466}
   m_Layer: 0
-  m_Name: wood_wall_enter.004
+  m_Name: part04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &192858
 GameObject:
   m_ObjectHideFlags: 0
@@ -297,12 +297,12 @@ GameObject:
   - component: {fileID: 2302008}
   - component: {fileID: 6468648}
   m_Layer: 0
-  m_Name: wood_wall.007 (3)
+  m_Name: part12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &196836
 GameObject:
   m_ObjectHideFlags: 0
@@ -315,12 +315,12 @@ GameObject:
   - component: {fileID: 2300826}
   - component: {fileID: 6422092}
   m_Layer: 0
-  m_Name: wood_wall.016 (4)
+  m_Name: part03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &400184
 Transform:
   m_ObjectHideFlags: 1
@@ -406,8 +406,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 169906}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 115.14752, y: -0, z: 107.94691}
+  m_LocalScale: {x: 0.47822127, y: 0.62207735, z: 0.6624902}
   m_Children:
   - {fileID: 459864}
   - {fileID: 427008}
