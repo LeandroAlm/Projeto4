@@ -32,6 +32,20 @@ public class InstaceHouse : MonoBehaviour {
         }
         //}
 
+        if (Input.GetAxis("Mouse ScrollWheel") > 0f)
+        {
+            Debug.Log("tou");
+            this.transform.Rotate(Vector3.up * 150 * Time.deltaTime, Space.World);
+        }
+
+        else if (Input.GetAxis("Mouse ScrollWheel") < 0f) // backwards
+        {
+            Debug.Log("tou");
+            this.transform.Rotate(Vector3.up * -150 * Time.deltaTime, Space.World);
+        }
+
+
+
         if (Input.GetMouseButtonDown(0))
         {
 

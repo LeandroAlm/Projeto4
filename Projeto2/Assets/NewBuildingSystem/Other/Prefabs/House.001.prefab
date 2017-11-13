@@ -1311,4 +1311,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd24c7a5957288647b22c7a5c1977aff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stepDuration: 2
+  stepDuration: 1.5
