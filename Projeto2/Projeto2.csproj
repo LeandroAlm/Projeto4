@@ -85,8 +85,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\_Character\BeltWeapons.cs" />
+    <Compile Include="Assets\_Character\BuildWall.cs" />
     <Compile Include="Assets\_Character\Farm.cs" />
     <Compile Include="Assets\_Character\HealthBar.cs" />
+    <Compile Include="Assets\_Character\PLayerControl.cs" />
     <Compile Include="Assets\_Character\PlayerMove.cs" />
     <Compile Include="Assets\_Character\PlayerSatatus.cs" />
     <Compile Include="Assets\_Scripts\CameraFollow.cs" />
@@ -124,7 +126,9 @@
     <Compile Include="Assets\NewBuildingSystem\Scripts\RoofFoundation.cs" />
     <Compile Include="Assets\NewBuildingSystem\Scripts\TerrainColIgnore.cs" />
     <Compile Include="Assets\NewBuildingSystem\Scripts\VerticFoundation.cs" />
-    <Compile Include="Assets\PLayerControl.cs" />
+    <Compile Include="Assets\NewBuildingSystem\Wall\ShowMouse.cs" />
+    <Compile Include="Assets\NewBuildingSystem\Wall\WallBuilding.cs" />
+    <Compile Include="Assets\NewBuildingSystem\Wall\WallDrag.cs" />
     <Compile Include="Assets\Resources\Stone\Stone.cs" />
     <Compile Include="Assets\Resources\Tree\Tree.cs" />
   </ItemGroup>

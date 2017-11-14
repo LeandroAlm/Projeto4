@@ -37,6 +37,9 @@ public class SmoothCam : MonoBehaviour {
             transform.rotation = Quaternion.Euler(61.4f, 0, 0);
 
 
+          
+
+
             if (!smoothFollow)
             {
                 transform.position = newPos;

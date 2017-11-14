@@ -10,6 +10,7 @@ public class BuildingManager : MonoBehaviour {
 
 
 
+
     public static bool isBuilding;
 
     public static bool PreH, PreV;
@@ -54,7 +55,7 @@ public class BuildingManager : MonoBehaviour {
 
         }
 
-        
+
 
     }
 }
