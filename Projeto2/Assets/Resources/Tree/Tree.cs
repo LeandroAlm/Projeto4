@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Tree : MonoBehaviour {
-
+public class Tree : MonoBehaviour
+{
     public int hp;
     private int Amount;
     

@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Inventario : MonoBehaviour {
+public class Inventario : MonoBehaviour
+{
 
     public GameObject Mochila;
     public Transform Player;
     bool aberto;
-    PlayerSatatus PS;
+    PlayerStatus PS;
 
     public GameObject Slot1, Slot2, Slot3, Slot4, Slot5;
     public GameObject Slot6, Slot7, Slot8, Slot9, Slot10;
@@ -25,7 +26,7 @@ public class Inventario : MonoBehaviour {
     {
         Mochila.SetActive(false);
         aberto = false;
-        PS = gameObject.GetComponent<PlayerSatatus>();
+        PS = gameObject.GetComponent<PlayerStatus>();
     }
 
 
@@ -41,10 +42,7 @@ public class Inventario : MonoBehaviour {
         {
             aberto = false;
             Mochila.SetActive(false);
-        }
-
-        
-
+        }     
     }
 
     public void SetSlot(string Slot)
@@ -56,86 +54,86 @@ public class Inventario : MonoBehaviour {
                 if (CheckSlot() == 1)
                 {
                     Slot1.GetComponent<RawImage>().texture = wood;
-                    Text1.text = "" + Player.GetComponent<PlayerSatatus>().wood;
+                    Text1.text = "" + Player.GetComponent<PlayerStatus>().wood;
                 }
                 else if (CheckSlot() == 2)
                 {
                     Slot2.GetComponent<RawImage>().texture = wood;
-                    Text2.text = "" + Player.GetComponent<PlayerSatatus>().wood;
+                    Text2.text = "" + Player.GetComponent<PlayerStatus>().wood;
                 }
                 else if (CheckSlot() == 3)
                 {
                     Slot3.GetComponent<RawImage>().texture = wood;
-                    Text3.text = "" + Player.GetComponent<PlayerSatatus>().wood;
+                    Text3.text = "" + Player.GetComponent<PlayerStatus>().wood;
                 }
                 else if (CheckSlot() == 4)
                 {
                     Slot4.GetComponent<RawImage>().texture = wood;
-                    Text4.text = "" + Player.GetComponent<PlayerSatatus>().wood;
+                    Text4.text = "" + Player.GetComponent<PlayerStatus>().wood;
                 }
                 else if (CheckSlot() == 5)
                 {
                     Slot5.GetComponent<RawImage>().texture = wood;
-                    Text5 .text = "" + Player.GetComponent<PlayerSatatus>().wood;
+                    Text5 .text = "" + Player.GetComponent<PlayerStatus>().wood;
                 }
                 else if (CheckSlot() == 6)
                 {
                     Slot6.GetComponent<RawImage>().texture = wood;
-                    Text6.GetComponent<Text>().text = "" + Player.GetComponent<PlayerSatatus>().wood;
+                    Text6.GetComponent<Text>().text = "" + Player.GetComponent<PlayerStatus>().wood;
                 }
                 else if (CheckSlot() == 7)
                 {
                     Slot7.GetComponent<RawImage>().texture = wood;
-                    Text7.GetComponent<Text>().text = "" + Player.GetComponent<PlayerSatatus>().wood;
+                    Text7.GetComponent<Text>().text = "" + Player.GetComponent<PlayerStatus>().wood;
                 }
                 else if (CheckSlot() == 8)
                 {
                     Slot8.GetComponent<RawImage>().texture = wood;
-                    Text8.GetComponent<Text>().text = "" + Player.GetComponent<PlayerSatatus>().wood;
+                    Text8.GetComponent<Text>().text = "" + Player.GetComponent<PlayerStatus>().wood;
                 }
                 else if (CheckSlot() == 9)
                 {
                     Slot9.GetComponent<RawImage>().texture = wood;
-                    Text9.GetComponent<Text>().text = "" + Player.GetComponent<PlayerSatatus>().wood;
+                    Text9.GetComponent<Text>().text = "" + Player.GetComponent<PlayerStatus>().wood;
                 }
                 else if (CheckSlot() == 10)
                 {
                     Slot10.GetComponent<RawImage>().texture = wood;
-                    Text10.GetComponent<Text>().text = "" + Player.GetComponent<PlayerSatatus>().wood;
+                    Text10.GetComponent<Text>().text = "" + Player.GetComponent<PlayerStatus>().wood;
                 }
                 else if (CheckSlot() == 11)
                 {
                     Slot11.GetComponent<RawImage>().texture = wood;
-                    Text11.GetComponent<Text>().text = "" + Player.GetComponent<PlayerSatatus>().wood;
+                    Text11.GetComponent<Text>().text = "" + Player.GetComponent<PlayerStatus>().wood;
                 }
                 else if (CheckSlot() == 12)
                 {
                     Slot12.GetComponent<RawImage>().texture = wood;
-                    Text12.GetComponent<Text>().text = "" + Player.GetComponent<PlayerSatatus>().wood;
+                    Text12.GetComponent<Text>().text = "" + Player.GetComponent<PlayerStatus>().wood;
                 }
                 else if (CheckSlot() == 13)
                 {
                     Slot13.GetComponent<RawImage>().texture = wood;
-                    Text13.GetComponent<Text>().text = "" + Player.GetComponent<PlayerSatatus>().wood;
+                    Text13.GetComponent<Text>().text = "" + Player.GetComponent<PlayerStatus>().wood;
                 }
                 else if (CheckSlot() == 14)
                 {
                     Slot14.GetComponent<RawImage>().texture = wood;
-                    Text14.GetComponent<Text>().text = "" + Player.GetComponent<PlayerSatatus>().wood;
+                    Text14.GetComponent<Text>().text = "" + Player.GetComponent<PlayerStatus>().wood;
                 }
                 else if (CheckSlot() == 15)
                 {
                     Slot15.GetComponent<RawImage>().texture = wood;
-                    Text15.GetComponent<Text>().text = "" + Player.GetComponent<PlayerSatatus>().wood;
+                    Text15.GetComponent<Text>().text = "" + Player.GetComponent<PlayerStatus>().wood;
                 }
             }
             else if (CheckWood() == 1)
             {
-                Text1.text = ("" + Player.GetComponent<PlayerSatatus>().wood);
+                Text1.text = ("" + Player.GetComponent<PlayerStatus>().wood);
             }
             else if (CheckWood() == 2)
             {
-                Text2.text = ("" + Player.GetComponent<PlayerSatatus>().wood);
+                Text2.text = ("" + Player.GetComponent<PlayerStatus>().wood);
             }
         }
         else if (Slot == "stone")
@@ -145,86 +143,86 @@ public class Inventario : MonoBehaviour {
                 if (CheckSlot() == 1)
                 {
                     Slot1.GetComponent<RawImage>().texture = stone;
-                    Text1.text = "" + Player.GetComponent<PlayerSatatus>().stone;
+                    Text1.text = "" + Player.GetComponent<PlayerStatus>().stone;
                 }
                 else if (CheckSlot() == 2)
                 {
                     Slot2.GetComponent<RawImage>().texture = stone;
-                    Text2.text = "" + Player.GetComponent<PlayerSatatus>().stone;
+                    Text2.text = "" + Player.GetComponent<PlayerStatus>().stone;
                 }
                 else if (CheckSlot() == 3)
                 {
                     Slot3.GetComponent<RawImage>().texture = stone;
-                    Text3.text = "" + Player.GetComponent<PlayerSatatus>().stone;
+                    Text3.text = "" + Player.GetComponent<PlayerStatus>().stone;
                 }
                 else if (CheckSlot() == 4)
                 {
                     Slot4.GetComponent<RawImage>().texture = stone;
-                    Text4.text = "" + Player.GetComponent<PlayerSatatus>().stone;
+                    Text4.text = "" + Player.GetComponent<PlayerStatus>().stone;
                 }
                 else if (CheckSlot() == 5)
                 {
                     Slot5.GetComponent<RawImage>().texture = stone;
-                    Text5.text = ("" + Player.GetComponent<PlayerSatatus>().stone);
+                    Text5.text = ("" + Player.GetComponent<PlayerStatus>().stone);
                 }
                 else if (CheckSlot() == 6)
                 {
                     Slot6.GetComponent<RawImage>().texture = stone;
-                    Text6.GetComponent<Text>().text = "" + Player.GetComponent<PlayerSatatus>().stone;
+                    Text6.GetComponent<Text>().text = "" + Player.GetComponent<PlayerStatus>().stone;
                 }
                 else if (CheckSlot() == 7)
                 {
                     Slot7.GetComponent<RawImage>().texture = stone;
-                    Text7.GetComponent<Text>().text = "" + Player.GetComponent<PlayerSatatus>().stone;
+                    Text7.GetComponent<Text>().text = "" + Player.GetComponent<PlayerStatus>().stone;
                 }
                 else if (CheckSlot() == 8)
                 {
                     Slot8.GetComponent<RawImage>().texture = stone;
-                    Text8.GetComponent<Text>().text = "" + Player.GetComponent<PlayerSatatus>().stone;
+                    Text8.GetComponent<Text>().text = "" + Player.GetComponent<PlayerStatus>().stone;
                 }
                 else if (CheckSlot() == 9)
                 {
                     Slot9.GetComponent<RawImage>().texture = stone;
-                    Text9.GetComponent<Text>().text = "" + Player.GetComponent<PlayerSatatus>().stone;
+                    Text9.GetComponent<Text>().text = "" + Player.GetComponent<PlayerStatus>().stone;
                 }
                 else if (CheckSlot() == 10)
                 {
                     Slot10.GetComponent<RawImage>().texture = stone;
-                    Text10.GetComponent<Text>().text = "" + Player.GetComponent<PlayerSatatus>().stone;
+                    Text10.GetComponent<Text>().text = "" + Player.GetComponent<PlayerStatus>().stone;
                 }
                 else if (CheckSlot() == 11)
                 {
                     Slot11.GetComponent<RawImage>().texture = stone;
-                    Text11.GetComponent<Text>().text = "" + Player.GetComponent<PlayerSatatus>().stone;
+                    Text11.GetComponent<Text>().text = "" + Player.GetComponent<PlayerStatus>().stone;
                 }
                 else if (CheckSlot() == 12)
                 {
                     Slot12.GetComponent<RawImage>().texture = stone;
-                    Text12.GetComponent<Text>().text = "" + Player.GetComponent<PlayerSatatus>().stone;
+                    Text12.GetComponent<Text>().text = "" + Player.GetComponent<PlayerStatus>().stone;
                 }
                 else if (CheckSlot() == 13)
                 {
                     Slot13.GetComponent<RawImage>().texture = stone;
-                    Text13.GetComponent<Text>().text = "" + Player.GetComponent<PlayerSatatus>().stone;
+                    Text13.GetComponent<Text>().text = "" + Player.GetComponent<PlayerStatus>().stone;
                 }
                 else if (CheckSlot() == 14)
                 {
                     Slot14.GetComponent<RawImage>().texture = stone;
-                    Text14.GetComponent<Text>().text = "" + Player.GetComponent<PlayerSatatus>().stone;
+                    Text14.GetComponent<Text>().text = "" + Player.GetComponent<PlayerStatus>().stone;
                 }
                 else if (CheckSlot() == 15)
                 {
                     Slot15.GetComponent<RawImage>().texture = stone;
-                    Text15.GetComponent<Text>().text = "" + Player.GetComponent<PlayerSatatus>().stone;
+                    Text15.GetComponent<Text>().text = "" + Player.GetComponent<PlayerStatus>().stone;
                 }
             }
             else if (CheckStone() == 1)
             {
-                Text1.text = ("" + Player.GetComponent<PlayerSatatus>().stone);
+                Text1.text = ("" + Player.GetComponent<PlayerStatus>().stone);
             }
             else if (CheckStone() == 2)
             {
-                Text2.text = ("" + Player.GetComponent<PlayerSatatus>().stone);
+                Text2.text = ("" + Player.GetComponent<PlayerStatus>().stone);
             }
         }
     }

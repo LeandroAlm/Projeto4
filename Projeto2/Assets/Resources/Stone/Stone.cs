@@ -2,12 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Stone : MonoBehaviour {
-    
+public class Stone : MonoBehaviour
+{
     public int hp;
     private int Amount;
     
-
     public int GetAmount()
     {
         Amount = Random.Range(1, 3);

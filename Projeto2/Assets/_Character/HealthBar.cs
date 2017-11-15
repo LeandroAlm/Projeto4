@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HealthBar : MonoBehaviour {
-
+public class HealthBar : MonoBehaviour
+{
     public Image hp;
     public Image Armor;
     public Transform player;
@@ -17,7 +17,7 @@ public class HealthBar : MonoBehaviour {
 
 	void Update ()
     {
-        hp.fillAmount = player.transform.GetComponent<PlayerSatatus>().hp / 100f;
-        Armor.fillAmount = player.transform.GetComponent<PlayerSatatus>().armor / 100f;
+        hp.fillAmount = player.transform.GetComponent<PlayerStatus>().hp / 100f;
+        Armor.fillAmount = player.transform.GetComponent<PlayerStatus>().armor / 100f;
     }
 }

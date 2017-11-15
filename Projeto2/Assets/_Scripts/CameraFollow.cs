@@ -2,13 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraFollow : MonoBehaviour {
-
+public class CameraFollow : MonoBehaviour
+{
     public Transform player;
     private Transform cam;
 
 	// Use this for initialization
-	void Start () {
+
+	void Start ()
+    {
         cam = GetComponent<Transform>();
 	}
 	
