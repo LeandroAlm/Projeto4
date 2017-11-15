@@ -56,7 +56,7 @@ public class BuildWall : MonoBehaviour {
             {
                 size++;
             }
-            Vector3 dirAux = (dir / size) * 2.829f;
+            Vector3 dirAux = (dir / size) * 2.82f;
 
             Vector3 posAux = posIni;
             float sizeAux = 0;

@@ -13,21 +13,21 @@ public class PlayerStatus : MonoBehaviour
 
     private void Start()
     {
-        inv = Bag.GetComponent<Inventario>();
-        //inventoryUI = Bag.GetComponent<InventoryUI>();
+        //inv = Bag.GetComponent<Inventario>();
+        inventoryUI = Bag.GetComponent<InventoryUI>();
     }
 
     public void StoneAmout(int value)
     {
         stone += value;
         //inv.SetSlot("stone");
-        inv.SetSlot("stone");
+        inventoryUI.CheckSlot("stone");
     }
 
     public void WoodAmout(int value)
     {
         wood += value;
         //inv.SetSlot("wood");
-        inv.SetSlot("wood");
+        inventoryUI.CheckSlot("wood");
     }
 }
