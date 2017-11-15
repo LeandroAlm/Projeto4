@@ -18,7 +18,7 @@ public class Stone : MonoBehaviour
         hp--;
         if (hp == 0)
         {
-            Destroy(gameObject);
+            Destroy(gameObject, 0.5f);
         }
     }
 

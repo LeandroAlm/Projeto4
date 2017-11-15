@@ -9,7 +9,6 @@ public class Farm : MonoBehaviour
     private Terrain terreno;
     private GameObject go;
     
-    public TreeInstance treeInstance;
     public GUIContent Mochila;
     public bool isWood, isStone; //rego
 
@@ -43,15 +42,15 @@ public class Farm : MonoBehaviour
                     if (hit.collider.tag == "Stone")
                     {
                         isStone = true;
-                        hit.collider.GetComponent<Stone>().Damage();
                         player.GetComponent<PlayerStatus>().StoneAmout(hit.collider.GetComponent<Stone>().GetAmount());
+                        hit.collider.GetComponent<Stone>().Damage();
                     }
 
                     else if (hit.collider.tag == "Tree")
                     {
                         isWood = true;
-                        hit.collider.GetComponent<Tree>().Damage();
                         player.GetComponent<PlayerStatus>().WoodAmout(hit.collider.GetComponent<Tree>().GetAmount());
+                        hit.collider.GetComponent<Tree>().Damage();
                     }
                 }
             }

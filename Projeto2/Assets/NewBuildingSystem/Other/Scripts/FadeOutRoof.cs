@@ -12,48 +12,29 @@ public class FadeOutRoof : MonoBehaviour {
 
     void OnTriggerEnter(Collider collider)
     {
-
-
-
         if (IsCharacter(collider))
-
         {
             isInside = true;
 
             SetMaterialTransparent(Roof);
             SetMaterialTransparent(Roof2);
-
-
             iTween.FadeTo(Roof, 0, 1);
             iTween.FadeTo(Roof2, 0, 1);
-
-
         }
-
     }
-
-
-
+    
     private bool IsCharacter(Collider collider)
-
     {
-
         // Implement you logic here if it is your player that is the collider
 
         return true;
-
     }
-
-
+    
 
     private void SetMaterialTransparent(GameObject RoofObject)
-
     {
-
         foreach (Material m in RoofObject.GetComponent<Renderer>().materials)
-
         {
-
             m.SetFloat("_Mode", 2);
 
             m.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
@@ -69,21 +50,14 @@ public class FadeOutRoof : MonoBehaviour {
             m.DisableKeyword("_ALPHAPREMULTIPLY_ON");
 
             m.renderQueue = 3000;
-
         }
-
     }
-
-
+    
 
     private void SetMaterialOpaque()
-
     {
-
         foreach (Material m in Roof.GetComponent<Renderer>().materials)
-
         {
-
             m.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.One);
 
             m.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.Zero);
@@ -97,34 +71,21 @@ public class FadeOutRoof : MonoBehaviour {
             m.DisableKeyword("_ALPHAPREMULTIPLY_ON");
 
             m.renderQueue = -1;
-
         }
-
-    }
-
+    }    
 
 
     void OnTriggerExit(Collider collider)
-
-    {
-
+    {  
         if (IsCharacter(collider))
-
         {
             isInside = false;
 
-            // Set material to opaque
 
+            // Set material to opaque
             iTween.FadeTo(Roof, 1, 1);
             iTween.FadeTo(Roof2, 1, 1);
-
-
-
-
             Invoke("SetMaterialOpaque", 1.0f);
-
         }
-
     }
-
 }
