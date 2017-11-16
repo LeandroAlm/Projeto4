@@ -22,7 +22,7 @@ public class InventoryUI : MonoBehaviour
         bag.SetActive(false);
         title.SetActive(false);
 	    isOpen = false;
-	    playerStatus = GetComponent<PlayerStatus>();
+	    playerStatus = PlayerTransform.GetComponent<PlayerStatus>();
 	    farm = GetComponent<Farm>();
         slotsList = new List<Transform>();
 
@@ -51,137 +51,107 @@ public class InventoryUI : MonoBehaviour
 
     public void CheckSlot(string Object)
     {
-        int AuxWood = CheckWood();
-
-        Debug.Log("Nr: " + AuxWood);
-        if (AuxWood != 20)
-        {
-            SetSlot("wood", AuxWood);
-        }
-        else
-        {
-            int i = 0;
-            bool pode = true;
-            foreach (Transform slot in slotsList)
-            {
-                if (slot.GetChild(0).GetChild(0).GetComponent<RawImage>().texture == DefaultTexture  && pode)
-                {
-                    if (Object == "wood")
-                    {
-                        SetSlot("wood", i);
-                        pode = false;
-                        break;
-                    }
-
-                    else if (Object == "stone")
-                    {
-                        SetSlot("stone", i);
-                        pode = false;
-                        break;
-                    }
-                }
-                else
-                {
-                    i++;
-                    Debug.Log("i: " + i);
-                    pode = false;
-                }
-            }
-        }
-        
-
-        //if (slotPrefab.GetComponent<RawImage>().texture == null)
+        // Novo metodo gg izi
+        //if (Object == "wood")
         //{
-        //    if (farm.isWood == true)
+        //    if (playerStatus.ExistWood)
+        //    {
+        //        FindWood().GetComponent<Text>().text = "" + playerStatus.wood;
+        //    }
+        //    else 
         //    {
         //        SetSlot("wood");
-        //    }
-
-        //    else if (farm.isStone == true)
-        //    {
-        //        SetSlot("stone");
+        //        playerStatus.ExistWood = true;
         //    }
         //}
+        //else if (Object == "stone")
+        //{
+        //    if (playerStatus.ExistStone)
+        //    {
+        //        FindStone().GetComponent<Text>().text = "" + playerStatus.stone;
+        //    }
+        //    else
+        //    {
+        //        SetSlot("stone");
+        //        playerStatus.ExistStone = true;
+        //    }
+        //}
+
+        // passei e tive de fazer á tuga
+        if (Object == "wood")
+        {
+            if (playerStatus.ExistWood)
+            {
+                // Já existe madeira
+                CheckWood();
+            }
+            else
+            {
+                // Nao existe madeira
+                SetSlot("wood");
+                playerStatus.ExistWood = true;
+            }
+        }
+        else if (Object == "stone")
+        {
+            if (playerStatus.ExistStone)
+            {
+                CheckStone();
+            }
+            else
+            {
+                SetSlot("stone");
+                playerStatus.ExistStone = true;
+            }
+        }
     }
 
-    public void SetSlot(string slot, int SlotNumber)
+    //public void SetSlot(string slot, int SlotNumber)
+    public void SetSlot(string slot)
     {        
         if (slot == "wood")
         {
-            int woodI = 0;
             foreach (Transform Slot in slotsList)
             {
-                if (woodI == SlotNumber)
+                if (Slot.GetChild(0).GetChild(0).GetComponent<RawImage>().texture == DefaultTexture)
                 {
-                    Debug.Log("Desenhei a tua mãe de 4 a mamar num preto");
                     Slot.GetChild(0).GetChild(0).GetComponent<RawImage>().texture = wood;
-                    SlotText.text = "" + PlayerTransform.GetComponent<PlayerStatus>().wood;
+                    SlotText.text = "" + playerStatus.wood;
                 }
-                else
-                {
-                    woodI++;
-                    Debug.Log(woodI);
-                }
-            }
-            
+            }          
         }
-
         else if (slot == "stone")
         {
-            int stoneI = 0;
-
             foreach (Transform Slot in slotsList)
             {
-                if (stoneI == SlotNumber)
+                if (Slot.GetChild(0).GetChild(0).GetComponent<RawImage>().texture == DefaultTexture)
                 {
                     Slot.GetChild(0).GetChild(0).GetComponent<RawImage>().texture = stone;
-                    SlotText.text = "" + PlayerTransform.GetComponent<PlayerStatus>().stone;
-                }
-                else
-                {
-                    stoneI++;
+                    SlotText.text = "" + playerStatus.stone;
                 }
             }          
         }
     }
 
-    int CheckWood()
+    void CheckWood()
     {
-        int i = 0;
-
-        foreach (Transform trans in slotsList)
+        foreach (Transform Trans in slotsList)
         {
-            if (trans.GetChild(0).GetChild(0).GetComponent<RawImage>().texture == wood)
+            if (Trans.GetComponent<RawImage>().texture == wood)
             {
-                return i;
-
+                Trans.GetChild(2).GetComponent<Text>().text = "" + playerStatus.wood;
             }
-            else
-                i++;
         }
-        //if (i < 20)
-        //    return i;
-        //else
-        //    return 20;
-        return 0;
     }
 
-    int CheckStone()
+    void CheckStone()
     {
-        int i = 0;
-
-        foreach (Transform trans in slotsList)
+        foreach (Transform Trans in slotsList)
         {
-            if (trans.GetChild(0).GetChild(0).GetComponent<RawImage>().texture == stone)
+            if (Trans.GetComponent<RawImage>().texture == stone)
             {
-                return i;
+                Trans.GetChild(2).GetComponent<Text>().text = "" + playerStatus.stone;
             }
-            else
-                i++;
         }
-        if (i < 20)
-            return i;
-        else
-            return 20;
     }
 }

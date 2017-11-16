@@ -10,9 +10,12 @@ public class PlayerStatus : MonoBehaviour
     public GameObject Bag;
     Inventario inv;
     private InventoryUI inventoryUI; //rego
+    public bool ExistWood, ExistStone;
 
     private void Start()
     {
+        ExistStone = false;
+        ExistWood = false;
         //inv = Bag.GetComponent<Inventario>();
         inventoryUI = Bag.GetComponent<InventoryUI>();
     }
