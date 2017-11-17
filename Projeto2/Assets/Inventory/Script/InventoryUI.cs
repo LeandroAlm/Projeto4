@@ -51,32 +51,6 @@ public class InventoryUI : MonoBehaviour
 
     public void CheckSlot(string Object)
     {
-        // Novo metodo gg izi
-        //if (Object == "wood")
-        //{
-        //    if (playerStatus.ExistWood)
-        //    {
-        //        FindWood().GetComponent<Text>().text = "" + playerStatus.wood;
-        //    }
-        //    else 
-        //    {
-        //        SetSlot("wood");
-        //        playerStatus.ExistWood = true;
-        //    }
-        //}
-        //else if (Object == "stone")
-        //{
-        //    if (playerStatus.ExistStone)
-        //    {
-        //        FindStone().GetComponent<Text>().text = "" + playerStatus.stone;
-        //    }
-        //    else
-        //    {
-        //        SetSlot("stone");
-        //        playerStatus.ExistStone = true;
-        //    }
-        //}
-
         // passei e tive de fazer á tuga
         if (Object == "wood")
         {
@@ -107,51 +81,170 @@ public class InventoryUI : MonoBehaviour
     }
 
     //public void SetSlot(string slot, int SlotNumber)
-    public void SetSlot(string slot)
-    {        
-        if (slot == "wood")
-        {
-            foreach (Transform Slot in slotsList)
-            {
-                if (Slot.GetChild(0).GetChild(0).GetComponent<RawImage>().texture == DefaultTexture)
-                {
-                    Slot.GetChild(0).GetChild(0).GetComponent<RawImage>().texture = wood;
-                    SlotText.text = "" + playerStatus.wood;
-                }
-            }          
-        }
-        else if (slot == "stone")
-        {
-            foreach (Transform Slot in slotsList)
-            {
-                if (Slot.GetChild(0).GetChild(0).GetComponent<RawImage>().texture == DefaultTexture)
-                {
-                    Slot.GetChild(0).GetChild(0).GetComponent<RawImage>().texture = stone;
-                    SlotText.text = "" + playerStatus.stone;
-                }
-            }          
-        }
-    }
+    //public void SetSlot(string slot)
+    //{        
+    //    if (slot == "wood")
+    //    {
+    //        foreach (Transform Slot in slotsList)
+    //        {
+    //            if (Slot.GetChild(0).GetChild(0).GetComponent<RawImage>().texture == DefaultTexture)
+    //            {
+    //                Slot.GetChild(0).GetChild(0).GetComponent<RawImage>().texture = wood;
+    //                SlotText.text = "" + playerStatus.wood;
+    //            }
+    //        }          
+    //    }
+    //    else if (slot == "stone")
+    //    {
+    //        foreach (Transform Slot in slotsList)
+    //        {
+    //            if (Slot.GetChild(0).GetChild(0).GetComponent<RawImage>().texture == DefaultTexture)
+    //            {
+    //                Slot.GetChild(0).GetChild(0).GetComponent<RawImage>().texture = stone;
+    //                SlotText.text = "" + playerStatus.stone;
+    //            }
+    //        }          
+    //    }
+    //}
 
-    void CheckWood()
+    //void CheckWood()
+    //{
+    //    foreach (Transform Trans in slotsList)
+    //    {
+    //        if (Trans.GetComponent<RawImage>().texture == wood)
+    //        {
+    //            Trans.GetChild(2).GetComponent<Text>().text = "" + playerStatus.wood;
+    //        }
+    //    }
+    //}
+
+    //void CheckStone()
+    //{
+    //    foreach (Transform Trans in slotsList)
+    //    {
+    //        if (Trans.GetComponent<RawImage>().texture == stone)
+    //        {
+    //            Trans.GetChild(2).GetComponent<Text>().text = "" + playerStatus.stone;
+    //        }
+    //    }
+    //}
+
+    public void SetSlot(string Slot)
     {
-        foreach (Transform Trans in slotsList)
+        if (Slot == "wood")
         {
-            if (Trans.GetComponent<RawImage>().texture == wood)
+            if (CheckWood() == 0)
             {
-                Trans.GetChild(2).GetComponent<Text>().text = "" + playerStatus.wood;
+                // 1st empety slot possivel
+                SlotEmpety(Slot);
+            }
+            else
+            {
+                // exist wood in somewhere!
+                int i = 1;
+                int Aux = CheckWood();
+                foreach (Transform Trans in slotsList)
+                {
+                    // Quando o SLot que recebemos que ja tem wood é igual ao i
+                    if (i == Aux)
+                    {
+                        // mudar tetxo
+                        Trans.GetChild(2).GetComponent<Text>().text = "" + playerStatus.wood;
+                        break;
+                    }
+                    else
+                        i++;
+                }
+            }
+        }
+        else if (Slot == "stone")
+        {
+            if (CheckStone() == 0)
+            {
+                // 1st empety slot possivel
+                SlotEmpety(Slot);
+            }
+            else
+            {
+                // exist stone in somewhere!
+                int i = 1;
+                int Aux = CheckStone();
+                foreach (Transform Trans in slotsList)
+                {
+                    // Quando o SLot que recebemos que ja tem stone é igual ao i
+                    if (i == Aux)
+                    {
+                        // mudar tetxo
+                        Trans.GetChild(2).GetComponent<Text>().text = "" + playerStatus.stone;
+                        break;
+                    }
+                    else
+                        i++;
+                }
             }
         }
     }
 
-    void CheckStone()
+    void SlotEmpety(string Obj)
     {
-        foreach (Transform Trans in slotsList)
+        // procura por um slot empety e quando encontra poem logo a ima e o txt
+        if (Obj == "wood")
         {
-            if (Trans.GetComponent<RawImage>().texture == stone)
+            foreach (Transform x in slotsList)
             {
-                Trans.GetChild(2).GetComponent<Text>().text = "" + playerStatus.stone;
+                if (x.GetChild(0).GetChild(0).GetComponent<RawImage>().texture == DefaultTexture)
+                {
+                    x.GetChild(0).GetChild(0).GetComponent<RawImage>().texture = wood;
+                    x.GetChild(2).GetComponent<Text>().text = "" + playerStatus.wood;
+                    break;
+                }
+                
             }
         }
+        else if (Obj == "stone")
+        {
+            foreach (Transform x in slotsList)
+            {
+                if (x.GetChild(0).GetChild(0).GetComponent<RawImage>().texture == DefaultTexture)
+                {
+                    x.GetChild(0).GetChild(0).GetComponent<RawImage>().texture = stone;
+                    x.GetChild(2).GetComponent<Text>().text = "" + playerStatus.stone;
+                    break;
+                }
+                
+            }
+        }
+    }
+
+    int CheckWood()
+    {
+        // se houver wood envia o nr do Slot, caso contrario envia 0
+        int i = 1;
+        foreach (Transform slot in slotsList)
+        {
+            if (slot.GetChild(0).GetChild(0).GetComponent<RawImage>().texture == wood)
+            {
+                return i;
+            }
+            else
+                i++;
+        }
+        return 0;
+    }
+
+    int CheckStone()
+    {
+        // se houver stone envia o nr do Slot, caso contrario envia 0
+        int i = 1;
+        foreach (Transform slot in slotsList)
+        {
+            if (slot.GetChild(0).GetChild(0).GetComponent<RawImage>().texture == stone)
+            {
+                return i;
+            }
+            else
+                i++;
+        }
+        return 0;
     }
 }
