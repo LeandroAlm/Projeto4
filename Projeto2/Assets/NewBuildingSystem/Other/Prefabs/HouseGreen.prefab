@@ -105,6 +105,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4962194585495606}
   - component: {fileID: 114397401718122768}
+  - component: {fileID: 65666933594687694}
   m_Layer: 0
   m_Name: HouseGreen
   m_TagString: Untagged
@@ -544,7 +545,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1434821873364924}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 112.45455, y: 0, z: 116.11793}
+  m_LocalPosition: {x: 109.34113, y: 0.00000011920929, z: 103.3186}
   m_LocalScale: {x: 0.5212612, y: 0.6780643, z: 0.7221143}
   m_Children:
   - {fileID: 4821936011483402}
@@ -1244,6 +1245,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1352544843825906}
   m_Mesh: {fileID: 4300000, guid: 7ec77cb11305cae47b803cf734a41e70, type: 3}
+--- !u!65 &65666933594687694
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1434821873364924}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 12, y: 3.8, z: 7.26}
+  m_Center: {x: 0.73, y: 1.88, z: 0}
 --- !u!114 &114397401718122768
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1257,5 +1270,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mousePosX: 0
   mousePosY: 0
+  GreenMaterial: {fileID: 2100000, guid: b4fecf47d4f08d54c992123ae38a3693, type: 2}
+  redMaterial: {fileID: 2100000, guid: df57188366a3aeb44af238e5ab9cb79e, type: 2}
   housePrefab: {fileID: 1395972148449670, guid: 8027e7a165eb8de48a39a3547b1f9b03,
     type: 2}
