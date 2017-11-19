@@ -31,7 +31,7 @@ public class Farm : MonoBehaviour
         forward = transform.TransformDirection(Vector3.forward * 10 + new Vector3(0,1,0));
         Debug.DrawRay(transform.position, forward, Color.green);
         
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(1))
         {
             Ray ray = new Ray(transform.position, transform.forward);
             

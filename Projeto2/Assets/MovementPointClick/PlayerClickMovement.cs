@@ -47,19 +47,30 @@ public class PlayerClickMovement : MonoBehaviour
 
         }
 
-        //Right click em cima de uma objecto para farmar
+        //Right click em cima de um objecto para farmar
         if (Input.GetMouseButtonDown(1))
         {
+            animator.SetTrigger("Farming");
+
             Ray ray = camera.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
 
             if (Physics.Raycast(ray, out hit, 100))
             {
-                //Move Player
                 Debug.Log("Hit: " + hit.collider.name);
-                MoveToPoint(hit.point);
-            }
 
+                if (hit.collider.tag == "Stone")
+                {
+                    transform.GetComponent<PlayerStatus>().StoneAmout(hit.collider.GetComponent<Stone>().GetAmount());
+                    hit.collider.GetComponent<Stone>().Damage();
+                }
+
+                else if (hit.collider.tag == "Tree")
+                {
+                    transform.GetComponent<PlayerStatus>().WoodAmout(hit.collider.GetComponent<Tree>().GetAmount());
+                    hit.collider.GetComponent<Tree>().Damage();
+                }
+            }
         }
     }
 
