@@ -4022,10 +4022,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canBuild: 0
   auxCheck: 0
+  IsBuilding: 0
   wallPrefab: {fileID: 181752, guid: 34b237876876baf4fa134407d8dc57d5, type: 2}
+  wallPrefabGreen: {fileID: 1335641523984676, guid: 4e75030ba895e5e4aa57b6ffd4bec833,
+    type: 2}
   posIni: {x: 0, y: 0, z: 0}
   posEnd: {x: 0, y: 0, z: 0}
   dir: {x: 0, y: 0, z: 0}
+  posAux2: {x: 0, y: 0, z: 0}
 --- !u!4 &441488525 stripped
 Transform:
   m_PrefabParentObject: {fileID: 410354, guid: ce9ff620d79392c4c8280b4156f55870, type: 2}

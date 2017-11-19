@@ -127,6 +127,7 @@
     <Compile Include="Assets\NewBuildingSystem\Scripts\RoofFoundation.cs" />
     <Compile Include="Assets\NewBuildingSystem\Scripts\TerrainColIgnore.cs" />
     <Compile Include="Assets\NewBuildingSystem\Scripts\VerticFoundation.cs" />
+    <Compile Include="Assets\NewBuildingSystem\Scripts\WallWait.cs" />
     <Compile Include="Assets\NewBuildingSystem\Wall\ShowMouse.cs" />
     <Compile Include="Assets\NewBuildingSystem\Wall\WallBuilding.cs" />
     <Compile Include="Assets\NewBuildingSystem\Wall\WallDrag.cs" />

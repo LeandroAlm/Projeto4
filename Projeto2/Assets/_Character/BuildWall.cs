@@ -8,7 +8,10 @@ public class BuildWall : MonoBehaviour {
 
     public bool auxCheck;
 
+    public bool IsBuilding;
+
     public GameObject wallPrefab;
+    public GameObject wallPrefabGreen;
 
     private bool check;
 
@@ -16,10 +19,20 @@ public class BuildWall : MonoBehaviour {
     public Vector3 posEnd;
     public Vector3 dir;
 
-	void Start ()
+    public Vector3 posAux2;
+
+    private float timer;
+
+    private List<Vector3> WallPositions = new List<Vector3>();
+
+    int x;
+
+    void Start ()
     {
+        x = 0;
+        timer = 2;
         check = false;
-        canBuild = false;
+        canBuild = true;
         auxCheck = false;
     }
 	
@@ -47,6 +60,8 @@ public class BuildWall : MonoBehaviour {
                     posEnd = hit.point;
                     check = false;
                     auxCheck = true;
+                    IsBuilding = true;
+
                 }
             }
 
@@ -65,20 +80,83 @@ public class BuildWall : MonoBehaviour {
 
             if (auxCheck)
             {
+                Debug.Log("PosIni " + posIni);
                 while (sizeAux != size)
                 {
                     Debug.Log("eNTROU");
-                    Instantiate(wallPrefab, posAux, xy);
+                    Instantiate(wallPrefabGreen, posAux, xy);
+                    WallPositions.Add(posAux);
                     posAux += dirAux;
                     sizeAux += 2;
+
+                   
                 }
+               
+                Debug.Log("wallcount " + WallPositions.Count);
+                posAux2 = posIni;
                 auxCheck = false;
                 Debug.Log("sAUI");
+
+               
             }
 
-            //Instantiate(wallPrefab, posIni, this.transform.rotation);
+            //Instantiate(wallPrefab, posIni, this.transform.rotation); 
+
+            //sizeAux = 0; 
+
+
+            //INSTANCIAR PAREDES UMA A UMA
+            //Bugado
+
+
+
+
+            if (IsBuilding)
+            {
+                int i = 0;
+                foreach (Vector3 vector in WallPositions)
+                {
+                    if (i >= 0)
+                    {
+                       
+
+                        Instantiate(wallPrefab, vector, xy);
+
+                    }
+                    else
+                        i++;
+                }
+
+                IsBuilding = false;
+
+                //for (int i = 0; i < WallPositions.Count; i++)
+                //{
+                //    Debug.Log("RAUUUUUÇ");
+
+                //    if (timer <= 0)
+                //    {
+                //        timer = 2;
+
+                //        Instantiate(wallPrefab, WallPositions[i], xy);
+
+                //    }
+
+                //    timer -= Time.deltaTime;
+
+                //    Debug.Log("timer " + timer);
+
+                //}
+
+
+
+            }
 
         }
 
+      
+
     }
+
+  
+    
 }
