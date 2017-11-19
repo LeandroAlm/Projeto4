@@ -135,7 +135,7 @@ public class InventoryUI : MonoBehaviour
         {
             if (CheckWood() == 0)
             {
-                // 1st empety slot possivel
+                // 1st empty slot possivel
                 SlotEmpty(Slot);
             }
             else

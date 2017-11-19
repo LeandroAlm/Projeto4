@@ -13,12 +13,14 @@ public class PlayerClickMovement : MonoBehaviour
     public Transform Axe;
     private Animator animator;
     private float moveSpeed;
+    private bool usingAxe, usingGun;
 
     void Start ()
     {
 		camera = Camera.main;
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
+        usingAxe = true;
     }
 	
 	void Update ()
@@ -49,27 +51,37 @@ public class PlayerClickMovement : MonoBehaviour
 
         //Right click em cima de um objecto para farmar
         if (Input.GetMouseButtonDown(1))
-        {
-            animator.SetTrigger("Farming");
-
+        {          
             Ray ray = camera.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
 
             if (Physics.Raycast(ray, out hit, 100))
-            {
-                Debug.Log("Hit: " + hit.collider.name);
+            {             
+                float distance = Vector3.Distance(transform.position, hit.collider.transform.position);
 
-                if (hit.collider.tag == "Stone")
+                Debug.Log("Hit: " + hit.collider.name + " at " + distance + " distance.");
+
+                if (distance > 2)
                 {
-                    transform.GetComponent<PlayerStatus>().StoneAmout(hit.collider.GetComponent<Stone>().GetAmount());
-                    hit.collider.GetComponent<Stone>().Damage();
+                    MoveToPoint(hit.point);
                 }
 
-                else if (hit.collider.tag == "Tree")
+                else
                 {
-                    transform.GetComponent<PlayerStatus>().WoodAmout(hit.collider.GetComponent<Tree>().GetAmount());
-                    hit.collider.GetComponent<Tree>().Damage();
-                }
+                    animator.SetTrigger("Farming");
+
+                    if (hit.collider.tag == "Stone")
+                    {
+                        transform.GetComponent<PlayerStatus>().StoneAmout(hit.collider.GetComponent<Stone>().GetAmount());
+                        hit.collider.GetComponent<Stone>().Damage();
+                    }
+
+                    else if (hit.collider.tag == "Tree")
+                    {
+                        transform.GetComponent<PlayerStatus>().WoodAmout(hit.collider.GetComponent<Tree>().GetAmount());
+                        hit.collider.GetComponent<Tree>().Damage();
+                    }
+                }               
             }
         }
     }
@@ -100,28 +112,37 @@ public class PlayerClickMovement : MonoBehaviour
         {
             animator.SetBool("Sword", false);
             animator.SetFloat("Forward", moveSpeed, 0.1f, Time.deltaTime);
-            animator.SetFloat("Turn", moveSpeed, 0.1f, Time.deltaTime);
+            //animator.SetFloat("Turn", moveSpeed, 0.1f, Time.deltaTime);
         }
 
         if (animator.GetBool("Sword") == true)
         {
             animator.SetBool("Gun", false);
             animator.SetFloat("ForwardS", moveSpeed, 0.1f, Time.deltaTime);
-            animator.SetFloat("TurnS", moveSpeed, 0.1f, Time.deltaTime);
+            //animator.SetFloat("TurnS", moveSpeed, 0.1f, Time.deltaTime);
         }
     }
 
     public void GunsMovementController()
     {
-        if (Input.GetKeyDown("1"))
+        animator.SetBool("Sword", true);
+        animator.SetBool("Gun", false);
+        Axe.gameObject.SetActive(true);
+        usingAxe = true;
+        usingGun = false;
+
+        if (Input.GetKeyDown("1") && usingAxe == false)
         {
             animator.SetBool("Sword", true);
             animator.SetBool("Gun", false);
             Axe.gameObject.SetActive(true);
-
+            usingAxe = true;
+            usingGun = false;
         }
         if (Input.GetKeyDown("2"))
         {
+            usingAxe = false;
+            usingGun = true;
             animator.SetBool("Gun", true);
             animator.SetBool("Sword", false);
             Axe.gameObject.SetActive(false);
