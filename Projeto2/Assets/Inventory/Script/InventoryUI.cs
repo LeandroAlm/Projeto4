@@ -51,7 +51,7 @@ public class InventoryUI : MonoBehaviour
 
     public void CheckSlot(string Object)
     {
-        // passei e tive de fazer á tuga
+        // passei e tive de fazer à tuga
         if (Object == "wood")
         {
             if (playerStatus.ExistWood)
@@ -136,7 +136,7 @@ public class InventoryUI : MonoBehaviour
             if (CheckWood() == 0)
             {
                 // 1st empety slot possivel
-                SlotEmpety(Slot);
+                SlotEmpty(Slot);
             }
             else
             {
@@ -162,7 +162,7 @@ public class InventoryUI : MonoBehaviour
             if (CheckStone() == 0)
             {
                 // 1st empety slot possivel
-                SlotEmpety(Slot);
+                SlotEmpty(Slot);
             }
             else
             {
@@ -185,7 +185,7 @@ public class InventoryUI : MonoBehaviour
         }
     }
 
-    void SlotEmpety(string Obj)
+    void SlotEmpty(string Obj)
     {
         // procura por um slot empety e quando encontra poem logo a ima e o txt
         if (Obj == "wood")
