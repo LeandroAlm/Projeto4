@@ -13,6 +13,8 @@ public class BuildWall : MonoBehaviour {
     public GameObject wallPrefab;
     public GameObject wallPrefabGreen;
 
+    GameObject ParentObj;
+
     private bool check;
 
     public Vector3 posIni;
@@ -27,13 +29,25 @@ public class BuildWall : MonoBehaviour {
 
     int x;
 
+    private int currentBuildStep;
+
+    private int stepCount;
+
+    public float stepDuration;
+
     void Start ()
     {
         x = 0;
-        timer = 2;
+     
         check = false;
         canBuild = true;
         auxCheck = false;
+
+        ParentObj = new GameObject();
+
+        timer = stepDuration;
+        
+        currentBuildStep = 0;
     }
 	
 	void Update ()
@@ -67,11 +81,12 @@ public class BuildWall : MonoBehaviour {
 
             dir = posEnd - posIni;
             int size = (int)dir.magnitude;
+            Debug.Log("dir"+dir);
             if(size % 2 != 0)
             {
                 size++;
             }
-            Vector3 dirAux = (dir / size) * 2.82f;
+            Vector3 dirAux = (dir / size) * 2.83f;
 
             Vector3 posAux = posIni;
             float sizeAux = 0;
@@ -80,83 +95,56 @@ public class BuildWall : MonoBehaviour {
 
             if (auxCheck)
             {
-                Debug.Log("PosIni " + posIni);
                 while (sizeAux != size)
                 {
-                    Debug.Log("eNTROU");
-                    Instantiate(wallPrefabGreen, posAux, xy);
-                    WallPositions.Add(posAux);
+                    GameObject newWallGreen = Instantiate(wallPrefabGreen, posAux, xy);
+                    newWallGreen.transform.parent = ParentObj.transform;
+                    //WallPositions.Add(posAux);
                     posAux += dirAux;
                     sizeAux += 2;
 
                    
                 }
-               
-                Debug.Log("wallcount " + WallPositions.Count);
+                stepCount = ParentObj.transform.childCount;
+
                 posAux2 = posIni;
                 auxCheck = false;
-                Debug.Log("sAUI");
 
                
             }
 
-            //Instantiate(wallPrefab, posIni, this.transform.rotation); 
+            for (int i = 0; i < ParentObj.transform.childCount; i++)
+            {
+               Debug.Log(ParentObj.transform.GetChild(i));
+            }
 
-            //sizeAux = 0; 
+
 
 
             //INSTANCIAR PAREDES UMA A UMA
             //Bugado
+            IsBuilding = true;
+
+            Debug.Log(IsBuilding);
 
 
-
-
-            if (IsBuilding)
+            if (timer <= 0 && currentBuildStep < stepCount)
             {
-                int i = 0;
-                foreach (Vector3 vector in WallPositions)
-                {
-                    if (i >= 0)
-                    {
-                       
-
-                        Instantiate(wallPrefab, vector, xy);
-
-                    }
-                    else
-                        i++;
-                }
-
-                IsBuilding = false;
-
-                //for (int i = 0; i < WallPositions.Count; i++)
-                //{
-                //    Debug.Log("RAUUUUUÇ");
-
-                //    if (timer <= 0)
-                //    {
-                //        timer = 2;
-
-                //        Instantiate(wallPrefab, WallPositions[i], xy);
-
-                //    }
-
-                //    timer -= Time.deltaTime;
-
-                //    Debug.Log("timer " + timer);
-
-                //}
-
-
+                timer = stepDuration;
+                Instantiate(wallPrefab, ParentObj.transform.GetChild(currentBuildStep).transform.position, ParentObj.transform.GetChild(currentBuildStep).transform.rotation);
+                ParentObj.transform.GetChild(currentBuildStep).gameObject.SetActive(false);
+                currentBuildStep += 1;
 
             }
 
-        }
+            timer -= Time.deltaTime;
 
-      
+        }
+   
 
     }
 
-  
-    
+
+
+
 }
