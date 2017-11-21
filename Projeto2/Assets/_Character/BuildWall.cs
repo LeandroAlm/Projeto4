@@ -19,6 +19,8 @@ public class BuildWall : MonoBehaviour {
 
     public Vector3 posIni;
     public Vector3 posEnd;
+
+
     public Vector3 dir;
 
     public Vector3 posAux2;
@@ -35,6 +37,11 @@ public class BuildWall : MonoBehaviour {
 
     public float stepDuration;
 
+    //NOVO CODIGO
+    public Vector3 nextPos;
+    //public float mousePosX;
+    bool isDrawing;
+
     void Start ()
     {
         x = 0;
@@ -42,17 +49,20 @@ public class BuildWall : MonoBehaviour {
         check = false;
         canBuild = true;
         auxCheck = false;
-
+        
         ParentObj = new GameObject();
 
         timer = stepDuration;
         
         currentBuildStep = 0;
+
+        isDrawing = false;
     }
 	
 	void Update ()
     {
-        if(canBuild)
+
+        if (canBuild)
         {
             if(Input.GetMouseButtonDown(0) && check == false)
             {
@@ -60,38 +70,54 @@ public class BuildWall : MonoBehaviour {
                 RaycastHit hit;
                 if (Physics.Raycast(ray, out hit))
                 {
+                    isDrawing = true;
                     posIni = hit.point;
+                    nextPos = posIni;
                     check = true;
                 }
-               
+              
+
             }
             else if (Input.GetMouseButtonUp(0) && check == true)
             {
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                RaycastHit hit;
-                if (Physics.Raycast(ray, out hit))
+                RaycastHit hit2;
+                if (Physics.Raycast(ray, out hit2))
                 {
-                    posEnd = hit.point;
+                    isDrawing = false;
+
+                    posEnd = hit2.point;
                     check = false;
                     auxCheck = true;
                     IsBuilding = true;
-
                 }
             }
 
+
+
             dir = posEnd - posIni;
             int size = (int)dir.magnitude;
-            Debug.Log("dir"+dir);
+
             if(size % 2 != 0)
             {
                 size++;
             }
-            Vector3 dirAux = (dir / size) * 2.83f;
+            Vector3 dirAux = (dir / size)*2.6f;
 
             Vector3 posAux = posIni;
             float sizeAux = 0;
             dir = Quaternion.Euler(0, -90, 0) * dir;
             Quaternion xy = Quaternion.LookRotation(dir);
+
+            if (isDrawing)
+            {
+                Debug.Log("PosINi " + posIni);
+                if(Mathf.Abs(Input.GetAxis("Mouse X")) > 0.3f)
+                {
+                    nextPos = nextPos + new Vector3(2.6f,0,0);
+                    Debug.Log("NextPos " + nextPos);
+                }
+            }
 
             if (auxCheck)
             {
@@ -113,19 +139,15 @@ public class BuildWall : MonoBehaviour {
                
             }
 
-            for (int i = 0; i < ParentObj.transform.childCount; i++)
-            {
-               Debug.Log(ParentObj.transform.GetChild(i));
-            }
+         
 
 
 
 
             //INSTANCIAR PAREDES UMA A UMA
-            //Bugado
             IsBuilding = true;
 
-            Debug.Log(IsBuilding);
+
 
 
             if (timer <= 0 && currentBuildStep < stepCount)

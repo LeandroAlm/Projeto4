@@ -3878,9 +3878,9 @@ GameObject:
   - component: {fileID: 440857623}
   - component: {fileID: 440857628}
   - component: {fileID: 440857629}
-  - component: {fileID: 440857630}
   - component: {fileID: 440857631}
   - component: {fileID: 440857632}
+  - component: {fileID: 440857630}
   m_Layer: 0
   m_Name: BanditAxe
   m_TagString: Untagged
@@ -3942,7 +3942,7 @@ Rigidbody:
   m_Drag: 5
   m_AngularDrag: 999
   m_UseGravity: 1
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
@@ -3989,7 +3989,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 440857621}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 87484a78b980d7e4382f8f93fd912ced, type: 3}
   m_Name: 
@@ -4021,29 +4021,27 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 440857621}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21cc4ebc514cb0e4cba3df4cecc37fd1, type: 3}
+  m_Script: {fileID: 11500000, guid: 7eef6017e5f81aa4b863918febda610e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   canBuild: 0
   auxCheck: 0
   IsBuilding: 0
-  wallPrefab: {fileID: 181752, guid: 34b237876876baf4fa134407d8dc57d5, type: 2}
-  wallPrefabGreen: {fileID: 1335641523984676, guid: 4e75030ba895e5e4aa57b6ffd4bec833,
+  wallPrefab: {fileID: 1875773067935440, guid: f1578dd0645de8c44b18ddf3a8c447f6, type: 2}
+  wallPrefabGreen: {fileID: 1816372379788206, guid: 9849bb6cda3a78742b8d61b4f314d36f,
     type: 2}
-  posIni: {x: 0, y: 0, z: 0}
-  posEnd: {x: 0, y: 0, z: 0}
-  dir: {x: 0, y: 0, z: 0}
-  posAux2: {x: 0, y: 0, z: 0}
-  stepDuration: 2
+  stepDuration: 1.5
+  mouseVector: {x: 0, y: 0, z: 0}
+  LastMouseVector: {x: 0, y: 0, z: 0}
 --- !u!195 &440857631
 NavMeshAgent:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 440857621}
-  m_Enabled: 1
+  m_Enabled: 0
   m_AgentTypeID: 0
   m_Radius: 0.5
   m_Speed: 3
@@ -4064,7 +4062,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 440857621}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7f9d64d7155b13c4eb16f3b7c85cc85d, type: 3}
   m_Name: 

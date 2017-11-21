@@ -86,6 +86,7 @@
   <ItemGroup>
     <Compile Include="Assets\_Character\BeltWeapons.cs" />
     <Compile Include="Assets\_Character\BuildWall.cs" />
+    <Compile Include="Assets\_Character\BuildWall2.cs" />
     <Compile Include="Assets\_Character\Farm.cs" />
     <Compile Include="Assets\_Character\HealthBar.cs" />
     <Compile Include="Assets\_Character\PLayerControl.cs" />

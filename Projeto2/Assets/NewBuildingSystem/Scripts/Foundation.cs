@@ -65,7 +65,7 @@ public class Foundation : MonoBehaviour {
         //}
        
         //Realese Snapping
-        if (isSnapped && !isPlaced && Mathf.Abs(mousePosX - Input.GetAxis("Mouse X")) > 0.3f || Mathf.Abs(mousePosY - Input.GetAxis("Mouse Y")) > 0.3f)
+        if (isSnapped && !isPlaced && Mathf.Abs(Input.GetAxis("Mouse X")) > 0.3f || Mathf.Abs(Input.GetAxis("Mouse Y")) > 0.3f)
         {
             isSnapped = false;
         }
