@@ -76,6 +76,12 @@
     <Reference Include="UnityEngine.HoloLens">
       <HintPath>Library\UnityAssemblies\UnityEngine.HoloLens.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEditor.iOS.Extensions.Xcode">
+      <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.iOS.Extensions.Common">
+      <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Common.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Projeto2.Plugins.csproj">
@@ -92,6 +98,7 @@
     <Compile Include="Assets\_Character\PLayerControl.cs" />
     <Compile Include="Assets\_Character\PlayerMove.cs" />
     <Compile Include="Assets\_Character\PlayerStatus.cs" />
+    <Compile Include="Assets\_Character\Shot.cs" />
     <Compile Include="Assets\_Scripts\CameraFollow.cs" />
     <Compile Include="Assets\_Scripts\Inventario.cs" />
     <Compile Include="Assets\_Scripts\SmoothCam.cs" />
@@ -116,6 +123,20 @@
     <Compile Include="Assets\Downloads\Nature Pack\Standard Assets\Utility\CurveControlledBob.cs" />
     <Compile Include="Assets\Downloads\Nature Pack\Standard Assets\Utility\FOVKick.cs" />
     <Compile Include="Assets\Downloads\Nature Pack\Standard Assets\Utility\LerpControlledBob.cs" />
+    <Compile Include="Assets\Downloads\Particles\WarFX\Demo\Assets\CFX_AutoStopLoopedEffect.cs" />
+    <Compile Include="Assets\Downloads\Particles\WarFX\Demo\Assets\CFX_Demo_RandomDir.cs" />
+    <Compile Include="Assets\Downloads\Particles\WarFX\Demo\Assets\CFX_Demo_RotateCamera.cs" />
+    <Compile Include="Assets\Downloads\Particles\WarFX\Demo\Assets\CFX_Demo_Translate.cs" />
+    <Compile Include="Assets\Downloads\Particles\WarFX\Demo\Assets\WFX_Demo.cs" />
+    <Compile Include="Assets\Downloads\Particles\WarFX\Demo\Assets\WFX_Demo_DeleteAfterDelay.cs" />
+    <Compile Include="Assets\Downloads\Particles\WarFX\Demo\Assets\WFX_Demo_New.cs" />
+    <Compile Include="Assets\Downloads\Particles\WarFX\Demo\Assets\WFX_Demo_RandomDir.cs" />
+    <Compile Include="Assets\Downloads\Particles\WarFX\Demo\Assets\WFX_Demo_Wall.cs" />
+    <Compile Include="Assets\Downloads\Particles\WarFX\Scripts\CFX_AutoDestructShuriken.cs" />
+    <Compile Include="Assets\Downloads\Particles\WarFX\Scripts\CFX_LightIntensityFade.cs" />
+    <Compile Include="Assets\Downloads\Particles\WarFX\Scripts\WFX_BulletHoleDecal.cs" />
+    <Compile Include="Assets\Downloads\Particles\WarFX\Scripts\WFX_LightFlicker.cs" />
+    <Compile Include="Assets\Downloads\Particles\WarFX\Spawn System\CFX_SpawnSystem.cs" />
     <Compile Include="Assets\Inventory\Script\InventoryUI.cs" />
     <Compile Include="Assets\Movement.cs" />
     <Compile Include="Assets\MovementPointClick\CameraController.cs" />
@@ -142,6 +163,22 @@
     <None Include="Assets\Downloads\LowpolyVegetationPackFree\Readme.txt" />
     <None Include="Assets\Downloads\Mega Fantasy Props Pack\README.txt" />
     <None Include="Assets\Downloads\Nature Pack\Standard Assets\Characters\FirstPersonCharacter\FirstPersonCharacterGuidelines.txt" />
+    <None Include="Assets\Downloads\Particles\!JMO Assets Readme.txt" />
+    <None Include="Assets\Downloads\Particles\Cartoon FX Easy Editor\CartoonFX Easy Editor Readme.txt" />
+    <None Include="Assets\Downloads\Particles\WarFX\!WarFX Readme.txt" />
+    <None Include="Assets\Downloads\Particles\WarFX\Shaders\WFX_S Add Scroll.shader" />
+    <None Include="Assets\Downloads\Particles\WarFX\Shaders\WFX_S Alpha-Diffuse TintColor.shader" />
+    <None Include="Assets\Downloads\Particles\WarFX\Shaders\WFX_S Alpha-Specular TintColor.shader" />
+    <None Include="Assets\Downloads\Particles\WarFX\Shaders\WFX_S AlphaBlend NoSoftParticles.shader" />
+    <None Include="Assets\Downloads\Particles\WarFX\Shaders\WFX_S AlphaBlend Scroll.shader" />
+    <None Include="Assets\Downloads\Particles\WarFX\Shaders\WFX_S Multiply Soft Scroll.shader" />
+    <None Include="Assets\Downloads\Particles\WarFX\Shaders\WFX_S Multiply Soft.shader" />
+    <None Include="Assets\Downloads\Particles\WarFX\Shaders\WFX_S Particle Add A8.shader" />
+    <None Include="Assets\Downloads\Particles\WarFX\Shaders\WFX_S Particle AddSoft A8.shader" />
+    <None Include="Assets\Downloads\Particles\WarFX\Shaders\WFX_S Particle Multiply A8.shader" />
+    <None Include="Assets\Downloads\Particles\WarFX\Shaders\WFX_S Smoke Scroll.shader" />
+    <None Include="Assets\Downloads\Particles\WarFX\_Effects (Mobile)\MuzzleFlashes\!MuzzleFlash Differences.txt" />
+    <None Include="Assets\Downloads\Particles\WarFX\_Effects\MuzzleFlashes\!MuzzleFlash Differences.txt" />
     <None Include="Assets\Plugins\Pixelplacement\iTween\ReadMe!\ReadMe!.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

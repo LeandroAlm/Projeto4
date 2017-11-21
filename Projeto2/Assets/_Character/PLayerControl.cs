@@ -12,6 +12,8 @@ public class PLayerControl : MonoBehaviour
     float turnAmount;
 
     public Transform Axe;
+    public Transform Gun;
+    public GameObject posHandL;
 
 
     private Vector3 moveVelocity;
@@ -27,7 +29,7 @@ public class PLayerControl : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         SetupAnimator();
         //cam = Camera.main.transform;
-
+        animator = GetComponent<Animator>();
         mainCamera = FindObjectOfType<Camera>();
     }
 
@@ -106,16 +108,32 @@ public class PLayerControl : MonoBehaviour
             animator.SetBool("Sword", true);
             animator.SetBool("Gun", false);
             Axe.gameObject.SetActive(true);
-            
+            Gun.gameObject.SetActive(false);
         }
         if (Input.GetKeyDown("2"))
         {
             animator.SetBool("Gun", true);
             animator.SetBool("Sword", false);
             Axe.gameObject.SetActive(false);
+            Gun.gameObject.SetActive(true);
         }
 
+
+        
     }
+
+
+    // POSICIONAR A LEFT HAND!!!!!
+    //public void OnAnimatorIK(int layerIndex)
+    //{
+    //    if (Gun.gameObject.activeSelf)
+    //    {
+    //        animator.SetIKPositionWeight(AvatarIKGoal.LeftHand, 1f);
+    //        animator.SetIKPosition(AvatarIKGoal.LeftHand, posHandL.transform.position);
+    //        animator.SetIKRotationWeight(AvatarIKGoal.LeftHand, 1f);
+    //        animator.SetIKRotation(AvatarIKGoal.LeftHand, Quaternion.Euler(0,0,0));
+    //    }
+    //}
 
     void SetupAnimator()
     {

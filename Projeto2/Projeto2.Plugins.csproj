@@ -76,6 +76,12 @@
     <Reference Include="UnityEngine.HoloLens">
       <HintPath>Library\UnityAssemblies\UnityEngine.HoloLens.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEditor.iOS.Extensions.Xcode">
+      <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.iOS.Extensions.Common">
+      <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Common.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Plugins\Pixelplacement\iTween\iTween.cs" />
@@ -88,6 +94,22 @@
     <None Include="Assets\Downloads\LowpolyVegetationPackFree\Readme.txt" />
     <None Include="Assets\Downloads\Mega Fantasy Props Pack\README.txt" />
     <None Include="Assets\Downloads\Nature Pack\Standard Assets\Characters\FirstPersonCharacter\FirstPersonCharacterGuidelines.txt" />
+    <None Include="Assets\Downloads\Particles\!JMO Assets Readme.txt" />
+    <None Include="Assets\Downloads\Particles\Cartoon FX Easy Editor\CartoonFX Easy Editor Readme.txt" />
+    <None Include="Assets\Downloads\Particles\WarFX\!WarFX Readme.txt" />
+    <None Include="Assets\Downloads\Particles\WarFX\Shaders\WFX_S Add Scroll.shader" />
+    <None Include="Assets\Downloads\Particles\WarFX\Shaders\WFX_S Alpha-Diffuse TintColor.shader" />
+    <None Include="Assets\Downloads\Particles\WarFX\Shaders\WFX_S Alpha-Specular TintColor.shader" />
+    <None Include="Assets\Downloads\Particles\WarFX\Shaders\WFX_S AlphaBlend NoSoftParticles.shader" />
+    <None Include="Assets\Downloads\Particles\WarFX\Shaders\WFX_S AlphaBlend Scroll.shader" />
+    <None Include="Assets\Downloads\Particles\WarFX\Shaders\WFX_S Multiply Soft Scroll.shader" />
+    <None Include="Assets\Downloads\Particles\WarFX\Shaders\WFX_S Multiply Soft.shader" />
+    <None Include="Assets\Downloads\Particles\WarFX\Shaders\WFX_S Particle Add A8.shader" />
+    <None Include="Assets\Downloads\Particles\WarFX\Shaders\WFX_S Particle AddSoft A8.shader" />
+    <None Include="Assets\Downloads\Particles\WarFX\Shaders\WFX_S Particle Multiply A8.shader" />
+    <None Include="Assets\Downloads\Particles\WarFX\Shaders\WFX_S Smoke Scroll.shader" />
+    <None Include="Assets\Downloads\Particles\WarFX\_Effects (Mobile)\MuzzleFlashes\!MuzzleFlash Differences.txt" />
+    <None Include="Assets\Downloads\Particles\WarFX\_Effects\MuzzleFlashes\!MuzzleFlash Differences.txt" />
     <None Include="Assets\Plugins\Pixelplacement\iTween\ReadMe!\ReadMe!.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
