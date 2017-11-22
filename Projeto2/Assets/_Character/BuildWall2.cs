@@ -66,6 +66,8 @@ public class BuildWall2 : MonoBehaviour
 
     GameObject fence;
 
+    Quaternion newXy;
+
     void Start()
     {
         x = 0;
@@ -173,6 +175,9 @@ public class BuildWall2 : MonoBehaviour
                         move1slot = true;
                         sizeDistance = 0;
                         MousePosX = mouseVector;
+                        newDir = mouseVector - posIni;
+                        newDir = Quaternion.Euler(0, -90, 0) * newDir;
+                         newXy = Quaternion.LookRotation(newDir);
                         posIni = MousePosX;
                     }
 
@@ -192,16 +197,14 @@ public class BuildWall2 : MonoBehaviour
 
             }
 
-            newDir = mouseVector - posIni;
-            newDir = Quaternion.Euler(0, -90, 0) * newDir;
-            Quaternion newXy = Quaternion.LookRotation(newDir);
+            
 
            
 
             if (move1slot)
             {
 
-                nextPos = nextPos + new Vector3(2.6f, 0, 0);
+                nextPos = (mouseVector + new Vector3(2.9f, 0, 0));
                 GameObject newWallGreen = Instantiate(wallPrefabGreen, nextPos, newXy);
                 Debug.Log("NextPos " + nextPos);
                 move1slot = false;
