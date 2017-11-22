@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Shot : MonoBehaviour {
-
+public class Shot : MonoBehaviour
+{
     public Transform Pistol;
     public ParticleSystem ShotEffect;
     public AudioSource Tiro;
@@ -21,7 +21,6 @@ public class Shot : MonoBehaviour {
         ShotDuration = 0.0f;
         shooting = false;
 	}
-	
 
 	void Update ()
     {
