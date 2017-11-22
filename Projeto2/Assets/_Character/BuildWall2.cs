@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BuildWall2 : MonoBehaviour {
+public class BuildWall2 : MonoBehaviour
+{
 
     public bool canBuild;
 
@@ -41,7 +42,7 @@ public class BuildWall2 : MonoBehaviour {
     private Vector3 nextPos;
     //public float mousePosX;
     bool isDrawing;
-    
+
     bool draw;
 
     bool move1slot;
@@ -51,6 +52,19 @@ public class BuildWall2 : MonoBehaviour {
     public Vector3 mouseVector;
     public Vector3 LastMouseVector;
 
+    private float vectorMagnitude;
+
+    private Vector3 distance;
+
+    private Vector3 MousePosX;
+
+    private Vector3 firstInstance;
+
+    int sizeDistance;
+
+    bool is2;
+
+    GameObject fence;
 
     void Start()
     {
@@ -74,8 +88,34 @@ public class BuildWall2 : MonoBehaviour {
     void Update()
     {
 
+
         if (canBuild)
         {
+            //Ray ray2 = Camera.main.ScreenPointToRay(Input.mousePosition);
+            //RaycastHit hit4;
+            //if (Physics.Raycast(ray2, out hit4))
+            //{
+            //    firstInstance = new Vector3(hit4.point.x, 0, hit4.point.z);
+
+            //}
+
+            //if (Input.GetKeyDown(KeyCode.Alpha2))
+            //{
+            //    is2 = true;
+
+            //    fence = Instantiate(wallPrefabGreen, firstInstance, Quaternion.identity);
+
+            //}
+
+            //if (is2)
+            //{
+
+
+            //    fence.transform.position = firstInstance;
+
+            //}
+
+
             if (Input.GetMouseButtonDown(0) && check == false)
             {
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -87,7 +127,6 @@ public class BuildWall2 : MonoBehaviour {
                     nextPos = posIni;
                     check = true;
                 }
-
 
             }
             else if (Input.GetMouseButtonUp(0) && check == true)
@@ -103,70 +142,65 @@ public class BuildWall2 : MonoBehaviour {
                     auxCheck = true;
                     IsBuilding = true;
                     draw = false;
+
                 }
             }
-
-           
-
-            dir = posEnd - posIni;
-            int size = (int)dir.magnitude;
-
-            if (size % 2 != 0)
-            {
-                size++;
-            }
-            Vector3 dirAux = (dir / size) * 2.6f;
-            Vector3 posAux = posIni;
-            float sizeAux = 0;
-            dir = Quaternion.Euler(0, -90, 0) * dir;
-            Quaternion xy = Quaternion.LookRotation(dir);
 
 
             if (isDrawing)
             {
-                mouseVector = posIni - Input.mousePosition;
-                LastMouseVector = mouseVector;
-
-                int sizeMouseVector = (int)mouseVector.magnitude;
-                int sizeLastMouseVector = sizeMouseVector - 2;
-
-                Debug.Log("sizeMouseVector" + sizeMouseVector);
-
-                Debug.Log("sizeLastMouseVector" + sizeLastMouseVector);
-
-
-                if (sizeMouseVector < sizeLastMouseVector)
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                RaycastHit hit2;
+                if (Physics.Raycast(ray, out hit2))
                 {
-                    Debug.Log("tow");
+                    mouseVector = new Vector3(hit2.point.x, 0, hit2.point.z);
+                }
+                Debug.Log("mouse Vector " + mouseVector);
 
-                    sizeLastMouseVector = sizeMouseVector;
+                distance = mouseVector - posIni;
+
+                //Vector3 distance2 = posIni - mouseVector;
+
+                //int sizeDistance2 = (int)distance2.magnitude;
+
+                sizeDistance = (int)distance.magnitude;
+
+                for (int i = 0; i < 10; i++)
+                {
+                    if (sizeDistance > 1f)
+                    {
+                        Debug.Log("distance" + sizeDistance);
+                        move1slot = true;
+                        sizeDistance = 0;
+                        MousePosX = mouseVector;
+                        posIni = MousePosX;
+                    }
+
+                    //if (sizeDistance2 > 1f)
+                    //{
+                    //    Debug.Log("aiaiaiaiaiaiaiiaia distance2 = " + distance2);
+
+                    //    //move1slot = true;
+                    //    //sizeDistance = 0;
+                    //    //MousePosX = mouseVector;
+                    //    //posIni = MousePosX;
+                    //}
 
 
                 }
-                else
-                {
-                    sizeLastMouseVector = sizeMouseVector;
-                    move1slot = true;
 
-                }
-                //if (sizeMousePosIni)
-                //{
-                //    move1slot = true;
-                //}
+
             }
-            //if(Mathf.Abs(Input.GetAxis("Mouse X")) > 0.7f)
-            //{
 
-            //    move1slot = true;
-            //}
-
-            newDir = nextPos - posIni;
+            newDir = mouseVector - posIni;
             newDir = Quaternion.Euler(0, -90, 0) * newDir;
             Quaternion newXy = Quaternion.LookRotation(newDir);
 
+           
+
             if (move1slot)
             {
-               
+
                 nextPos = nextPos + new Vector3(2.6f, 0, 0);
                 GameObject newWallGreen = Instantiate(wallPrefabGreen, nextPos, newXy);
                 Debug.Log("NextPos " + nextPos);
@@ -174,14 +208,14 @@ public class BuildWall2 : MonoBehaviour {
 
 
             }
-        
+
 
             //if (draw)
             //{
-               
+
             //    //isDrawing = false;
             //    draw = false;
-               
+
 
             //    //nextPos += dirAux;
             //}
@@ -232,7 +266,6 @@ public class BuildWall2 : MonoBehaviour {
 
 
     }
-
 
 
 
