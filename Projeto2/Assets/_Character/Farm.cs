@@ -31,7 +31,7 @@ public class Farm : MonoBehaviour
         {
             RaycastHit hit;
             forward = transform.TransformDirection(Vector3.forward * 10 + new Vector3(0, 1, 0));
-            Debug.DrawRay(transform.position, forward, Color.green);
+            Debug.DrawRay(transform.position + Vector3.up, forward, Color.green);
             Ray ray = new Ray(transform.position, transform.forward);
             
             if (anim.GetBool("Sword") == true)

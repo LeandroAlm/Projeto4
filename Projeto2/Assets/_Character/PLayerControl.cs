@@ -116,10 +116,7 @@ public class PLayerControl : MonoBehaviour
             animator.SetBool("Sword", false);
             Axe.gameObject.SetActive(false);
             Gun.gameObject.SetActive(true);
-        }
-
-
-        
+        }      
     }
 
 
