@@ -12,7 +12,7 @@ public class Shot : MonoBehaviour
     Animator anim;
     float ShotDuration;
     bool shooting;
-    float attackSpeed = 1f;
+    float attackSpeed = 3f;
     float attackColdown = 0f;
 
     void Start ()
@@ -41,6 +41,7 @@ public class Shot : MonoBehaviour
         {
             if (ShotDuration < 0.15f)
                 ShotDuration += Time.deltaTime;
+
             else
             {
                 ShotEffect.gameObject.SetActive(false);

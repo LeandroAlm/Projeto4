@@ -76,6 +76,12 @@
     <Reference Include="UnityEngine.HoloLens">
       <HintPath>Library\UnityAssemblies\UnityEngine.HoloLens.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEditor.iOS.Extensions.Xcode">
+      <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.iOS.Extensions.Common">
+      <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Common.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Projeto2.Plugins.csproj">
@@ -131,6 +137,8 @@
     <Compile Include="Assets\Downloads\Particles\WarFX\Scripts\WFX_BulletHoleDecal.cs" />
     <Compile Include="Assets\Downloads\Particles\WarFX\Scripts\WFX_LightFlicker.cs" />
     <Compile Include="Assets\Downloads\Particles\WarFX\Spawn System\CFX_SpawnSystem.cs" />
+    <Compile Include="Assets\Enemy\EnemyAI.cs" />
+    <Compile Include="Assets\Enemy\EnemySmartAI.cs" />
     <Compile Include="Assets\Inventory\Script\InventoryUI.cs" />
     <Compile Include="Assets\Movement.cs" />
     <Compile Include="Assets\MovementPointClick\CameraController.cs" />
