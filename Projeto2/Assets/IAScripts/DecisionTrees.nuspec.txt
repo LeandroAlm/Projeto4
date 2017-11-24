@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>IPCA.AI.DecisionTrees</id>
+    <version>0.1.1</version>
+    <title>Simple Decision Trees Implementation</title>
+    <authors>IPCA</authors>
+    <owners>IPCA</owners>
+    <projectUrl>http://gitlab.com/ambs/AI/</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A very simple implementation of a decision tree structure for artificial intelligence.</description>
+    <releaseNotes>First version. Binary, N-Ary and Random decision nodes.</releaseNotes>
+    <copyright>Copyright 2017</copyright>
+    <tags>artificial intelligence decision trees</tags>
+  </metadata>
+  <files>
+    <file src="bin/Release/DecisionTrees.dll" target="lib/net45"/>
+  </files>
+</package>
