@@ -9274,13 +9274,18 @@ Prefab:
     - target: {fileID: 114189140920478292, guid: b739a525cf5eeca488763d8f9b3474cb,
         type: 2}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114566020176277706, guid: b739a525cf5eeca488763d8f9b3474cb,
         type: 2}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114566020176277706, guid: b739a525cf5eeca488763d8f9b3474cb,
+        type: 2}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 440857627}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b739a525cf5eeca488763d8f9b3474cb, type: 2}
   m_IsPrefabParent: 0
