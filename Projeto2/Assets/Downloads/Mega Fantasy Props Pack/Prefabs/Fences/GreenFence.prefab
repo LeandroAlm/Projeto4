@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4871271060204772}
   - component: {fileID: 33805261704634748}
   - component: {fileID: 23569111746305946}
+  - component: {fileID: 114739205647022122}
   m_Layer: 0
   m_Name: big_fenceGreen
   m_TagString: Untagged
@@ -49,8 +50,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1816372379788206}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 107.71304, y: 0, z: 72.159164}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4871271060204772}
@@ -109,3 +110,19 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1422549822012446}
   m_Mesh: {fileID: 4300000, guid: 556a31de767dadb40a465c491655aff1, type: 3}
+--- !u!114 &114739205647022122
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1422549822012446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 920f4f7f92190854ba070af8c66e1f81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPlaced: 0
+  isSnapped: 0
+  mousePosX: 0
+  mousePosY: 0
+  InitialRot: {x: 0, y: 0, z: 0, w: 0}

@@ -22,58 +22,52 @@ public class Foundation : MonoBehaviour {
     void Update ()
     {
         //enquanto nao estiver posiciona segue o rato
-		if(!isPlaced && !isSnapped)
+		if(!isPlaced && !isSnapped && BuildWall2.is2)
         {
             BuildingManager.isBuilding = true;
 
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit))
-            {
-                if(BuildingManager.PreH)
-                    this.transform.position = new Vector3(hit.point.x, 0, hit.point.z);
-
-                if (BuildingManager.PreV)
-                {
-                    this.transform.position = new Vector3(hit.point.x, 1.5f, hit.point.z +0.5f);
-                    InitialRot = this.transform.rotation;
-                }
+            { 
+                this.transform.position = new Vector3(hit.point.x, 0, hit.point.z);//hit.point.z +0.5f
+                //InitialRot = this.transform.rotation;
                 
                
             }
         }
 
-        if(Input.GetKeyDown(KeyCode.H))
-        {
-            Time.timeScale = 0.0f;
-        }
 
-        if(Input.GetMouseButtonDown(0))
-        {
-
-            isPlaced = true;
-            BuildingManager.isBuilding = false;
-        }
-       
-        //if(isPlaced && BuildingManager.PreV)
+        //if (Input.GetAxis("Mouse ScrollWheel") > 0f)
         //{
-        //    col1.enabled = false;
-        //    col2.enabled = false;
-        //    col3.enabled = false;
-        //    col1.enabled = false;
-
+            
+        //    this.transform.Rotate(Vector3.up * 250 * Time.deltaTime, Space.World);
         //}
-       
+
+        //else if (Input.GetAxis("Mouse ScrollWheel") < 0f) // backwards
+        //{
+         
+        //    this.transform.Rotate(Vector3.up * -250 * Time.deltaTime, Space.World);
+        //}
+
+        //if(Input.GetMouseButtonDown(0))
+        //{
+
+        //    isPlaced = true;
+        //    BuildingManager.isBuilding = false;
+        //}
+
+
         //Realese Snapping
         if (isSnapped && !isPlaced && Mathf.Abs(Input.GetAxis("Mouse X")) > 0.3f || Mathf.Abs(Input.GetAxis("Mouse Y")) > 0.3f)
         {
             isSnapped = false;
         }
 
-        if(!isSnapped && !isPlaced)
-        {
-            this.transform.rotation = InitialRot;
+        //if(!isSnapped && !isPlaced)
+        //{
+        //    this.transform.rotation = InitialRot;
 
-        }
+        //}
     }
 }
