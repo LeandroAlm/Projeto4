@@ -94,14 +94,10 @@ public class BuildWall2 : MonoBehaviour
         draw = false;
 
         fence = wallPrefabGreen.gameObject;
-
-
     }
 
     void Update()
     {
-
-
         if (canBuild)
         {
             //Ray ray2 = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -174,13 +170,10 @@ public class BuildWall2 : MonoBehaviour
                 {
                     mouseVector = new Vector3(hit2.point.x, 0, hit2.point.z);
                 }
-
-
+                
                 distance = mouseVector - posIni;
-
-
+                
                 sizeDistance = (int)distance.magnitude;
-
 
                 //mouseVector = snapPosition(getWorldPoint());
 
@@ -202,55 +195,34 @@ public class BuildWall2 : MonoBehaviour
                             posIni = mouseVector;
                         }
                     }
-
-
                 }
-
                 fence.transform.rotation = newXy;
-
-
-
             }
-
-
-
+            
             if (move1slot)
             {
-
-
                 GameObject newWallGreen = Instantiate(wallPrefabGreen, nextPos, newXy);
                 newWallGreen.transform.parent = ParentObj.transform;
 
                 move1slot = false;
-
-
             }
 
             stepCount = ParentObj.transform.childCount;
-
-
+            
             if (timer <= 0 && currentBuildStep < stepCount)
             {
-
                 timer = stepDuration;
                 Instantiate(wallPrefab, ParentObj.transform.GetChild(currentBuildStep).transform.position, ParentObj.transform.GetChild(currentBuildStep).transform.rotation);
                 ParentObj.transform.GetChild(currentBuildStep).gameObject.SetActive(false);
                 currentBuildStep += 1;
-
             }
-
             timer -= Time.deltaTime;
-
         }
-
-
     }
-
-
+    
 
     public Vector3 getWorldPoint()
     {
-
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit))
@@ -268,6 +240,4 @@ public class BuildWall2 : MonoBehaviour
         snapped.z = Mathf.Floor(original.z + 0.5f);
         return snapped;
     }
-
-
 }

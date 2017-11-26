@@ -16,6 +16,8 @@ TagManager:
   - EastColliderVert
   - SouthColliderVert
   - WestCollider
+  - Enenmy
+  - Enemy2
   layers:
   - Default
   - TransparentFX
