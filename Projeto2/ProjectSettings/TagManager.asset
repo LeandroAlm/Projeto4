@@ -7,18 +7,20 @@ TagManager:
   - Tree
   - terrain
   - Stone
-  - SouthCollider
-  - WestColliderVert
-  - NorthColliderVert
-  - EastCollider
   - Foundation
-  - NortCollider
-  - EastColliderVert
-  - SouthColliderVert
-  - WestCollider
   - Enenmy
   - Enemy2
   - Enemy
+  - LeftCollider
+  - RightCollider
+  - NortCollider
+  - WestColliderVert
+  - NorthColliderVert
+  - WestCollider
+  - EastCollider
+  - EastColliderVert
+  - SouthColliderVert
+  - SouthCollider
   layers:
   - Default
   - TransparentFX

@@ -41,7 +41,7 @@ public class EnemySmartAI : MonoBehaviour
         if (transform.tag == "Enemy2")
             DesicionRotation();
 
-        Debug.Log("Etapa: " + etapa);
+        //Debug.Log("Etapa: " + etapa);
     }
 
     void DecisionIdle()
@@ -139,7 +139,7 @@ public class EnemySmartAI : MonoBehaviour
     {
         if (transform.position != posDestino)
         {
-            Debug.Log("Moving to: " + posDestino);
+            //Debug.Log("Moving to: " + posDestino);
 
             float speed = 1f;
             float step = speed * Time.deltaTime;

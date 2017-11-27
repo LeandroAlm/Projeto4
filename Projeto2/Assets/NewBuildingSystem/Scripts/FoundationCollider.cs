@@ -9,12 +9,19 @@ public class FoundationCollider : MonoBehaviour {
 
     Vector3 sizeOfFoundation;
 
+    BuildWall2 buildWallScript;
+
+    Vector3 Pos;
+
+    public GameObject player;
 
     void Start ()
     {
-        foundationScript = transform.parent.parent.GetComponent<Foundation>();
-        sizeOfFoundation = transform.parent.parent.GetComponent<Collider>().bounds.size;
+        player = GameObject.FindGameObjectWithTag("Player");
 
+        foundationScript = transform.parent.GetComponent<Foundation>();
+        //sizeOfFoundation = transform.parent.parent.GetComponent<Collider>().bounds.size;
+        buildWallScript = player.GetComponent<BuildWall2>();
 
     }
 	
@@ -27,68 +34,49 @@ public class FoundationCollider : MonoBehaviour {
     private void OnTriggerEnter(Collider other)
     {
         //Snapping
-    //    if (BuildingManager.isBuilding && other.tag == "Foundation" && foundationScript.isPlaced && !other.GetComponent<Foundation>().isSnapped) // foundationScript.isPlaced
-    //    {
+
+        //if(other.tag == "Foundation")
+
+        //if (BuildingManager.isBuilding && other.tag == "Foundation" && foundationScript.isPlaced && !other.GetComponent<Foundation>().isSnapped)
+
+        if (other.tag == "Foundation" )
+        {
+            Foundation.isPlaced = true;
+            //Release Snapping
+            //Foundation foundation = other.GetComponent<Foundation>();
+            //foundation.isSnapped = true;
+            //foundation.mousePosX = Input.GetAxis("Mouse X");
+            //foundation.mousePosY = Input.GetAxis("Mouse Y");
 
 
-    //        //Release Snapping
-    //        Foundation foundation = other.GetComponent<Foundation>();
-    //        foundation.isSnapped = true;
-    //        foundation.mousePosX = Input.GetAxis("Mouse X");
-    //        foundation.mousePosY = Input.GetAxis("Mouse Y");
 
 
-    //        other.GetComponent<Foundation>().isSnapped = true;
+            //other.GetComponent<Foundation>().isSnapped = true;
 
-    //        float sizeX = sizeOfFoundation.x;
-    //        float sizeZ = sizeOfFoundation.z;
+            float sizeX = 1;
+            float sizeZ = 1;
 
-    //        if (BuildingManager.PreH)
-    //        {
-    //            switch (this.transform.tag)
-    //            {
-    //                case "WestCollider":
-    //                    other.transform.position = new Vector3(transform.parent.parent.position.x - sizeX, 0, transform.parent.position.z);
-    //                    break;
+           
+            switch (this.transform.tag)
+            {
+                case "LeftCollider":
+                    //other.transform.rotation = buildWallScript.lastDir;
+                    other.transform.position = new Vector3(buildWallScript.lastPos.x, 0, buildWallScript.lastPos.z);
 
-    //                case "EastCollider":
-    //                    other.transform.position = new Vector3(transform.parent.parent.position.x + sizeX, 0, transform.parent.position.z);
-    //                    break;
+                    break;
 
-    //                case "NortCollider":
-    //                    other.transform.position = new Vector3(transform.parent.parent.position.x, 0, transform.parent.position.z + sizeZ);
-    //                    break;
+                case "RightCollider":
+                    //other.transform.rotation = buildWallScript.lastDir;
+                    other.transform.position = new Vector3(buildWallScript.lastPos.x, 0, buildWallScript.lastPos.z);
 
-    //                case "SouthCollider":
-    //                    other.transform.position = new Vector3(transform.parent.parent.position.x, 0, transform.parent.position.z - sizeZ);
-    //                    break;
-    //            }
+                    break;
 
-    //        }
-    //        if (BuildingManager.PreV)
-    //        {
-    //            switch (this.transform.tag)
-    //            {
-    //                case "WestCollider":
-    //                        other.transform.position = new Vector3(transform.parent.parent.position.x - (sizeX / 2), 1, transform.parent.position.z);
-    //                        other.transform.eulerAngles = new Vector3(90, 0, -90);
-    //                    break;
+                
+            }
 
-    //                case "EastCollider":
-    //                        other.transform.position = new Vector3(transform.parent.parent.position.x + (sizeX / 2), 1, transform.parent.position.z);
-    //                        other.transform.eulerAngles = new Vector3(-90, 0, 90);
-    //                    break;
-
-    //                case "NortCollider":
-    //                    other.transform.position = new Vector3(transform.parent.parent.position.x, 1, transform.parent.position.z + (sizeZ / 2));
-    //                    break;
-
-    //                case "SouthCollider":
-    //                    other.transform.position = new Vector3(transform.parent.parent.position.x, 1, transform.parent.position.z - (sizeZ / 2));
-    //                    break;
-    //            }
-    //        }
-    //    }
+            
+        
+        }
 
     }
 }

@@ -43,8 +43,14 @@ public class BuildWall2 : MonoBehaviour
 
     //NOVO CODIGO
     private Vector3 nextPos;
+
+    public Vector3 lastPos;
+
+    public Quaternion lastDir;
+
+
     //public float mousePosX;
-    bool isDrawing;
+    public static bool isDrawing;
 
     bool draw;
 
@@ -75,7 +81,8 @@ public class BuildWall2 : MonoBehaviour
 
     public static bool isBuilding;
 
-    public bool isPlaced;
+    Foundation foundationScript;
+
 
 
     void Start()
@@ -98,6 +105,7 @@ public class BuildWall2 : MonoBehaviour
 
         fence = wallPrefabGreen.gameObject;
 
+       
 
     }
 
@@ -131,7 +139,7 @@ public class BuildWall2 : MonoBehaviour
 
             //}
 
-            fence.transform.position = firstInstance;
+            //fence.transform.position = firstInstance;
 
             if (Input.GetMouseButtonDown(0) && check == false)
             {
@@ -145,7 +153,6 @@ public class BuildWall2 : MonoBehaviour
                     posIni = hit.point;
                     nextPos = posIni;
                     check = true;
-                    fence.gameObject.SetActive(false);
                 }
 
             }
@@ -164,16 +171,17 @@ public class BuildWall2 : MonoBehaviour
                     auxCheck = true;
                     //IsBuilding = true;
                     draw = false;
-                    isPlaced = true;
+                    //isPlaced = true;
 
-
-
+                   
+                    //LastMouseVector = mouseVector;
                 }
             }
 
-
             if (isDrawing)
             {
+                
+
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 RaycastHit hit2;
                 if (Physics.Raycast(ray, out hit2))
@@ -181,6 +189,7 @@ public class BuildWall2 : MonoBehaviour
                     mouseVector = new Vector3(hit2.point.x, 0, hit2.point.z);
                 }
 
+                //possivel bug na Distancia- Investigar
 
                 distance = mouseVector - posIni;
 
@@ -196,7 +205,6 @@ public class BuildWall2 : MonoBehaviour
                     {
                         if (sizeDistance > 1.95f)
                         {
-
                             size++;
                             Debug.Log("distance" + sizeDistance);
                             move1slot = true;
@@ -213,13 +221,17 @@ public class BuildWall2 : MonoBehaviour
 
                 }
 
+
                 fence.transform.rotation = newXy;
 
+                //lastPos = nextPos + mouseVector;
+                //lastDir = newXy;
+                //Debug.Log("lastPOS" + distance);
 
+                //Debug.Log("nextPos" + nextPos);
 
             }
-
-
+           
 
             if (move1slot)
             {

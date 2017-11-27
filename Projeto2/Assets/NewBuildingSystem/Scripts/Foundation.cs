@@ -5,7 +5,7 @@ using UnityEngine;
 public class Foundation : MonoBehaviour
 {
 
-    public bool isPlaced;
+    public static bool isPlaced;
     public bool isSnapped;
 
     public float mousePosX;
@@ -23,7 +23,7 @@ public class Foundation : MonoBehaviour
     void Update()
     {
         //enquanto nao estiver posiciona segue o rato
-        if (!isPlaced && !isSnapped)
+        if (!isPlaced && !isSnapped && this.transform.tag == "Foundation")
         {
             BuildingManager.isBuilding = true;
 
@@ -31,32 +31,33 @@ public class Foundation : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit))
             {
-                this.transform.position = new Vector3(hit.point.x, 0, hit.point.z);//hit.point.z +0.5f
+                /*this.transform.position = new Vector3(hit.point.x, 0, hit.point.z + 0.5f);*///hit.point.z
                                                                                    //InitialRot = this.transform.rotation;
-
+                this.transform.parent.position = new Vector3(hit.point.x + 1.5f, 0, hit.point.z - 0.5f);
 
             }
         }
 
-
-        if (Input.GetAxis("Mouse ScrollWheel") > 0f)
+        if (!isPlaced)
         {
+            if (Input.GetAxis("Mouse ScrollWheel") > 0f)
+            {
 
-            this.transform.Rotate(Vector3.up * 250 * Time.deltaTime, Space.World);
+                this.transform.Rotate(Vector3.up * 250 * Time.deltaTime, Space.World);
+            }
+
+            else if (Input.GetAxis("Mouse ScrollWheel") < 0f) // backwards
+            {
+
+                this.transform.Rotate(Vector3.up * -250 * Time.deltaTime, Space.World);
+            }
         }
 
-        else if (Input.GetAxis("Mouse ScrollWheel") < 0f) // backwards
-        {
+        //if (Input.GetMouseButtonDown(0))
+        //{
 
-            this.transform.Rotate(Vector3.up * -250 * Time.deltaTime, Space.World);
-        }
-
-        if (Input.GetMouseButtonDown(0))
-        {
-
-            isPlaced = true;
-            BuildingManager.isBuilding = false;
-        }
+        //    isPlaced = true;
+        //}
 
 
         //Realese Snapping
