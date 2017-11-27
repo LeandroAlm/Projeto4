@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Foundation : MonoBehaviour {
+public class Foundation : MonoBehaviour
+{
 
     public bool isPlaced;
     public bool isSnapped;
@@ -17,45 +18,45 @@ public class Foundation : MonoBehaviour {
 
     public Quaternion InitialRot;
 
+    public static bool isInstantiated;
 
-
-    void Update ()
+    void Update()
     {
         //enquanto nao estiver posiciona segue o rato
-		if(!isPlaced && !isSnapped && BuildWall2.is2)
+        if (!isPlaced && !isSnapped)
         {
             BuildingManager.isBuilding = true;
 
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit))
-            { 
+            {
                 this.transform.position = new Vector3(hit.point.x, 0, hit.point.z);//hit.point.z +0.5f
-                //InitialRot = this.transform.rotation;
-                
-               
+                                                                                   //InitialRot = this.transform.rotation;
+
+
             }
         }
 
 
-        //if (Input.GetAxis("Mouse ScrollWheel") > 0f)
-        //{
-            
-        //    this.transform.Rotate(Vector3.up * 250 * Time.deltaTime, Space.World);
-        //}
+        if (Input.GetAxis("Mouse ScrollWheel") > 0f)
+        {
 
-        //else if (Input.GetAxis("Mouse ScrollWheel") < 0f) // backwards
-        //{
-         
-        //    this.transform.Rotate(Vector3.up * -250 * Time.deltaTime, Space.World);
-        //}
+            this.transform.Rotate(Vector3.up * 250 * Time.deltaTime, Space.World);
+        }
 
-        //if(Input.GetMouseButtonDown(0))
-        //{
+        else if (Input.GetAxis("Mouse ScrollWheel") < 0f) // backwards
+        {
 
-        //    isPlaced = true;
-        //    BuildingManager.isBuilding = false;
-        //}
+            this.transform.Rotate(Vector3.up * -250 * Time.deltaTime, Space.World);
+        }
+
+        if (Input.GetMouseButtonDown(0))
+        {
+
+            isPlaced = true;
+            BuildingManager.isBuilding = false;
+        }
 
 
         //Realese Snapping

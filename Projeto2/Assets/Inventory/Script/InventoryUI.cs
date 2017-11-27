@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class InventoryUI : MonoBehaviour
 {
     public GameObject bag, slotPrefab;
-    public GameObject title;
+    public GameObject title, craft;
     public Transform PlayerTransform;
     private List<Transform> slotsList;
     private bool isOpen;
@@ -21,6 +21,7 @@ public class InventoryUI : MonoBehaviour
 	{
         bag.SetActive(false);
         title.SetActive(false);
+        craft.SetActive(false);
 	    isOpen = false;
 	    playerStatus = PlayerTransform.GetComponent<PlayerStatus>();
 	    farm = GetComponent<Farm>();
@@ -39,6 +40,7 @@ public class InventoryUI : MonoBehaviour
             isOpen = true;
             bag.SetActive(true);
             title.SetActive(true);
+            craft.SetActive(true);
         }
 
         else if (Input.GetKeyDown(KeyCode.I) && isOpen == true)
@@ -46,6 +48,7 @@ public class InventoryUI : MonoBehaviour
             isOpen = false;
             bag.SetActive(false);
             title.SetActive(false);
+            craft.SetActive(true);
         }
     }
 

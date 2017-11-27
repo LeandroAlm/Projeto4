@@ -14,6 +14,9 @@ public class BuildWall2 : MonoBehaviour
     public GameObject wallPrefab;
     public GameObject wallPrefabGreen;
 
+    public GameObject wallPrefabCursor;
+
+
     GameObject ParentObj;
 
     private bool check;
@@ -94,10 +97,14 @@ public class BuildWall2 : MonoBehaviour
         draw = false;
 
         fence = wallPrefabGreen.gameObject;
+
+
     }
 
     void Update()
     {
+
+
         if (canBuild)
         {
             //Ray ray2 = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -109,12 +116,11 @@ public class BuildWall2 : MonoBehaviour
 
             //}
 
-            if (Input.GetKeyDown(KeyCode.Alpha2) &&  !isBuilding)
+            if (Input.GetKeyDown(KeyCode.Alpha2))
             {
-                //is2 = true;
-                isBuilding = true;
-                fence = Instantiate(wallPrefabGreen, Vector3.zero, Quaternion.identity);
-                is2 = true;
+
+                fence = Instantiate(wallPrefabCursor, Vector3.zero, Quaternion.identity);
+
             }
 
             //if (is2)
@@ -139,6 +145,7 @@ public class BuildWall2 : MonoBehaviour
                     posIni = hit.point;
                     nextPos = posIni;
                     check = true;
+                    fence.gameObject.SetActive(false);
                 }
 
             }
@@ -158,6 +165,9 @@ public class BuildWall2 : MonoBehaviour
                     //IsBuilding = true;
                     draw = false;
                     isPlaced = true;
+
+
+
                 }
             }
 
@@ -170,10 +180,13 @@ public class BuildWall2 : MonoBehaviour
                 {
                     mouseVector = new Vector3(hit2.point.x, 0, hit2.point.z);
                 }
-                
+
+
                 distance = mouseVector - posIni;
-                
+
+
                 sizeDistance = (int)distance.magnitude;
+
 
                 //mouseVector = snapPosition(getWorldPoint());
 
@@ -181,8 +194,9 @@ public class BuildWall2 : MonoBehaviour
                 {
                     if (Mathf.Abs(Input.GetAxis("Mouse X")) < 0.8f)
                     {
-                        if (sizeDistance > 1.4f)
+                        if (sizeDistance > 1.95f)
                         {
+
                             size++;
                             Debug.Log("distance" + sizeDistance);
                             move1slot = true;
@@ -195,34 +209,55 @@ public class BuildWall2 : MonoBehaviour
                             posIni = mouseVector;
                         }
                     }
+
+
                 }
+
                 fence.transform.rotation = newXy;
+
+
+
             }
-            
+
+
+
             if (move1slot)
             {
+
+                Foundation.isInstantiated = true;
                 GameObject newWallGreen = Instantiate(wallPrefabGreen, nextPos, newXy);
                 newWallGreen.transform.parent = ParentObj.transform;
 
                 move1slot = false;
+
+
             }
 
             stepCount = ParentObj.transform.childCount;
-            
+
+
             if (timer <= 0 && currentBuildStep < stepCount)
             {
+
                 timer = stepDuration;
                 Instantiate(wallPrefab, ParentObj.transform.GetChild(currentBuildStep).transform.position, ParentObj.transform.GetChild(currentBuildStep).transform.rotation);
                 ParentObj.transform.GetChild(currentBuildStep).gameObject.SetActive(false);
                 currentBuildStep += 1;
+
             }
+
             timer -= Time.deltaTime;
+
         }
+
+
     }
-    
+
+
 
     public Vector3 getWorldPoint()
     {
+
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit))
@@ -240,4 +275,6 @@ public class BuildWall2 : MonoBehaviour
         snapped.z = Mathf.Floor(original.z + 0.5f);
         return snapped;
     }
+
+
 }

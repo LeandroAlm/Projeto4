@@ -85,7 +85,6 @@ public class EnemySmartAI : MonoBehaviour
                         Debug.Log("Bicho 1 voltando...");
                         if (transform.position != covilpos)
                         {
-                            Debug.Log("Cheguei aqui crlh!");
                             BackCovil();
                         }
                         else

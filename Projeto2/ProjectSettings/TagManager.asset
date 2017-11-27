@@ -18,6 +18,7 @@ TagManager:
   - WestCollider
   - Enenmy
   - Enemy2
+  - Enemy
   layers:
   - Default
   - TransparentFX
