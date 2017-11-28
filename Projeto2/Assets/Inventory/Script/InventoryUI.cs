@@ -5,31 +5,40 @@ using UnityEngine.UI;
 
 public class InventoryUI : MonoBehaviour
 {
-    public GameObject bag, slotPrefab;
-    public GameObject title, craft;
+    public GameObject inventoryBag, craftBag, slotPrefab;
+    public GameObject inventoryTitle, craftTitle;
     public Transform PlayerTransform;
     private List<Transform> slotsList;
     private bool isOpen;
     private PlayerStatus playerStatus;
     public Texture wood, stone, DefaultTexture;
     public Text SlotText;
+    public Button InventoryButton, CraftButton;
 
     [HideInInspector]
     public Farm farm;
 
 	void Start ()
 	{
-        bag.SetActive(false);
-        title.SetActive(false);
-        craft.SetActive(false);
+        inventoryBag.SetActive(false);
+        inventoryTitle.SetActive(false);
+        craftBag.SetActive(false);
+        craftTitle.SetActive(false);
 	    isOpen = false;
+
 	    playerStatus = PlayerTransform.GetComponent<PlayerStatus>();
 	    farm = GetComponent<Farm>();
         slotsList = new List<Transform>();
 
+	    Button craftButton = CraftButton.GetComponent<Button>();
+	    Button inventoryButton = InventoryButton.GetComponent<Button>();
+
+        craftButton.onClick.AddListener(CraftClickButton);
+        inventoryButton.onClick.AddListener(InventoryClickButton);
+
 	    for (int i = 0; i < 20; i++)
 	    {
-	        slotsList.Add(bag.transform.GetChild(i));
+	        slotsList.Add(inventoryBag.transform.GetChild(i));
         }
 	}
 	
@@ -38,18 +47,36 @@ public class InventoryUI : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.I) && isOpen == false)
         {
             isOpen = true;
-            bag.SetActive(true);
-            title.SetActive(true);
-            craft.SetActive(true);
+            inventoryBag.SetActive(true);
+            inventoryTitle.SetActive(true);
+            craftTitle.SetActive(true);
         }
 
         else if (Input.GetKeyDown(KeyCode.I) && isOpen == true)
         {
             isOpen = false;
-            bag.SetActive(false);
-            title.SetActive(false);
-            craft.SetActive(true);
+            inventoryBag.SetActive(false);
+            inventoryTitle.SetActive(false);
+            craftTitle.SetActive(false);
         }
+    }
+
+    public void CraftClickButton()
+    {
+        Debug.Log("Craft button clicked");
+        inventoryBag.SetActive(false);
+        inventoryTitle.SetActive(true);
+        craftTitle.SetActive(true);
+        craftBag.SetActive(true);
+    }
+
+    public void InventoryClickButton()
+    {
+        Debug.Log("Inventory button clicked");
+        inventoryBag.SetActive(true);
+        inventoryTitle.SetActive(true);
+        craftTitle.SetActive(true);
+        craftBag.SetActive(false);
     }
 
     public void CheckSlot(string Object)
