@@ -44,7 +44,7 @@ public class BuildWall2 : MonoBehaviour
     //NOVO CODIGO
     private Vector3 nextPos;
 
-    public Vector3 lastPos;
+    public Vector3 _lastDir;
 
     public Quaternion lastDir;
 
@@ -90,7 +90,7 @@ public class BuildWall2 : MonoBehaviour
         x = 0;
 
         check = false;
-        canBuild = false;
+        canBuild = true;
         auxCheck = false;
 
         ParentObj = new GameObject();
@@ -115,7 +115,6 @@ public class BuildWall2 : MonoBehaviour
         //Debug.Log(canBuild);
         if (canBuild)
         {
-            Debug.Log("tiuuuu");
             //Ray ray2 = Camera.main.ScreenPointToRay(Input.mousePosition);
             //RaycastHit hit4;
             //if (Physics.Raycast(ray2, out hit4))
@@ -136,6 +135,8 @@ public class BuildWall2 : MonoBehaviour
             //fence.transform.position = firstInstance;
             if (firstFence == true)
             {
+                Debug.Log("tiuuuu");
+
                 fence = Instantiate(wallPrefabCursor, Vector3.zero, Quaternion.identity);
                 firstFence = false;
             }
@@ -220,7 +221,7 @@ public class BuildWall2 : MonoBehaviour
 
                 fence.transform.rotation = newXy;
 
-                //lastPos = nextPos + mouseVector;
+                //_lastDir =(nextPos + mouseVector) -  nextPos;
                 //lastDir = newXy;
                 //Debug.Log("lastPOS" + distance);
 

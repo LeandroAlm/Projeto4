@@ -60,14 +60,14 @@ public class FoundationCollider : MonoBehaviour {
             switch (this.transform.tag)
             {
                 case "LeftCollider":
-                    //other.transform.rotation = buildWallScript.lastDir;
-                    other.transform.position = new Vector3(buildWallScript.lastPos.x, 0, buildWallScript.lastPos.z);
+                    other.transform.rotation = buildWallScript.lastDir;
+                    other.transform.position = new Vector3(buildWallScript._lastDir.x, 0, buildWallScript._lastDir.z);
 
                     break;
 
                 case "RightCollider":
-                    //other.transform.rotation = buildWallScript.lastDir;
-                    other.transform.position = new Vector3(buildWallScript.lastPos.x, 0, buildWallScript.lastPos.z);
+                    other.transform.rotation = buildWallScript.lastDir;
+                    other.transform.position = new Vector3(buildWallScript._lastDir.x, 0, buildWallScript._lastDir.z);
 
                     break;
 
