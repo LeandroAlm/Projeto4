@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class InventoryUI : MonoBehaviour
 {
-    public GameObject inventoryBag, craftBag, slotPrefab;
+    public GameObject inventoryBag, craftBag;
     public GameObject inventoryTitle, craftTitle;
     public Transform PlayerTransform;
     private List<Transform> slotsList;

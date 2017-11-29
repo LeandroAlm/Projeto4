@@ -90,7 +90,7 @@ public class BuildWall2 : MonoBehaviour
         x = 0;
 
         check = false;
-        canBuild = true;
+        canBuild = false;
         auxCheck = false;
 
         ParentObj = new GameObject();
@@ -112,7 +112,7 @@ public class BuildWall2 : MonoBehaviour
     void Update()
     {
 
-        Debug.Log(canBuild);
+        //Debug.Log(canBuild);
         if (canBuild)
         {
             Debug.Log("tiuuuu");

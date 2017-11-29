@@ -8,7 +8,6 @@ TagManager:
   - terrain
   - Stone
   - Foundation
-  - Enenmy
   - Enemy2
   - Enemy
   - LeftCollider

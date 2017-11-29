@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class CraftUI : MonoBehaviour
 {
     public List<Transform> Buttons;
-    public GameObject inventory;
+    public GameObject Craft, CTitle, ITitle;
 
 	void Start ()
 	{
@@ -32,10 +32,12 @@ public class CraftUI : MonoBehaviour
 
         else if (slotNumber == 1)
         {
-            BuildWall2.firstFence = true; 
+            BuildWall2.firstFence = true;
             //Debug.Log(BuildWall2.canBuild);
         }
 
-        inventory.SetActive(false);
+        Craft.SetActive(false);
+        CTitle.SetActive(false);
+        ITitle.SetActive(false);
     }
 }
