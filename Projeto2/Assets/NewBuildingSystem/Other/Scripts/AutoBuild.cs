@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AutoBuild : MonoBehaviour {
-
-
+public class AutoBuild : MonoBehaviour
+{
     public float stepDuration;
 
     private float timer;

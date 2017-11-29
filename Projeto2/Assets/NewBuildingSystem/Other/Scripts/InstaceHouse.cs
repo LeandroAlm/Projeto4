@@ -53,21 +53,17 @@ public class InstaceHouse : MonoBehaviour
             this.transform.Rotate(Vector3.up * -250 * Time.deltaTime, Space.World);
         }
 
-
-        if (CanBuild)
+        if (Input.GetMouseButtonDown(0))
         {
-            if (Input.GetMouseButtonDown(0))
-            {
-
-                isPlaced = true;
-                BuildingManager.isBuilding = false;
+            CanBuild = true;
+            isPlaced = true;
+            BuildingManager.isBuilding = false;
 
 
-                Instantiate(housePrefab, this.transform.position, this.transform.rotation);
+            Instantiate(housePrefab, this.transform.position, this.transform.rotation);
 
-                this.gameObject.SetActive(false);
+            this.gameObject.SetActive(false);
 
-            }
         }
 
     }

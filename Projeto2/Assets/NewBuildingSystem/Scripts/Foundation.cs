@@ -38,7 +38,7 @@ public class Foundation : MonoBehaviour
             }
         }
 
-        if (!isPlaced)
+        if (this.transform.tag == "Foundation")
         {
             if (Input.GetAxis("Mouse ScrollWheel") > 0f)
             {

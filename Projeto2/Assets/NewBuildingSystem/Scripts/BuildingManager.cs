@@ -2,22 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BuildingManager : MonoBehaviour {
-
+public class BuildingManager : MonoBehaviour
+{
     public GameObject foundationPrefab;
     public GameObject foundationPrefab2;
     public GameObject foundationPrefab3;
 
-
-
-
+    public static bool buildHouse = false;
     public static bool isBuilding;
 
     public static bool PreH, PreV;
-
-    //public Camera mainCamera;
-
-
 
     void Update ()
     {
@@ -38,10 +32,11 @@ public class BuildingManager : MonoBehaviour {
             Instantiate(foundationPrefab2, Vector3.zero, foundationPrefab2.transform.rotation);
 
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha3) && !isBuilding)
+        else if (buildHouse == true && !isBuilding)
         {
             isBuilding = true;
             Instantiate(foundationPrefab3, Vector3.zero, foundationPrefab3.transform.rotation);
+            buildHouse = false;
         }
     }
 }
