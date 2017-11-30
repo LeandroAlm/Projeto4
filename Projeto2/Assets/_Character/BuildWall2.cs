@@ -103,7 +103,7 @@ public class BuildWall2 : MonoBehaviour
 
         draw = false;
 
-        //fence = wallPrefabGreen.gameObject;
+        fence = wallPrefabGreen.gameObject;
 
        
 

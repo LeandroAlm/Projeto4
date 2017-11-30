@@ -76,6 +76,12 @@
     <Reference Include="UnityEngine.HoloLens">
       <HintPath>Library\UnityAssemblies\UnityEngine.HoloLens.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEditor.iOS.Extensions.Xcode">
+      <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.iOS.Extensions.Common">
+      <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Common.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Projeto2.Plugins.csproj">
@@ -93,7 +99,6 @@
     <Compile Include="Assets\_Character\PlayerMove.cs" />
     <Compile Include="Assets\_Character\PlayerStatus.cs" />
     <Compile Include="Assets\_Character\Shot.cs" />
-    <Compile Include="Assets\_Enemies\Enemy\EnemyAI.cs" />
     <Compile Include="Assets\_Enemies\Enemy\EnemySmartAI.cs" />
     <Compile Include="Assets\_Resources\Stone\Stone.cs" />
     <Compile Include="Assets\_Resources\Tree\Tree.cs" />
