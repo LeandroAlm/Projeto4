@@ -25,9 +25,13 @@ public class FadeOutRoof : MonoBehaviour {
     
     private bool IsCharacter(Collider collider)
     {
-        // Implement you logic here if it is your player that is the collider
+        if (collider.tag == "Player")
+        {
+            return true;
 
-        return true;
+        }
+        else
+            return false;
     }
     
 

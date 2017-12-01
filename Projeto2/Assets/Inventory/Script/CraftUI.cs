@@ -27,15 +27,21 @@ public class CraftUI : MonoBehaviour
     {
         if (slotNumber == 0)
         {
-            Debug.Log("tou");
 
             BuildingManager.buildHouse = true;          
         }
 
         else if (slotNumber == 1)
         {
+
             BuildWall2.canBuild = true;
             BuildWall2.firstFence = true;
+        }
+
+        else if (slotNumber == 2)
+        {
+            Debug.Log("toyu");
+            BuildingManager.buildTower = true;
         }
 
         Craft.SetActive(false);

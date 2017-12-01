@@ -7,8 +7,11 @@ public class BuildingManager : MonoBehaviour
     public GameObject foundationPrefab;
     public GameObject foundationPrefab2;
     public GameObject foundationPrefab3;
+    public GameObject foundationPrefab4;
 
     public static bool buildHouse = false;
+    public static bool buildTower = false;
+
     public static bool isBuilding;
 
     public static bool PreH, PreV;
@@ -37,6 +40,13 @@ public class BuildingManager : MonoBehaviour
             isBuilding = true;
             Instantiate(foundationPrefab3, Vector3.zero, foundationPrefab3.transform.rotation);
             buildHouse = false;
+        }
+
+        if (buildTower == true) //&& !isBuilding)
+        {
+            isBuilding = true;
+            Instantiate(foundationPrefab4, Vector3.zero, foundationPrefab4.transform.rotation);
+            buildTower = false;
         }
     }
 }

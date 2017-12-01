@@ -26,7 +26,7 @@ public class TerrainColIgnore : MonoBehaviour
 
         if (other.gameObject.layer == 8)
         {
-            Debug.Log("TOUUU");
+
             //this.GetComponent<Collider>().enabled = false;
         }
 

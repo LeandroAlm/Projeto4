@@ -37,6 +37,8 @@ public class PLayerControl : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+
+        //this.transform.position = new Vector3(this.transform.position.x, 0, this.transform.position.z);
         rb.velocity = moveVelocity;
         MovementTopDown();
         UpdateAnimator();

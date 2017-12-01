@@ -237,7 +237,7 @@ public class EnemySmartAI : MonoBehaviour
 
         float speed = 1f;
         float step = speed * Time.deltaTime;
-        transform.position = Vector3.MoveTowards(transform.position, player.position, step);
+        transform.position = Vector3.MoveTowards(transform.position, player.position + Vector3.up / 2, step);
         // Correção de olhar
         transform.LookAt(player.position);
     }
