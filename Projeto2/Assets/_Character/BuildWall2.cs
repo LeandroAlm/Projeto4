@@ -69,7 +69,7 @@ public class BuildWall2 : MonoBehaviour
 
     private Vector3 firstInstance;
 
-    int sizeDistance;
+    float sizeDistance;
 
     public static bool is2;
 
@@ -192,7 +192,7 @@ public class BuildWall2 : MonoBehaviour
                 distance = mouseVector - posIni;
 
 
-                sizeDistance = (int)distance.magnitude;
+                sizeDistance = (float)distance.magnitude;
 
 
                 //mouseVector = snapPosition(getWorldPoint());
@@ -201,9 +201,9 @@ public class BuildWall2 : MonoBehaviour
                 {
                     if (Mathf.Abs(Input.GetAxis("Mouse X")) < 0.8f)
                     {
-                        if (sizeDistance > 1.95f)
+                        if (sizeDistance > 2.6f)
                         {
-                            Debug.Log("yououuououo");
+
 
                             size++;
                             Debug.Log("distance" + sizeDistance);
