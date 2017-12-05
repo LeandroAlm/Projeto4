@@ -290,6 +290,7 @@
     <Compile Include="Assets\MovementPointClick\CameraController.cs" />
     <Compile Include="Assets\MovementPointClick\PlayerClickMovement.cs" />
     <Compile Include="Assets\Multiplayer\Scripts\LobbyManager.cs" />
+    <Compile Include="Assets\Multiplayer\Scripts\PlayerInformation.cs" />
     <Compile Include="Assets\NewBuildingSystem\Other\Scripts\AutoBuild.cs" />
     <Compile Include="Assets\NewBuildingSystem\Other\Scripts\FadeOutRoof.cs" />
     <Compile Include="Assets\NewBuildingSystem\Other\Scripts\InstaceHouse.cs" />
