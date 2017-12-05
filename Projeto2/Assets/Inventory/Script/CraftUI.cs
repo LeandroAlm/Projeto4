@@ -35,7 +35,7 @@ public class CraftUI : MonoBehaviour
         else if (slotNumber == 1)
         {
 
-            BuildWall2.canBuild = true;
+            //BuildWall2.canBuild = true;
             BuildWall2.firstFence = true;
         }
 

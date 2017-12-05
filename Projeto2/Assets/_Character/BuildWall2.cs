@@ -90,7 +90,7 @@ public class BuildWall2 : MonoBehaviour
         x = 0;
 
         check = false;
-        canBuild = true;
+        canBuild = false;
         auxCheck = false;
 
         ParentObj = new GameObject();
@@ -111,7 +111,14 @@ public class BuildWall2 : MonoBehaviour
 
     void Update()
     {
+        if (firstFence == true)
+        {
+            Debug.Log("tiuuuu");
 
+            fence = Instantiate(wallPrefabCursor, Vector3.zero, Quaternion.identity);
+            canBuild = true;
+            firstFence = false;
+        }
         //Debug.Log(canBuild);
         if (canBuild)
         {
@@ -133,13 +140,7 @@ public class BuildWall2 : MonoBehaviour
             //}
 
             //fence.transform.position = firstInstance;
-            if (firstFence == true)
-            {
-                Debug.Log("tiuuuu");
-
-                fence = Instantiate(wallPrefabCursor, Vector3.zero, Quaternion.identity);
-                firstFence = false;
-            }
+          
 
             if (Input.GetMouseButtonDown(0) && check == false)
             {
