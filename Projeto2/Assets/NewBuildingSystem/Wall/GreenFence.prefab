@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4217452627961092}
   - component: {fileID: 65582972647203978}
   - component: {fileID: 114188356796592666}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: ColliderLeft
   m_TagString: LeftCollider
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   - component: {fileID: 23569111746305946}
   - component: {fileID: 65286647588081886}
   - component: {fileID: 114082829826231560}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: big_fenceGreen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -57,7 +57,7 @@ GameObject:
   - component: {fileID: 4851162788421602}
   - component: {fileID: 65146837397632662}
   - component: {fileID: 114179783232244882}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: ColliderRight
   m_TagString: RightCollider
   m_Icon: {fileID: 0}
@@ -74,7 +74,7 @@ GameObject:
   - component: {fileID: 4226181762486848}
   - component: {fileID: 65330056398799122}
   - component: {fileID: 54777570347567138}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: GreenFence
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 33799186377830116}
   - component: {fileID: 23258075675510304}
   - component: {fileID: 114715652111211448}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: FenceGreen
   m_TagString: Untagged
   m_Icon: {fileID: 0}

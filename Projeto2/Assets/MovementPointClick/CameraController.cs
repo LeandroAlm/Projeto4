@@ -43,10 +43,13 @@ public class CameraController : MonoBehaviour
             q = 0;
         }
 
-        currentZoom -= Input.GetAxis("Mouse ScrollWheel") * zoomSpeed;
-	    currentZoom = Mathf.Clamp(currentZoom, minZoom, maxZoom);
+        if(Input.GetKey(KeyCode.LeftShift))
+        {
+            currentZoom -= Input.GetAxis("Mouse ScrollWheel") * zoomSpeed;
+            currentZoom = Mathf.Clamp(currentZoom, minZoom, maxZoom);
+        }
 
-	    currentYaw -= q * yawSpeed * Time.deltaTime;
+        currentYaw -= q * yawSpeed * Time.deltaTime;
 	    currentPitch -= Input.GetAxis("Vertical") * yawSpeed * Time.deltaTime;
 
 	    currentPitch = Mathf.Clamp(currentPitch, -25, 40);

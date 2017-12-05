@@ -20,8 +20,17 @@ public class Foundation : MonoBehaviour
 
     public static bool isInstantiated;
 
+    GameObject player;
+
+    void Start()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
+    }
+
     void Update()
     {
+       
+
         //enquanto nao estiver posiciona segue o rato
         if (!isPlaced && !isSnapped && this.transform.tag == "Foundation")
         {
@@ -34,7 +43,7 @@ public class Foundation : MonoBehaviour
                 /*this.transform.position = new Vector3(hit.point.x, 0, hit.point.z + 0.5f);*///hit.point.z
                                                                                    //InitialRot = this.transform.rotation;
                 this.transform.parent.position = new Vector3(hit.point.x + 1.5f, 0, hit.point.z - 0.5f);
-
+                //transform.LookAt(player.transform.position);
             }
         }
 

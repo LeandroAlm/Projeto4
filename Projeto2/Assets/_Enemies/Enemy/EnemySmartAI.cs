@@ -252,7 +252,7 @@ public class EnemySmartAI : MonoBehaviour
         }
         else
         {
-            Debug.Log("Pos aleatoria");
+            //Debug.Log("Pos aleatoria");
             float x = Random.Range(transform.position.x + 7, transform.position.x + 20);
             float z = Random.Range(transform.position.z - 7, transform.position.z + 7);
             return (new Vector3(x, 1f, z));

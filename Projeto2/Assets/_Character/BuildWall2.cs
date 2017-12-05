@@ -19,6 +19,8 @@ public class BuildWall2 : MonoBehaviour
 
     GameObject ParentObj;
 
+    GameObject WallsList;
+
     private bool check;
 
     private Vector3 posIni;
@@ -85,6 +87,8 @@ public class BuildWall2 : MonoBehaviour
 
     public static bool firstFence;
 
+    int countDisableWalls;
+
     void Start()
     {
         x = 0;
@@ -94,6 +98,8 @@ public class BuildWall2 : MonoBehaviour
         auxCheck = false;
 
         ParentObj = new GameObject();
+
+        WallsList = new GameObject();
 
         timer = stepDuration;
 
@@ -113,7 +119,7 @@ public class BuildWall2 : MonoBehaviour
     {
         if (firstFence == true)
         {
-            Debug.Log("tiuuuu");
+
 
             fence = Instantiate(wallPrefabCursor, Vector3.zero, Quaternion.identity);
             canBuild = true;
@@ -122,26 +128,7 @@ public class BuildWall2 : MonoBehaviour
         //Debug.Log(canBuild);
         if (canBuild)
         {
-            //Ray ray2 = Camera.main.ScreenPointToRay(Input.mousePosition);
-            //RaycastHit hit4;
-            //if (Physics.Raycast(ray2, out hit4))
-            //{
-            //    Debug.Log("touuu");
-            //    firstInstance = new Vector3(hit4.point.x, 0, hit4.point.z);
-
-            //}
-
-            //if (is2)
-            //{
-
-
-            //    is2 = false;
-
-            //}
-
-            //fence.transform.position = firstInstance;
           
-
             if (Input.GetMouseButtonDown(0) && check == false)
             {
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -149,7 +136,7 @@ public class BuildWall2 : MonoBehaviour
                 if (Physics.Raycast(ray, out hit))
                 {
                     is2 = false;
-                    fence.gameObject.SetActive(false);
+                    //fence.gameObject.SetActive(false);
                     isDrawing = true;
                     posIni = hit.point;
                     nextPos = posIni;
@@ -163,19 +150,17 @@ public class BuildWall2 : MonoBehaviour
                 RaycastHit hit2;
                 if (Physics.Raycast(ray, out hit2))
                 {
-                    fence.gameObject.SetActive(true);
+                    //fence.gameObject.SetActive(true);
 
                     isDrawing = false;
 
                     posEnd = hit2.point;
                     check = false;
                     auxCheck = true;
-                    //IsBuilding = true;
                     draw = false;
-                    //isPlaced = true;
-
-                   
-                    //LastMouseVector = mouseVector;
+  
+                    SnapWalls();
+                    
                 }
             }
 
@@ -195,6 +180,11 @@ public class BuildWall2 : MonoBehaviour
 
                 sizeDistance = (float)distance.magnitude;
 
+                if(Input.GetMouseButtonDown(0))
+                {
+                    move1slot = true;
+                    nextPos = fence.gameObject.transform.position;
+                }
 
                 //mouseVector = snapPosition(getWorldPoint());
 
@@ -205,17 +195,18 @@ public class BuildWall2 : MonoBehaviour
                         if (sizeDistance > 2.6f)
                         {
 
+                            nextPos = fence.gameObject.transform.position;
 
                             size++;
-                            Debug.Log("distance" + sizeDistance);
+
                             move1slot = true;
-                            sizeDistance = 0;
+                            
                             //MousePosX = mouseVector;
                             newDir = mouseVector - posIni;
                             newDir = Quaternion.Euler(0, -90, 0) * newDir;
                             newXy = Quaternion.LookRotation(newDir);
-                            nextPos = mouseVector;
                             posIni = mouseVector;
+                            sizeDistance = 0;
                         }
                     }
                 }
@@ -248,14 +239,57 @@ public class BuildWall2 : MonoBehaviour
             {
 
                 timer = stepDuration;
-                Instantiate(wallPrefab, ParentObj.transform.GetChild(currentBuildStep).transform.position, ParentObj.transform.GetChild(currentBuildStep).transform.rotation);
+                GameObject WoodWall =  Instantiate(wallPrefab, ParentObj.transform.GetChild(currentBuildStep).transform.position, ParentObj.transform.GetChild(currentBuildStep).transform.rotation);
+                WoodWall.transform.parent = WallsList.transform;
                 ParentObj.transform.GetChild(currentBuildStep).gameObject.SetActive(false);
                 currentBuildStep += 1;
+                countDisableWalls++;
 
             }
 
             timer -= Time.deltaTime;
             //canBuild = false;
+
+            Debug.Log("fff"+ stepCount);
         }
+    }
+
+    void SnapWalls()
+    {
+
+        float distance;
+        Transform firstWoodWall;
+        Transform lastGreenWall;
+        Vector3 newDir;
+        Quaternion newXy;
+
+        firstWoodWall = WallsList.transform.GetChild(0).GetChild(0).transform;
+
+        lastGreenWall = ParentObj.transform.GetChild(stepCount - 1).transform;
+
+        //firstWoodWall = WallsList.transform.GetChild(0).GetChild(0).transform;
+
+
+        //lastGreenWall = ParentObj.transform.GetChild(stepCount - countDisableWalls + 1).transform;
+
+
+        //Debug.Log("firstWoodWall" + WallsList.transform.GetChild(0).GetChild(0).gameObject.transform.position);
+
+        //Debug.Log("lastGreenWall" + ParentObj.transform.GetChild(stepCount - countDisableWalls + 1).gameObject.transform.position);
+
+        distance = Vector3.Distance(lastGreenWall.transform.position, firstWoodWall.transform.position);
+
+        newDir = lastGreenWall.transform.position - firstWoodWall.transform.position;
+        newDir = Quaternion.Euler(0, -90, 0) * newDir;
+        newXy = Quaternion.LookRotation(newDir);
+
+        Debug.Log("size distance = " + distance);
+
+        if(distance < 7)
+        {
+            Instantiate(wallPrefab, ParentObj.transform.GetChild(stepCount - 1).transform.position, newXy);
+            Debug.Log("vaca");
+        }
+
     }
 }
