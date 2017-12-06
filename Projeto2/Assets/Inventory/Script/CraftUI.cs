@@ -29,7 +29,9 @@ public class CraftUI : MonoBehaviour
         {
             Debug.Log("sdsssssssssssssssssssssssss");
 
-            BuildingManager.buildHouse = true;          
+            BuildingManager.buildHouse = true;
+            BuildWall2.firstFence = false;
+
         }
 
         else if (slotNumber == 1)
@@ -42,11 +44,14 @@ public class CraftUI : MonoBehaviour
         else if (slotNumber == 2)
         {
             BuildingManager.buildTower = true;
+            BuildWall2.firstFence = false;
+
         }
 
         else if (slotNumber == 3)
         {
             BuildingManager.gate = true;
+            BuildWall2.firstFence = false;
 
         }
 

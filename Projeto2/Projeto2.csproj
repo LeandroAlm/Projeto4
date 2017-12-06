@@ -161,6 +161,8 @@
     <Compile Include="Assets\NewBuildingSystem\Wall\ShowMouse.cs" />
     <Compile Include="Assets\NewBuildingSystem\Wall\WallBuilding.cs" />
     <Compile Include="Assets\NewBuildingSystem\Wall\WallDrag.cs" />
+    <Compile Include="Assets\PathFinding\Grid.cs" />
+    <Compile Include="Assets\PathFinding\Node.cs" />
     <Compile Include="Assets\StartMenu\Scripts\StartMenuManager.cs" />
   </ItemGroup>
   <ItemGroup>

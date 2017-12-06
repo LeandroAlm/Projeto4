@@ -158,7 +158,6 @@ public class BuildWall2 : MonoBehaviour
                     check = false;
                     auxCheck = true;
                     draw = false;
-  
                     SnapWalls();
                     
                 }
