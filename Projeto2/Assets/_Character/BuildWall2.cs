@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class BuildWall2 : MonoBehaviour
 {
-
     public static bool canBuild, isDrawing, isPlaced;
 
     public bool IsBuilding, check, move1slot;
@@ -27,7 +26,6 @@ public class BuildWall2 : MonoBehaviour
 
     void Start()
     {
- 
         check = false;
 
         canBuild = false;
@@ -37,58 +35,46 @@ public class BuildWall2 : MonoBehaviour
         currentBuildStep = 0;
 
         isDrawing = false;
-
-
     }
 
     void Update()
     {
-
         FollowMouse();
 
         RotateWall();
 
-
         if (canBuild)
         {
             fence = this.transform.gameObject;
- 
 
-            if (Input.GetMouseButtonDown(0) && check == false )
+            if (Input.GetMouseButtonDown(0) && check == false)
             {
                 if (RayShooter())
-                {
-       
+                {       
                     isDrawing = true;
                     posIni = hit.point;
                     nextPos = posIni;
                     check = true;
                 }
-
             }
+
             else if (Input.GetMouseButtonUp(0) && check == true)
-            {
-               
+            {              
                 if (RayShooter())
                 {
-
                     fence.gameObject.SetActive(false);         
                     isDrawing = false;
                     posEnd = hit.point;
                     check = false;
                     SnapWalls();
-                    ParentObj.AddComponent<WallAutoBuil>();
-                    ParentObj.GetComponent<WallAutoBuil>().wallPrefab = wallPrefab;
-                    ParentObj.GetComponent<WallAutoBuil>().stepDuration = 1.5f;
-
-
+                    ParentObj.AddComponent<WallAutoBuild>();
+                    ParentObj.GetComponent<WallAutoBuild>().wallPrefab = wallPrefab;
+                    ParentObj.GetComponent<WallAutoBuild>().stepDuration = 1.5f;
                 }
             }
 
-
             if (isDrawing)
-            {
-               
+            {              
                 if (RayShooter())
                 {
                     mouseVector = new Vector3(hit.point.x, 0, hit.point.z);
@@ -96,9 +82,7 @@ public class BuildWall2 : MonoBehaviour
 
                 distance = mouseVector - posIni;
 
-
                 sizeDistance = (float)distance.magnitude;
-
 
                 if (Input.GetMouseButtonDown(0))
                 {
@@ -110,13 +94,10 @@ public class BuildWall2 : MonoBehaviour
                 MoveOneSlot();
                 
                 fence.transform.rotation = newXy;
-
             }
           
             stepCount = ParentObj.transform.childCount;
-
         }
-
     }
 
     void RotateWall()
@@ -128,35 +109,29 @@ public class BuildWall2 : MonoBehaviour
 
         else if (Input.GetAxis("Mouse ScrollWheel") < 0f) // backwards
         {
-
             this.transform.Rotate(Vector3.up * -250 * Time.deltaTime, Space.World);
         }
-
     }
 
     void MoveOneSlot()
     {
         for (int i = 0; i < sizeDistance - 1; i++)
         {
-
             if (sizeDistance > 2.6f)
             {
-
                 nextPos = fence.gameObject.transform.position;
 
-
-                //MousePosX = mouseVector;
                 newDir = mouseVector - posIni;
                 newDir = Quaternion.Euler(0, -90, 0) * newDir;
+
                 newXy = Quaternion.LookRotation(newDir);
 
                 posIni = mouseVector;
+
                 sizeDistance = 0;
 
                 InstantiateWallGreen();
-
             }
-
         }
     }
 
@@ -165,7 +140,6 @@ public class BuildWall2 : MonoBehaviour
         Foundation.isInstantiated = true;
         GameObject newWallGreen = Instantiate(wallPrefabGreen, nextPos, newXy);
         newWallGreen.transform.parent = ParentObj.transform;
-
     }
 
     bool RayShooter()
@@ -177,8 +151,9 @@ public class BuildWall2 : MonoBehaviour
             return true;
         }
         else
+        {
             return false;
-
+        }
     }
 
     void FollowMouse()
@@ -194,13 +169,13 @@ public class BuildWall2 : MonoBehaviour
                 this.transform.position = new Vector3(hit.point.x + 1.5f, 0, hit.point.z - 0.5f);
                 //transform.LookAt(player.transform.position);
             }
+
             canBuild = true;
         }
     }
 
     void SnapWalls()
     {
-
         float distance;
 
         Transform firstGreenWall;
@@ -218,13 +193,10 @@ public class BuildWall2 : MonoBehaviour
         newDir = Quaternion.Euler(0, -90, 0) * newDir;
         newXy = Quaternion.LookRotation(newDir);
 
-
         if(distance < 7)
         {
             GameObject SnapFence = Instantiate(wallPrefabGreen, ParentObj.transform.GetChild(stepCount - 1).transform.position, newXy);
             SnapFence.transform.parent = ParentObj.transform;
-
         }
-
     }
 }

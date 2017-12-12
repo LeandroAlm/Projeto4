@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PLayerControl : MonoBehaviour
+public class PlayerControl : MonoBehaviour
 {
     private Animator animator;
     private Rigidbody rb;
@@ -31,15 +31,15 @@ public class PLayerControl : MonoBehaviour
         //cam = Camera.main.transform;
         animator = GetComponent<Animator>();
         mainCamera = FindObjectOfType<Camera>();
+
+
     }
 
 
     // Update is called once per frame
     void FixedUpdate()
     {
-
-        //this.transform.position = new Vector3(this.transform.position.x, 0, this.transform.position.z);
-        rb.velocity = moveVelocity;
+        rb.velocity = new Vector3(moveVelocity.x,rb.velocity.y,moveVelocity.z);
         MovementTopDown();
         UpdateAnimator();
         ConvertMoveInput();
@@ -83,11 +83,14 @@ public class PLayerControl : MonoBehaviour
                 //transform.TransformDirection(moveVelocity);
             }
         }
-
     }
    
     void UpdateAnimator()
     {
+        //animator.SetBool("Sword", true);
+        //animator.SetBool("Gun", false);
+        //Axe.gameObject.SetActive(true);
+
         if (animator.GetBool("Gun") == true)
         {
             animator.SetBool("Sword", false);
@@ -98,7 +101,20 @@ public class PLayerControl : MonoBehaviour
         if (animator.GetBool("Sword") == true)
         {
             animator.SetBool("Gun", false);
-            animator.SetFloat("ForwardS", forwarAmount, 0.1f, Time.deltaTime);
+
+            if (Input.GetKeyDown(KeyCode.LeftShift))
+            {
+                forwarAmount = 1;
+                animator.SetFloat("ForwardS", forwarAmount, 0.1f, Time.deltaTime);
+            }
+
+            else
+            {
+                forwarAmount = 0;
+                animator.SetFloat("ForwardS", forwarAmount, 0.1f, Time.deltaTime);
+            }
+
+            //animator.SetFloat("ForwardS", forwarAmount, 0.1f, Time.deltaTime);
             animator.SetFloat("TurnS", turnAmount, 0.1f, Time.deltaTime);
         }
     }
@@ -118,7 +134,7 @@ public class PLayerControl : MonoBehaviour
             animator.SetBool("Sword", false);
             Axe.gameObject.SetActive(false);
             Gun.gameObject.SetActive(true);
-        }      
+        }
     }
 
 
@@ -130,7 +146,7 @@ public class PLayerControl : MonoBehaviour
     //        animator.SetIKPositionWeight(AvatarIKGoal.LeftHand, 1f);
     //        animator.SetIKPosition(AvatarIKGoal.LeftHand, posHandL.transform.position);
     //        animator.SetIKRotationWeight(AvatarIKGoal.LeftHand, 1f);
-    //        animator.SetIKRotation(AvatarIKGoal.LeftHand, Quaternion.Euler(0,0,0));
+    //        animator.SetIKRotation(AvatarIKGoal.LeftHand, Quaternion.Euler(0, 0, 0));
     //    }
     //}
 
@@ -148,5 +164,4 @@ public class PLayerControl : MonoBehaviour
             }
         }
     }
-
 }

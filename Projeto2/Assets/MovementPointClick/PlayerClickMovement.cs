@@ -46,7 +46,6 @@ public class PlayerClickMovement : MonoBehaviour
                 Debug.Log("Hit: " + hit.collider.name);
                 MoveToPoint(hit.point);
             }
-
         }
 
         //Right click em cima de um objecto para farmar
