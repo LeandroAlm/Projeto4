@@ -47,20 +47,6 @@ public class Foundation : MonoBehaviour
             }
         }
 
-        if (this.transform.tag == "Foundation")
-        {
-            if (Input.GetAxis("Mouse ScrollWheel") > 0f)
-            {
-
-                this.transform.Rotate(Vector3.up * 250 * Time.deltaTime, Space.World);
-            }
-
-            else if (Input.GetAxis("Mouse ScrollWheel") < 0f) // backwards
-            {
-
-                this.transform.Rotate(Vector3.up * -250 * Time.deltaTime, Space.World);
-            }
-        }
 
         //if (Input.GetMouseButtonDown(0))
         //{
@@ -80,5 +66,8 @@ public class Foundation : MonoBehaviour
         //    this.transform.rotation = InitialRot;
 
         //}
+
+
+
     }
 }

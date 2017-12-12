@@ -5,138 +5,60 @@ using UnityEngine;
 public class BuildWall2 : MonoBehaviour
 {
 
-    public static bool canBuild;
+    public static bool canBuild, isDrawing, isPlaced;
 
-    public bool auxCheck;
+    public bool IsBuilding, check, move1slot;
 
-    public bool IsBuilding;
+    public GameObject wallPrefab, wallPrefabGreen, wallPrefabCursor, ParentObj, fence;
 
-    public GameObject wallPrefab;
-    public GameObject wallPrefabGreen;
-
-    public GameObject wallPrefabCursor;
-
-
-    GameObject ParentObj;
-
-    GameObject WallsList;
-
-    private bool check;
-
-    private Vector3 posIni;
-    private Vector3 posEnd;
-
-
-    private Vector3 dir;
-
-    private Vector3 posAux2;
-
-    private float timer;
-
-    private List<Vector3> WallPositions = new List<Vector3>();
-
-    int x;
-
-    private int currentBuildStep;
-
-    private int stepCount;
+    private Vector3 posIni, posEnd, nextPos, newDir, mouseVector, distance;
+ 
+    private int currentBuildStep, stepCount;
 
     public float stepDuration;
 
-    //NOVO CODIGO
-    private Vector3 nextPos;
+    private float sizeDistance;
 
-    public Vector3 _lastDir;
+    private Quaternion newXy;
 
-    public Quaternion lastDir;
+    RaycastHit hit;
 
-
-    //public float mousePosX;
-    public static bool isDrawing;
-
-    bool draw;
-
-    bool move1slot;
-
-    private Vector3 newDir;
-
-    public Vector3 mouseVector;
-    public Vector3 LastMouseVector;
-
-    private float vectorMagnitude;
-
-    private Vector3 distance;
-
-    private Vector3 MousePosX;
-
-    private Vector3 firstInstance;
-
-    float sizeDistance;
-
-    public static bool is2;
-
-    GameObject fence;
-
-    Quaternion newXy;
-
-    int size = 0;
-
-    public static bool isBuilding;
-
-    Foundation foundationScript;
-
-    public static bool firstFence;
-
-    int countDisableWalls;
+    Ray ray;
 
     void Start()
     {
-        x = 0;
-
+ 
         check = false;
+
         canBuild = false;
-        auxCheck = false;
-
+        
         ParentObj = new GameObject();
-
-        WallsList = new GameObject();
-
-        timer = stepDuration;
 
         currentBuildStep = 0;
 
         isDrawing = false;
 
-        draw = false;
-
-        //fence = wallPrefabGreen.gameObject;
-
-       
 
     }
 
     void Update()
     {
-        if (firstFence == true)
-        {
+
+        FollowMouse();
+
+        RotateWall();
 
 
-            fence = Instantiate(wallPrefabCursor, Vector3.zero, Quaternion.identity);
-            canBuild = true;
-            firstFence = false;
-        }
-        //Debug.Log(canBuild);
         if (canBuild)
         {
-          
-            if (Input.GetMouseButtonDown(0) && check == false)
+            fence = this.transform.gameObject;
+ 
+
+            if (Input.GetMouseButtonDown(0) && check == false )
             {
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                RaycastHit hit;
-                if (Physics.Raycast(ray, out hit))
+                if (RayShooter())
                 {
-                    is2 = false;
-                    //fence.gameObject.SetActive(false);
+       
                     isDrawing = true;
                     posIni = hit.point;
                     nextPos = posIni;
@@ -146,110 +68,133 @@ public class BuildWall2 : MonoBehaviour
             }
             else if (Input.GetMouseButtonUp(0) && check == true)
             {
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                RaycastHit hit2;
-                if (Physics.Raycast(ray, out hit2))
+               
+                if (RayShooter())
                 {
-                    //fence.gameObject.SetActive(true);
 
+                    fence.gameObject.SetActive(false);         
                     isDrawing = false;
-
-                    posEnd = hit2.point;
+                    posEnd = hit.point;
                     check = false;
-                    auxCheck = true;
-                    draw = false;
                     SnapWalls();
-                    
+                    ParentObj.AddComponent<WallAutoBuil>();
+                    ParentObj.GetComponent<WallAutoBuil>().wallPrefab = wallPrefab;
+                    ParentObj.GetComponent<WallAutoBuil>().stepDuration = 1.5f;
+
+
                 }
             }
 
+
             if (isDrawing)
             {
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                RaycastHit hit2;
-                if (Physics.Raycast(ray, out hit2))
+               
+                if (RayShooter())
                 {
-                    mouseVector = new Vector3(hit2.point.x, 0, hit2.point.z);
+                    mouseVector = new Vector3(hit.point.x, 0, hit.point.z);
                 }
-
-                //possível erro na distância
 
                 distance = mouseVector - posIni;
 
 
                 sizeDistance = (float)distance.magnitude;
 
-                if(Input.GetMouseButtonDown(0))
+
+                if (Input.GetMouseButtonDown(0))
                 {
-                    move1slot = true;
+                    newXy = fence.gameObject.transform.rotation;
                     nextPos = fence.gameObject.transform.position;
+                    InstantiateWallGreen();
                 }
 
-                //mouseVector = snapPosition(getWorldPoint());
-
-                for (int i = 0; i < sizeDistance - 1; i++)
-                {
-                    if (Mathf.Abs(Input.GetAxis("Mouse X")) < 0.8f)
-                    {
-                        if (sizeDistance > 2.6f)
-                        {
-
-                            nextPos = fence.gameObject.transform.position;
-
-                            size++;
-
-                            move1slot = true;
-                            
-                            //MousePosX = mouseVector;
-                            newDir = mouseVector - posIni;
-                            newDir = Quaternion.Euler(0, -90, 0) * newDir;
-                            newXy = Quaternion.LookRotation(newDir);
-                            posIni = mouseVector;
-                            sizeDistance = 0;
-                        }
-                    }
-                }
-
+                MoveOneSlot();
+                
                 fence.transform.rotation = newXy;
 
-                //_lastDir =(nextPos + mouseVector) -  nextPos;
-                //lastDir = newXy;
-                //Debug.Log("lastPOS" + distance);
-
-                //Debug.Log("nextPos" + nextPos);
-
             }
-           
-            if (move1slot)
-            {
-                Foundation.isInstantiated = true;
-                GameObject newWallGreen = Instantiate(wallPrefabGreen, nextPos, newXy);
-                newWallGreen.transform.parent = ParentObj.transform;
-
-                move1slot = false;
-
-
-            }
-
+          
             stepCount = ParentObj.transform.childCount;
 
+        }
 
-            if (timer <= 0 && currentBuildStep < stepCount)
+    }
+
+    void RotateWall()
+    {
+        if (Input.GetAxis("Mouse ScrollWheel") > 0f)
+        {
+            this.transform.Rotate(Vector3.up * 250 * Time.deltaTime, Space.World);
+        }
+
+        else if (Input.GetAxis("Mouse ScrollWheel") < 0f) // backwards
+        {
+
+            this.transform.Rotate(Vector3.up * -250 * Time.deltaTime, Space.World);
+        }
+
+    }
+
+    void MoveOneSlot()
+    {
+        for (int i = 0; i < sizeDistance - 1; i++)
+        {
+
+            if (sizeDistance > 2.6f)
             {
 
-                timer = stepDuration;
-                GameObject WoodWall =  Instantiate(wallPrefab, ParentObj.transform.GetChild(currentBuildStep).transform.position, ParentObj.transform.GetChild(currentBuildStep).transform.rotation);
-                WoodWall.transform.parent = WallsList.transform;
-                ParentObj.transform.GetChild(currentBuildStep).gameObject.SetActive(false);
-                currentBuildStep += 1;
-                countDisableWalls++;
+                nextPos = fence.gameObject.transform.position;
+
+
+                //MousePosX = mouseVector;
+                newDir = mouseVector - posIni;
+                newDir = Quaternion.Euler(0, -90, 0) * newDir;
+                newXy = Quaternion.LookRotation(newDir);
+
+                posIni = mouseVector;
+                sizeDistance = 0;
+
+                InstantiateWallGreen();
 
             }
 
-            timer -= Time.deltaTime;
-            //canBuild = false;
+        }
+    }
 
-            Debug.Log("fff"+ stepCount);
+    void InstantiateWallGreen()
+    {
+        Foundation.isInstantiated = true;
+        GameObject newWallGreen = Instantiate(wallPrefabGreen, nextPos, newXy);
+        newWallGreen.transform.parent = ParentObj.transform;
+
+    }
+
+    bool RayShooter()
+    {
+        ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        if (Physics.Raycast(ray, out hit, 100f, 1 << 8))
+        {
+            return true;
+        }
+        else
+            return false;
+
+    }
+
+    void FollowMouse()
+    {
+        if (!isPlaced && this.transform.tag == "Foundation")
+        {
+            BuildingManager.isBuilding = true;
+
+            if (RayShooter())
+            {
+                /*this.transform.position = new Vector3(hit.point.x, 0, hit.point.z + 0.5f);*///hit.point.z
+                                                                                              //InitialRot = this.transform.rotation;
+                this.transform.position = new Vector3(hit.point.x + 1.5f, 0, hit.point.z - 0.5f);
+                //transform.LookAt(player.transform.position);
+            }
+            canBuild = true;
         }
     }
 
@@ -257,37 +202,28 @@ public class BuildWall2 : MonoBehaviour
     {
 
         float distance;
-        Transform firstWoodWall;
+
+        Transform firstGreenWall;
         Transform lastGreenWall;
         Vector3 newDir;
         Quaternion newXy;
 
-        firstWoodWall = WallsList.transform.GetChild(0).GetChild(0).transform;
-
         lastGreenWall = ParentObj.transform.GetChild(stepCount - 1).transform;
 
-        //firstWoodWall = WallsList.transform.GetChild(0).GetChild(0).transform;
+        firstGreenWall = ParentObj.transform.GetChild(0).transform;
 
+        distance = Vector3.Distance(lastGreenWall.transform.position, firstGreenWall.transform.position);
 
-        //lastGreenWall = ParentObj.transform.GetChild(stepCount - countDisableWalls + 1).transform;
-
-
-        //Debug.Log("firstWoodWall" + WallsList.transform.GetChild(0).GetChild(0).gameObject.transform.position);
-
-        //Debug.Log("lastGreenWall" + ParentObj.transform.GetChild(stepCount - countDisableWalls + 1).gameObject.transform.position);
-
-        distance = Vector3.Distance(lastGreenWall.transform.position, firstWoodWall.transform.position);
-
-        newDir = lastGreenWall.transform.position - firstWoodWall.transform.position;
+        newDir = lastGreenWall.transform.position - firstGreenWall.transform.position;
         newDir = Quaternion.Euler(0, -90, 0) * newDir;
         newXy = Quaternion.LookRotation(newDir);
 
-        Debug.Log("size distance = " + distance);
 
         if(distance < 7)
         {
-            Instantiate(wallPrefab, ParentObj.transform.GetChild(stepCount - 1).transform.position, newXy);
-            Debug.Log("vaca");
+            GameObject SnapFence = Instantiate(wallPrefabGreen, ParentObj.transform.GetChild(stepCount - 1).transform.position, newXy);
+            SnapFence.transform.parent = ParentObj.transform;
+
         }
 
     }

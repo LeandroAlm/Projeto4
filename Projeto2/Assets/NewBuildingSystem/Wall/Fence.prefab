@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33525493195522528}
   - component: {fileID: 23094592566230326}
   - component: {fileID: 64845291490906548}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: big_fence
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37,7 +37,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4493405510803696}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Fence
   m_TagString: woodFence
   m_Icon: {fileID: 0}

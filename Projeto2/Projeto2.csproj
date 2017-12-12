@@ -76,12 +76,6 @@
     <Reference Include="UnityEngine.HoloLens">
       <HintPath>Library\UnityAssemblies\UnityEngine.HoloLens.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEditor.iOS.Extensions.Xcode">
-      <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.iOS.Extensions.Common">
-      <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Common.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Projeto2.Plugins.csproj">
@@ -156,6 +150,7 @@
     <Compile Include="Assets\NewBuildingSystem\Other\Scripts\AutoBuild.cs" />
     <Compile Include="Assets\NewBuildingSystem\Other\Scripts\FadeOutRoof.cs" />
     <Compile Include="Assets\NewBuildingSystem\Other\Scripts\InstaceHouse.cs" />
+    <Compile Include="Assets\NewBuildingSystem\Other\Scripts\WallAutoBuil.cs" />
     <Compile Include="Assets\NewBuildingSystem\Scripts\AutomaticBuild.cs" />
     <Compile Include="Assets\NewBuildingSystem\Scripts\BuildingManager.cs" />
     <Compile Include="Assets\NewBuildingSystem\Scripts\Foundation.cs" />

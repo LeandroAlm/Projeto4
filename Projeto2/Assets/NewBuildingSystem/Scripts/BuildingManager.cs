@@ -10,10 +10,12 @@ public class BuildingManager : MonoBehaviour
     public GameObject foundationPrefab4;
     public GameObject gatePrefabGreen;
     public GameObject gatePrefab;
+    public GameObject fenceGreen;
 
     public static bool buildHouse = false;
     public static bool buildTower = false;
     public static bool gate = false;
+    public static bool buildFence = false;
 
 
     public static bool isBuilding;
@@ -26,25 +28,16 @@ public class BuildingManager : MonoBehaviour
     GameObject GateObjGreen;
     GameObject hitedObj;
 
+    GameObject newFence; 
+
+    private void Start()
+    {
+      
+    }
+
     void Update ()
     {
-        //if (Input.GetKeyDown(KeyCode.Alpha4) && !isBuilding)
-        //{
-        //    PreH = true;
-        //    PreV = false;
-        //    isBuilding = true;
-        //    Instantiate(foundationPrefab, Vector3.zero, foundationPrefab.transform.rotation);
-            
-        //    //mainCamera.transform.position =  Vector3.Lerp(new Vector3(mainCamera.transform.position.x, mainCamera.transform.position.y , mainCamera.transform.position.z ),  new Vector3(mainCamera.transform.position.x, mainCamera.transform.position.y + 6.0f, mainCamera.transform.position.z - 4.0f), Time.deltaTime / 2);
-        //}
-        //else if (Input.GetKeyDown(KeyCode.Alpha5) && !isBuilding)
-        //{
-        //    PreV = true;
-        //    PreH = false;
-        //    isBuilding = true;
-        //    Instantiate(foundationPrefab2, Vector3.zero, foundationPrefab2.transform.rotation);
-
-        //}
+    
         if (buildHouse == true) //&& !isBuilding)
         {
             isBuilding = true;
@@ -57,6 +50,13 @@ public class BuildingManager : MonoBehaviour
             isBuilding = true;
             Instantiate(foundationPrefab4, Vector3.zero, foundationPrefab4.transform.rotation);
             buildTower = false;
+        }
+
+        if(buildFence == true)
+        {
+            isBuilding = true;
+            newFence =  Instantiate(fenceGreen, Vector3.zero, fenceGreen.transform.rotation);
+            buildFence = false;
         }
 
         if (gate)

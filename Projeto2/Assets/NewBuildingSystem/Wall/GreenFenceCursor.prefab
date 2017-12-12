@@ -39,14 +39,13 @@ GameObject:
   m_Component:
   - component: {fileID: 4601921717440424}
   - component: {fileID: 65985603473234166}
-  - component: {fileID: 114826588412149854}
   m_Layer: 2
   m_Name: ColliderRight
   m_TagString: RightCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1788539186749718
 GameObject:
   m_ObjectHideFlags: 1
@@ -56,14 +55,13 @@ GameObject:
   m_Component:
   - component: {fileID: 4539579741076820}
   - component: {fileID: 65223273100592212}
-  - component: {fileID: 114561484623023096}
   m_Layer: 2
   m_Name: ColliderLeft
   m_TagString: LeftCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1816372379788206
 GameObject:
   m_ObjectHideFlags: 0
@@ -75,6 +73,7 @@ GameObject:
   - component: {fileID: 65666987058019402}
   - component: {fileID: 114142214644422920}
   - component: {fileID: 114654851785377824}
+  - component: {fileID: 114128123180766308}
   m_Layer: 2
   m_Name: GreenFenceCursor
   m_TagString: Foundation
@@ -88,8 +87,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1816372379788206}
-  m_LocalRotation: {x: 0, y: -0.067512035, z: -0, w: 0.9977185}
-  m_LocalPosition: {x: 99.793976, y: 0, z: 91.17373}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 9.851921, y: 0, z: 2.548836}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4871271060204772}
@@ -224,6 +223,32 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.52, y: 1.94, z: 0.31}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114128123180766308
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1816372379788206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7eef6017e5f81aa4b863918febda610e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsBuilding: 0
+  wallPrefab: {fileID: 1875773067935440, guid: f1578dd0645de8c44b18ddf3a8c447f6, type: 2}
+  wallPrefabGreen: {fileID: 1816372379788206, guid: 9849bb6cda3a78742b8d61b4f314d36f,
+    type: 2}
+  wallPrefabCursor: {fileID: 1816372379788206}
+  stepDuration: 1.5
+  _lastDir: {x: 0, y: 0, z: 0}
+  lastDir: {x: 0, y: 0, z: 0, w: 0}
+  mouseVector: {x: 0, y: 0, z: 0}
+  LastMouseVector: {x: 0, y: 0, z: 0}
+  BuildingManagerObj: {fileID: 0}
+  isSnapped: 0
+  mask:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!114 &114142214644422920
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -239,25 +264,13 @@ MonoBehaviour:
   mousePosX: 0
   mousePosY: 0
   InitialRot: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &114561484623023096
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1788539186749718}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 58e08180cc3bcc9458670ef27627959f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 0}
 --- !u!114 &114637815702638626
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1422549822012446}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 920f4f7f92190854ba070af8c66e1f81, type: 3}
   m_Name: 
@@ -277,15 +290,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 332134904f76ebf4d9f7ee75dfae4016, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114826588412149854
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1635871967594532}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 58e08180cc3bcc9458670ef27627959f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 0}
