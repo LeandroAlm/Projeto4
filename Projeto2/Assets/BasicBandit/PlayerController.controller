@@ -5,7 +5,7 @@ AnimatorController:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Controler
+  m_Name: PlayerController
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: Forward
@@ -80,23 +80,23 @@ BlendTree:
     m_Mirror: 0
   - serializedVersion: 2
     m_Motion: {fileID: 7400000, guid: 197b562989c829f41a176a1705e6c2b2, type: 3}
-    m_Threshold: 0.25
+    m_Threshold: 0.2
     m_Position: {x: 0, y: -1}
     m_TimeScale: 1
     m_CycleOffset: 0
     m_DirectBlendParameter: Forward
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: 8e01ff717311e3b4f9717d9c51526d99, type: 3}
-    m_Threshold: 0.5
-    m_Position: {x: 0, y: 1}
+    m_Motion: {fileID: 7400000, guid: d9e3f5833c009d04eaed08696b324c71, type: 3}
+    m_Threshold: 0.4
+    m_Position: {x: 0, y: 2}
     m_TimeScale: 1
     m_CycleOffset: 0
     m_DirectBlendParameter: Forward
     m_Mirror: 0
   - serializedVersion: 2
     m_Motion: {fileID: 7400000, guid: 74a0981d4ee0ba245b6926c4030e509c, type: 3}
-    m_Threshold: 0.75
+    m_Threshold: 0.6
     m_Position: {x: -1, y: 0}
     m_TimeScale: 1
     m_CycleOffset: 0
@@ -104,8 +104,16 @@ BlendTree:
     m_Mirror: 0
   - serializedVersion: 2
     m_Motion: {fileID: 7400000, guid: 8515454cd3defb444962ba9879614048, type: 3}
-    m_Threshold: 1
+    m_Threshold: 0.8
     m_Position: {x: 1, y: 0}
+    m_TimeScale: 1
+    m_CycleOffset: 0
+    m_DirectBlendParameter: Forward
+    m_Mirror: 0
+  - serializedVersion: 2
+    m_Motion: {fileID: 7400000, guid: 09176b9c26290074396b6ec84d99ff98, type: 3}
+    m_Threshold: 1
+    m_Position: {x: -0.01, y: 1.02}
     m_TimeScale: 1
     m_CycleOffset: 0
     m_DirectBlendParameter: Forward
@@ -373,7 +381,7 @@ AnimatorState:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Locomotion
+  m_Name: PistolMovement
   m_Speed: 0.75
   m_CycleOffset: 1
   m_Transitions:
@@ -399,7 +407,7 @@ AnimatorState:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Sword_Move
+  m_Name: AxeMovement
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -427,7 +435,7 @@ AnimatorState:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Farm
-  m_Speed: 1
+  m_Speed: 1.5
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 1101774561251221380}
@@ -440,7 +448,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 1d3612c320204b84eab6bc95d06a8a58, type: 3}
+  m_Motion: {fileID: 7400000, guid: 4d1a70c6052bf3648b862787b7e1c638, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
