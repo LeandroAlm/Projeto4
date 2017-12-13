@@ -1,5 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using GameSparks.Api.Messages;
+using GameSparks.Api.Responses;
+using GameSparks.Core;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -8,9 +12,23 @@ public class LobbyManager : MonoBehaviour
 {
     public GameObject readyButton, exitButton, cancelButton, searchingPlayersText, sliderGameObject;
     public Slider loadingSlider;
+    private SessionInformation sessionInformation;
 
 	void Start ()
 	{
+	    GS.GameSparksAvailable += (isAvailable) =>
+	    {
+	        if (isAvailable)
+	        {
+	            Debug.Log("GameParks Connected");
+	        }
+
+	        else
+	        {
+	            Debug.Log("GameSparks Disconnected");
+	        }
+	    };
+
 	    searchingPlayersText.GetComponent<Text>();
 	    readyButton.GetComponent<Button>().onClick.AddListener(PlayerReady);
 	    exitButton.GetComponent<Button>().onClick.AddListener(ExitScene);
@@ -41,6 +59,10 @@ public class LobbyManager : MonoBehaviour
         cancelButton.SetActive(true);
         searchingPlayersText.SetActive(true);
         sliderGameObject.SetActive(true);
+
+        GameSparksManager.Instance().AuthenticateUser(OnRegistration, OnAuthentication);
+
+        //SceneManager.LoadScene("Cena");
     }
 
     public void ExitScene()
@@ -51,5 +73,34 @@ public class LobbyManager : MonoBehaviour
     public void CancelScene()
     {
         SceneManager.LoadScene("MultiplayerScene");
+    }
+
+    private void OnRegistration(RegistrationResponse registrationResponse)
+    {
+        Debug.Log("User ID: " + registrationResponse.UserId);
+        Debug.Log("New User Registered.");
+    }
+
+    private void OnAuthentication(AuthenticationResponse authenticationResponse)
+    {
+        Debug.Log("User ID: " + authenticationResponse.UserId);
+        Debug.Log("User Authenticated.");
+    }
+
+    private void OnMatchFound(MatchFoundMessage matchFoundMessage)
+    {
+        Debug.Log("Match Found!");
+        Debug.Log("Host URL: " + matchFoundMessage.Host);
+        Debug.Log("Port: " + matchFoundMessage.Port);
+        Debug.Log("Access Token: " + matchFoundMessage.AccessToken);
+        Debug.Log("Match Id: " + matchFoundMessage.MatchId);
+        Debug.Log("Opponents: " + matchFoundMessage.Participants.Count());
+
+        foreach (MatchFoundMessage._Participant participant in matchFoundMessage.Participants)
+        {
+            Debug.Log("Player: " + participant.PeerId);
+        }
+
+        sessionInformation = new SessionInformation(matchFoundMessage);
     }
 }

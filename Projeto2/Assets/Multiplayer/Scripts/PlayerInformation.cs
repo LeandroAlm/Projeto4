@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerInformation : MonoBehaviour {
+public class PlayerInformation : MonoBehaviour
+{
+    public string Id { get; set; }
+    public int PeerId { get; set; }
+    public bool IsOnline { get; set; }
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    public PlayerInformation(string id, int peerId)
+    {
+        Id = id;
+        PeerId = peerId;
+    }
 }
