@@ -20,24 +20,28 @@ public class BuildingManager : MonoBehaviour
 
     public static bool isBuilding;
 
-    private bool place;
     private bool isPlaced;
+
+    private bool gatePlaced = false;
+
 
     public static bool PreH, PreV;
 
     GameObject GateObjGreen;
     GameObject hitedObj;
 
-    GameObject newFence; 
+    GameObject newFence;
+
+    GameObject fence;
 
     private void Start()
     {
       
     }
 
-    void Update ()
+    void Update()
     {
-    
+
         if (buildHouse == true) //&& !isBuilding)
         {
             isBuilding = true;
@@ -52,10 +56,10 @@ public class BuildingManager : MonoBehaviour
             buildTower = false;
         }
 
-        if(buildFence == true)
+        if (buildFence == true)
         {
             isBuilding = true;
-            newFence =  Instantiate(fenceGreen, Vector3.zero, fenceGreen.transform.rotation);
+            newFence = Instantiate(fenceGreen, Vector3.zero, fenceGreen.transform.rotation);
             buildFence = false;
         }
 
@@ -64,36 +68,49 @@ public class BuildingManager : MonoBehaviour
 
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
-            if(Physics.Raycast(ray, out hit))
+            if (Physics.Raycast(ray, out hit, 100, 1 << 12) && !gatePlaced)
             {
-               if (hit.collider.name == "big_fence" && !place)
+                if(GateObjGreen != null)
                 {
-
-
-                    GateObjGreen = Instantiate(gatePrefabGreen, hit.collider.transform.position, hit.collider.transform.rotation);
-                    place = true;
-                }
-                if (hit.collider.name != "big_fence")
-                {
-                    place = false;
                     Destroy(GateObjGreen);
                 }
-            
+                if (hit.collider.name == "big_fence")
+                {
+                    fence = hit.collider.gameObject;
+                }
+
+                GateObjGreen = Instantiate(gatePrefabGreen, hit.collider.transform.position, hit.collider.transform.rotation);
+
+                gatePlaced = true;
+            }
+            else
+            {
+
+                gatePlaced = false;
             }
 
-            if (Input.GetMouseButtonDown(0))
+        }
+    
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            Destroy(fence);
+            Destroy(GateObjGreen);
+            if (GateObjGreen != null)
             {
                 Instantiate(gatePrefab, GateObjGreen.transform.position, GateObjGreen.transform.rotation);
             }
-            //if(isPlaced)
-            //{
-            //    hitedObj = hit.collider.gameObject;
-            //    hitedObj.SetActive(false);
-            //    isPlaced = false;
-            //}
-
-
-
+            gate = false;
         }
+        //if(isPlaced)
+        //{
+        //    hitedObj = hit.collider.gameObject;
+        //    hitedObj.SetActive(false);
+        //    isPlaced = false;
+        //}
+
+
+
+        
     }
 }
