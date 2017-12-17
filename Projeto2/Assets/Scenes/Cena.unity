@@ -667,6 +667,9 @@ MonoBehaviour:
     type: 2}
   gatePrefab: {fileID: 1242112304797480, guid: 90a13dab1bdfa6e41b19e3b693c58dbc, type: 2}
   fenceGreen: {fileID: 1816372379788206, guid: 31ef71eab8efc864488f96d070eb34f3, type: 2}
+  FirePit: {fileID: 1323778983104614, guid: 44b7ba5b20dc25f4fa2e554705b50783, type: 2}
+  FirePitGreen: {fileID: 1768458713615560, guid: 5a6ffd6e39d5f0f4f9edf887c42136c6,
+    type: 2}
 --- !u!4 &90068154
 Transform:
   m_ObjectHideFlags: 0
@@ -775,7 +778,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 488380, guid: aabcf89f159af1c4d98604e1b4dc4d30, type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: aabcf89f159af1c4d98604e1b4dc4d30, type: 2}
@@ -4496,7 +4499,7 @@ Transform:
   - {fileID: 1374598210}
   - {fileID: 1567163171}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &440857629
 MonoBehaviour:
@@ -6191,7 +6194,7 @@ Terrain:
   m_TreeBillboardDistance: 50
   m_TreeCrossFadeLength: 5
   m_TreeMaximumFullLODCount: 50
-  m_DetailObjectDistance: 80
+  m_DetailObjectDistance: 158
   m_DetailObjectDensity: 1
   m_HeightmapPixelError: 5
   m_SplatMapDistance: 1000
@@ -9828,7 +9831,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4507606094118330, guid: b739a525cf5eeca488763d8f9b3474cb, type: 2}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: player
@@ -15780,16 +15783,21 @@ Prefab:
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1304664443}
     - target: {fileID: 114815861194048532, guid: d30aa1fa91b1da648a528abb1741bd39,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: 
+      value: CraftSlotConstruction
       objectReference: {fileID: 0}
     - target: {fileID: 114815861194048532, guid: d30aa1fa91b1da648a528abb1741bd39,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114815861194048532, guid: d30aa1fa91b1da648a528abb1741bd39,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d30aa1fa91b1da648a528abb1741bd39, type: 2}

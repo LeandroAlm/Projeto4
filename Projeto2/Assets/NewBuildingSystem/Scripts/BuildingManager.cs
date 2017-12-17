@@ -11,11 +11,15 @@ public class BuildingManager : MonoBehaviour
     public GameObject gatePrefabGreen;
     public GameObject gatePrefab;
     public GameObject fenceGreen;
+    public GameObject FirePit;
+    public GameObject FirePitGreen;
 
     public static bool buildHouse = false;
     public static bool buildTower = false;
     public static bool gate = false;
     public static bool buildFence = false;
+    public static bool buildFirePit = false;
+
 
 
     public static bool isBuilding;
@@ -63,6 +67,13 @@ public class BuildingManager : MonoBehaviour
             buildFence = false;
         }
 
+        if (buildFirePit)
+        {
+            isBuilding = true;
+            newFence = Instantiate(FirePitGreen, Vector3.zero, FirePitGreen.transform.rotation);
+            buildFirePit = false;
+        }
+
         if (gate)
         {
 
@@ -91,6 +102,8 @@ public class BuildingManager : MonoBehaviour
 
         }
     
+
+      
 
         if (Input.GetMouseButtonDown(0))
         {
