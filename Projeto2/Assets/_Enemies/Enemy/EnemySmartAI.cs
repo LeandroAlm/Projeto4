@@ -12,17 +12,17 @@ public class EnemySmartAI : MonoBehaviour
     private Dictionary<Vector3, Transform> bichos;
     private List<Vector3> positions;
     private int Rotate, etapa;
-    bool can;
+    bool TimeOnOff;
 
     void Start ()
     {
-        covilpos = Vector3.zero;
+        //covilpos = Vector3.zero;
         Rotate = 1;
         etapa = 0;
         posDestino = transform.position;
         takeTime = 11.0f;
         WaitThisTime = 0.0f;
-        can = false;
+        TimeOnOff = true;
 
         if (transform.tag == "Enemy2")
         {
@@ -47,6 +47,8 @@ public class EnemySmartAI : MonoBehaviour
             DesicionRotation();
 
         Debug.Log("Pos aleatoria: " + posDestino);
+        Debug.Log("Etapa: " + etapa);
+        Debug.Log("Rotate: " + Rotate);
     }
 
     void DecisionIdle()
@@ -75,32 +77,35 @@ public class EnemySmartAI : MonoBehaviour
     {
         // COVIL
         DTBinaryDecision tree = new DTBinaryDecision(
-                () => { return Rotate == 1; },
-                new DTBinaryDecision(
-                    () => { return etapa == 0 || etapa == 1; },
-                    new DTAction(() =>
+        () => { return Rotate == 1; },
+            new DTBinaryDecision(
+            () => { return etapa == 0 || etapa == 1; },
+                new DTAction(() =>
+                {
+                    // bicho 1 mover
+                    Debug.Log("Enemy 1 going");
+                    MoveRandom(bichos[positions[0]]);
+                }),
+                new DTAction(() =>
+                {
+                    // se nao é pq ja esta na pos random e tem de voltar ao covil
+                    if (transform.GetChild(0).position != covilpos)
                     {
-                        // bicho 1 mover
-                        Debug.Log("Enemy 1 going");
-                        MoveRandom(bichos[positions[0]]);
-                    }),
-                    new DTAction(() =>
+                        Debug.Log("Enemy 1 coming back...");
+                        BackCovil(bichos[positions[0]]);
+                    }
+                    else
                     {
-                        // se nao é pq ja esta na pos random e tem de voltar ao covil
-                        if (transform.GetChild(0).position != covilpos)
-                        {
-                            Debug.Log("Enemy 1 coming back...");
-                            BackCovil(bichos[positions[0]]);
-                        }
-                        else
-                        {
-                            Rotate++;
-                            etapa = 0;
-                        }
-                    })
-                ),
+                        Rotate++;
+                        etapa = 0;
+                        TimeOnOff = true;
+                    }
+                })
+            ),
+            new DTBinaryDecision(
+            () => { return Rotate == 2 || Rotate == 3; },
                 new DTBinaryDecision(
-                    () => { return Rotate == 2; },
+                () => { return Rotate == 2; },
                     new DTBinaryDecision(
                     () => { return etapa == 0 || etapa == 1; },
                         new DTAction(() =>
@@ -112,46 +117,51 @@ public class EnemySmartAI : MonoBehaviour
                         new DTAction(() =>
                         {
                             // se nao é pq ja esta na pos random e tem de voltar ao covil
-                            if (transform.GetChild(0).position != covilpos)
+                            if (transform.GetChild(1).position != covilpos)
                             {
                                 Debug.Log("Enemy 2 coming back...");
-                                BackCovil(bichos[positions[0]]);
+                                BackCovil(bichos[positions[1]]);
                             }
                             else
                             {
                                 Rotate++;
                                 etapa = 0;
+                                TimeOnOff = true;
                             }
                         })
                     ),
-                    //new DTBinaryDecision(
-                    //() => { return Rotate == 3; },
-                        new DTBinaryDecision(
-                        () => { return etapa == 0 || etapa == 1; },
-                            new DTAction(() =>
+                    new DTBinaryDecision(
+                    () => { return etapa == 0 || etapa == 1; },
+                        new DTAction(() =>
+                        {
+                            // bicho 3 mover
+                            Debug.Log("Enemy 3 going");
+                            MoveRandom(bichos[positions[2]]);
+                        }),
+                        new DTAction(() =>
+                        {
+                            // se nao é pq ja esta na pos random e tem de voltar ao covil
+                            if (transform.GetChild(2).position != covilpos)
                             {
-                                // bicho 2 mover
-                                Debug.Log("Enemy 2 going");
-                                MoveRandom(bichos[positions[1]]);
-                            }),
-                            new DTAction(() =>
+                                Debug.Log("Enemy 3 coming back...");
+                                BackCovil(bichos[positions[2]]);
+                            }
+                            else
                             {
-                                // se nao é pq ja esta na pos random e tem de voltar ao covil
-                                if (transform.GetChild(0).position != covilpos)
-                                {
-                                    Debug.Log("Enemy 2 coming back...");
-                                    BackCovil(bichos[positions[0]]);
-                                }
-                                else
-                                {
-                                    Rotate++;
-                                    etapa = 0;
-                                }
-                            })
-                        )
-                    //)
-                )
-            );
+                                Rotate = 1;
+                                etapa = 0;
+                                TimeOnOff = true;
+                            }
+                        })
+                    )
+                ),
+                new DTAction(() =>
+                {
+                    // SE NAO FOR 2 || 3
+                    Debug.Log("ERROR");
+                })
+            )
+        );
         tree.MakeDecision().Run();
     }
 
@@ -190,7 +200,9 @@ public class EnemySmartAI : MonoBehaviour
             }
             else
             {
-                etapa++;
+                if (etapa < 2)
+                    etapa++;
+
                 posDestino = RandomPos();
             }
         }
@@ -198,25 +210,25 @@ public class EnemySmartAI : MonoBehaviour
 
     void BackCovil(Transform enemy)
     {
-        // Voltar ao covil
-       
-
-        if (enemy.position != covilpos && covilpos != Vector3.zero)
+        if (!TimeOnOff)
         {
-            // andamento para o covil!!!!
-            Debug.Log("Voltando");
-            float speed = 1f;
-            float step = speed * Time.deltaTime;
-            enemy.position = Vector3.MoveTowards(enemy.position, covilpos, step);
-            // Correção de olhar
-            enemy.LookAt(covilpos);
-            WaitThisTime = 0.0f;
+            // Voltar ao covil
+            if (enemy.position != covilpos && covilpos != Vector3.zero)
+            {
+                // andamento para o covil!!!!
+                float speed = 1f;
+                float step = speed * Time.deltaTime;
+                enemy.position = Vector3.MoveTowards(enemy.position, covilpos, step);
+                // Correção de olhar
+                enemy.LookAt(covilpos);
+            }
         }
         else
         {
             if (WaitThisTime > 5.0f)
             {
                 WaitThisTime = 0.0f;
+                TimeOnOff = false;
 
                 if (enemy == transform.GetChild(0))
                     covilpos = positions[0];
@@ -226,7 +238,10 @@ public class EnemySmartAI : MonoBehaviour
                     covilpos = positions[2];
             }
             else
+            {
                 WaitThisTime += Time.deltaTime;
+                covilpos = Vector3.zero;
+            }
         }
     }
 
