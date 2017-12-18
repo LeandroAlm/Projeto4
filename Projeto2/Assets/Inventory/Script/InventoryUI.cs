@@ -52,7 +52,7 @@ public class InventoryUI : MonoBehaviour
             craftTitle.SetActive(true);
         }
 
-        else if (Input.GetKeyDown(KeyCode.I) && isOpen == true)
+        else if (Input.GetKeyDown(KeyCode.I) || Input.GetKeyDown(KeyCode.Escape) && isOpen == true)
         {
             isOpen = false;
             inventoryBag.SetActive(false);

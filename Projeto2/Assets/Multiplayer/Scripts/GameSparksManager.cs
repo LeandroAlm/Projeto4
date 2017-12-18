@@ -9,13 +9,13 @@ using UnityEngine.SceneManagement;
 
 public class GameSparksManager : MonoBehaviour
 {
-    private static GameSparksManager instance;
+    private static GameSparksManager _instance;
 
     public static GameSparksManager Instance()
     {
-        if (instance != null)
+        if (_instance != null)
         {
-            return instance;
+            return _instance;
         }
 
         else
@@ -31,9 +31,9 @@ public class GameSparksManager : MonoBehaviour
     public delegate void AuthenticationCallback(AuthenticationResponse authenticationResponse);
     public delegate void RegistrationCallback(RegistrationResponse registrationResponse);
 
-    public void AuthenticateUser(RegistrationCallback registrationCallback, AuthenticationCallback authenticationCallback)
+    public void AuthenticateUser(string userName, string password, RegistrationCallback registrationCallback, AuthenticationCallback authenticationCallback)
     {
-        new RegistrationRequest().Send((registrationResposnse) =>
+        new RegistrationRequest().SetUserName(userName).SetPassword(password).SetDisplayName(userName).Send((registrationResposnse) =>
         {
             if (!registrationResposnse.HasErrors)
             {
@@ -44,7 +44,7 @@ public class GameSparksManager : MonoBehaviour
             {
                 if (registrationResposnse.NewPlayer == false)
                 {
-                    new AuthenticationRequest().Send((authenticationResponse) =>
+                    new AuthenticationRequest().SetUserName(userName).SetPassword(password).Send((authenticationResponse) =>
                         {
                             if (!authenticationResponse.HasErrors)
                             {
@@ -68,8 +68,7 @@ public class GameSparksManager : MonoBehaviour
     public void FindPlayers()
     {
         Debug.Log("Attempting Matchmaking");
-        new MatchmakingRequest().SetMatchShortCode("MRLMatch").SetSkill(0)
-            .Send((matchmakingResponse) =>
+        new MatchmakingRequest().SetMatchShortCode("MRLMatch").SetSkill(0).Send((matchmakingResponse) =>
             {
                 if (matchmakingResponse.HasErrors)
                 {
@@ -176,7 +175,7 @@ public class GameSparksManager : MonoBehaviour
 
     void Awake()
     {
-        instance = this;
+        _instance = this;
         DontDestroyOnLoad(gameObject);
     }
 }

@@ -46,9 +46,9 @@ public class EnemySmartAI : MonoBehaviour
         if (transform.tag == "Enemy2")
             DesicionRotation();
 
-        Debug.Log("Pos aleatoria: " + posDestino);
+        /*Debug.Log("Pos aleatoria: " + posDestino);
         Debug.Log("Etapa: " + etapa);
-        Debug.Log("Rotate: " + Rotate);
+        Debug.Log("Rotate: " + Rotate);*/
     }
 
     void DecisionIdle()
@@ -66,7 +66,7 @@ public class EnemySmartAI : MonoBehaviour
                 new DTAction(() =>
                 {
                     // Caso esteja < 10
-                    Debug.Log("I'm watching you!");
+                    //Debug.Log("I'm watching you!");
                     GoToPlayer();
                 })
             );
@@ -83,7 +83,7 @@ public class EnemySmartAI : MonoBehaviour
                 new DTAction(() =>
                 {
                     // bicho 1 mover
-                    Debug.Log("Enemy 1 going");
+                    //Debug.Log("Enemy 1 going");
                     MoveRandom(bichos[positions[0]]);
                 }),
                 new DTAction(() =>
@@ -91,7 +91,7 @@ public class EnemySmartAI : MonoBehaviour
                     // se nao é pq ja esta na pos random e tem de voltar ao covil
                     if (transform.GetChild(0).position != covilpos)
                     {
-                        Debug.Log("Enemy 1 coming back...");
+                        //Debug.Log("Enemy 1 coming back...");
                         BackCovil(bichos[positions[0]]);
                     }
                     else
@@ -111,7 +111,7 @@ public class EnemySmartAI : MonoBehaviour
                         new DTAction(() =>
                         {
                             // bicho 2 mover
-                            Debug.Log("Enemy 2 going");
+                            //Debug.Log("Enemy 2 going");
                             MoveRandom(bichos[positions[1]]);
                         }),
                         new DTAction(() =>
@@ -119,7 +119,7 @@ public class EnemySmartAI : MonoBehaviour
                             // se nao é pq ja esta na pos random e tem de voltar ao covil
                             if (transform.GetChild(1).position != covilpos)
                             {
-                                Debug.Log("Enemy 2 coming back...");
+                                //Debug.Log("Enemy 2 coming back...");
                                 BackCovil(bichos[positions[1]]);
                             }
                             else
@@ -135,7 +135,7 @@ public class EnemySmartAI : MonoBehaviour
                         new DTAction(() =>
                         {
                             // bicho 3 mover
-                            Debug.Log("Enemy 3 going");
+                            //Debug.Log("Enemy 3 going");
                             MoveRandom(bichos[positions[2]]);
                         }),
                         new DTAction(() =>
@@ -143,7 +143,7 @@ public class EnemySmartAI : MonoBehaviour
                             // se nao é pq ja esta na pos random e tem de voltar ao covil
                             if (transform.GetChild(2).position != covilpos)
                             {
-                                Debug.Log("Enemy 3 coming back...");
+                                //Debug.Log("Enemy 3 coming back...");
                                 BackCovil(bichos[positions[2]]);
                             }
                             else
@@ -158,7 +158,7 @@ public class EnemySmartAI : MonoBehaviour
                 new DTAction(() =>
                 {
                     // SE NAO FOR 2 || 3
-                    Debug.Log("ERROR");
+                    //Debug.Log("ERROR");
                 })
             )
         );

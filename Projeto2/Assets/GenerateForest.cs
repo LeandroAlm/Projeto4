@@ -2,7 +2,6 @@
 
 public class GenerateForest: MonoBehaviour
 {
-
     public GameObject tree;
     public GameObject tree2;
     public GameObject rock;
@@ -24,7 +23,6 @@ public class GenerateForest: MonoBehaviour
 
     public void Generate()
     {
-
         for (int y = 0; y < forestSize; y++)
         {
             for (int x = 0; x < forestSize; x++)

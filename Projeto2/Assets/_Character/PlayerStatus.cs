@@ -8,7 +8,7 @@ public class PlayerStatus : MonoBehaviour
     public float armor;
     public int wood, stone;
     public GameObject Bag;
-    public GameObject mochila;
+    //public GameObject mochila;
     private InventoryUI inventoryUI;
     public bool ExistWood, ExistStone;
 

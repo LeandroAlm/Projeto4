@@ -10,7 +10,8 @@ using UnityEngine.UI;
 
 public class LobbyManager : MonoBehaviour
 {
-    public GameObject readyButton, exitButton, cancelButton, searchingPlayersText, sliderGameObject;
+    public GameObject readyButton, exitButton, cancelButton, searchingPlayersText, sliderGameObject, playerNameInstruction, passwordInstruction;
+    public InputField playerNameInputField, passwordInputField;
     public Slider loadingSlider;
     private SessionInformation sessionInformation;
 
@@ -30,6 +31,8 @@ public class LobbyManager : MonoBehaviour
 	    };
 
 	    searchingPlayersText.GetComponent<Text>();
+	    playerNameInstruction.GetComponent<Text>();
+	    passwordInstruction.GetComponent<Text>();
 	    readyButton.GetComponent<Button>().onClick.AddListener(PlayerReady);
 	    exitButton.GetComponent<Button>().onClick.AddListener(ExitScene);
 	    cancelButton.GetComponent<Button>().onClick.AddListener(CancelScene);
@@ -40,6 +43,8 @@ public class LobbyManager : MonoBehaviour
 
         cancelButton.SetActive(false);
         
+        playerNameInstruction.SetActive(true);
+        playerNameInputField.ActivateInputField();
 	}
 	
 	void Update ()
@@ -54,15 +59,20 @@ public class LobbyManager : MonoBehaviour
 
     public void PlayerReady()
     {
+        playerNameInputField.DeactivateInputField();
+        passwordInputField.DeactivateInputField();
+
         readyButton.SetActive(false);
         exitButton.SetActive(false);
+        playerNameInstruction.SetActive(false);
+        passwordInstruction.SetActive(false);
         cancelButton.SetActive(true);
         searchingPlayersText.SetActive(true);
         sliderGameObject.SetActive(true);
 
-        GameSparksManager.Instance().AuthenticateUser(OnRegistration, OnAuthentication);
+        GameSparksManager.Instance().AuthenticateUser(playerNameInputField.text,passwordInputField.text, OnRegistration, OnAuthentication);
 
-        //SceneManager.LoadScene("Cena");
+        SceneManager.LoadScene("Cena");       
     }
 
     public void ExitScene()

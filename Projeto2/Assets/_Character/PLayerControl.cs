@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PLayerControl : MonoBehaviour
+public class PlayerControl : MonoBehaviour
 {
     private Animator animator;
     private Rigidbody rb;
@@ -164,4 +164,14 @@ public class PLayerControl : MonoBehaviour
             }
         }
     }
+
+    void SetupPlayer(Transform spawnPosition)
+    {
+        
+    }
+
+    /*private IEnumerator SendPlayerMovement()
+    {
+        
+    }*/
 }
