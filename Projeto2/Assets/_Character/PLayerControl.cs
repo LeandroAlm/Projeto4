@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using GameSparks.RT;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerControl : MonoBehaviour
 {
@@ -15,14 +17,10 @@ public class PlayerControl : MonoBehaviour
     public Transform Gun;
     public GameObject posHandL;
 
-
     private Vector3 moveVelocity;
     public float moveSpeed;
 
-
     private Camera mainCamera;
-
-
 
     void Start()
     {
@@ -31,10 +29,7 @@ public class PlayerControl : MonoBehaviour
         //cam = Camera.main.transform;
         animator = GetComponent<Animator>();
         mainCamera = FindObjectOfType<Camera>();
-
-
     }
-
 
     // Update is called once per frame
     void FixedUpdate()
@@ -87,18 +82,18 @@ public class PlayerControl : MonoBehaviour
    
     void UpdateAnimator()
     {
-        //animator.SetBool("Sword", true);
+        animator.SetBool("Axe", true);
         //animator.SetBool("Gun", false);
         //Axe.gameObject.SetActive(true);
 
         if (animator.GetBool("Gun") == true)
         {
-            animator.SetBool("Sword", false);
+            animator.SetBool("Axe", false);
             animator.SetFloat("Forward", forwarAmount, 0.1f, Time.deltaTime);
             animator.SetFloat("Turn", turnAmount, 0.1f, Time.deltaTime);
         }
 
-        if (animator.GetBool("Sword") == true)
+        if (animator.GetBool("Axe") == true)
         {
             animator.SetBool("Gun", false);
 
@@ -123,15 +118,16 @@ public class PlayerControl : MonoBehaviour
     {
         if (Input.GetKeyDown("1"))
         {
-            animator.SetBool("Sword", true);
+            animator.SetBool("Axe", true);
             animator.SetBool("Gun", false);
             Axe.gameObject.SetActive(true);
             Gun.gameObject.SetActive(false);
         }
+
         if (Input.GetKeyDown("2"))
         {
             animator.SetBool("Gun", true);
-            animator.SetBool("Sword", false);
+            animator.SetBool("Axe", false);
             Axe.gameObject.SetActive(false);
             Gun.gameObject.SetActive(true);
         }
@@ -165,9 +161,9 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
-    void SetupPlayer(Transform spawnPosition)
+    public void SetupPlayer(Vector3 spawnPosition)
     {
-        
+        transform.position = spawnPosition;
     }
 
     /*private IEnumerator SendPlayerMovement()
