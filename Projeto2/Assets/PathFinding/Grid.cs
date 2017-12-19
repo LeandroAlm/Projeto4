@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Grid : MonoBehaviour {
+public class Grid : MonoBehaviour
+{
 
     public Transform player;
     Node[,] grid;
@@ -24,14 +25,14 @@ public class Grid : MonoBehaviour {
 
         isPlayer = false;
     }
-  
 
- 
+
+
 
     void CreateGrid()
     {
         grid = new Node[gridSizeX, gridSizeY];
-        Vector3 worldBottomLeft = transform.position - Vector3.right * gridWorlSize.x/2 - Vector3.forward * gridWorlSize.y / 2;
+        Vector3 worldBottomLeft = transform.position - Vector3.right * gridWorlSize.x / 2 - Vector3.forward * gridWorlSize.y / 2;
 
         for (int X = 0; X < gridSizeX; X++)
         {
@@ -41,7 +42,7 @@ public class Grid : MonoBehaviour {
 
                 bool walkable = !(Physics.CheckSphere(worldPoint, nodeRadius, unWalkableMask));
 
-                grid[X, Y] = new Node(walkable, worldPoint);
+                grid[X, Y] = new Node(walkable, worldPoint, X, Y);
 
 
             }
@@ -74,6 +75,35 @@ public class Grid : MonoBehaviour {
         {
             return grid[Mathf.RoundToInt(worldPosition.x) / 2, Mathf.RoundToInt(worldPosition.z) / 2];
         }
+    }
+
+    public List<Node> GetNeighbours(Node node)
+    {
+        List<Node> neighbours = new List<Node>();
+
+        //procurar nos 8 á volta
+        for (int x = -1; x <= 1; x++)
+        {
+            for (int y = -1; y <= 1; y++)
+            {
+                //node central
+                if (x == 0 && y == 0)
+                {
+                    continue;
+                }
+
+                int checkX = node.gridX + x;
+                int checkY = node.gridY + y;
+
+                //calcular se esta dentro da grid
+                if (checkX >= 0 && checkX < gridSizeX && checkY >= 0 && checkY < gridSizeY)
+                {
+                    neighbours.Add(grid[checkX, checkY]);
+                }
+            }
+        }
+
+        return neighbours;
     }
 
     //private void OnDrawGizmos()
