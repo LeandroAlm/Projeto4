@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using GameSparks.RT;
+using Org.BouncyCastle.Math.Field;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,7 +11,7 @@ public class PlayerControl : MonoBehaviour
     private Rigidbody rb;
 
     Vector3 camForward, move, moveInput;
-    float forwarAmount;
+    float forwardAmount;
     public float turnAmount;
 
     public Transform Axe;
@@ -21,6 +22,7 @@ public class PlayerControl : MonoBehaviour
     public float moveSpeed;
 
     private Camera mainCamera;
+    private bool usingAxe = true, usingGun = false;
 
     void Start()
     {
@@ -36,7 +38,7 @@ public class PlayerControl : MonoBehaviour
     {
         rb.velocity = new Vector3(moveVelocity.x,rb.velocity.y,moveVelocity.z);
         MovementTopDown();
-        UpdateAnimator();
+        GunsMovementController();
         ConvertMoveInput();
 
         // FARMAR!!!
@@ -51,7 +53,7 @@ public class PlayerControl : MonoBehaviour
     {
         Vector3 localMove = transform.InverseTransformDirection(moveInput);
         turnAmount = localMove.x;
-        forwarAmount = localMove.z;
+        forwardAmount = localMove.z;
     }
 
     void MovementTopDown()
@@ -80,7 +82,7 @@ public class PlayerControl : MonoBehaviour
         }
     }
    
-    void UpdateAnimator()
+    void GunsMovementController()
     {
         animator.SetBool("Axe", true);
         //animator.SetBool("Gun", false);
@@ -89,7 +91,7 @@ public class PlayerControl : MonoBehaviour
         if (animator.GetBool("Gun") == true)
         {
             animator.SetBool("Axe", false);
-            animator.SetFloat("Forward", forwarAmount, 0.1f, Time.deltaTime);
+            animator.SetFloat("Forward", forwardAmount, 0.1f, Time.deltaTime);
             animator.SetFloat("Turn", turnAmount, 0.1f, Time.deltaTime);
         }
 
@@ -99,23 +101,20 @@ public class PlayerControl : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.LeftShift))
             {
-                forwarAmount = 1;
-                animator.SetFloat("ForwardS", forwarAmount, 0.1f, Time.deltaTime);
+                //forwardAmount = 1;
+                animator.SetFloat("ForwardS", forwardAmount, 0.1f, Time.deltaTime);
             }
 
             else
             {
-                forwarAmount = 0;
-                animator.SetFloat("ForwardS", forwarAmount, 0.1f, Time.deltaTime);
+                //forwardAmount = 0;
+                animator.SetFloat("ForwardS", forwardAmount, 0.1f, Time.deltaTime);
             }
 
-            //animator.SetFloat("ForwardS", forwarAmount, 0.1f, Time.deltaTime);
+            animator.SetFloat("ForwardS", forwardAmount, 0.1f, Time.deltaTime);
             animator.SetFloat("TurnS", turnAmount, 0.1f, Time.deltaTime);
         }
-    }
 
-    private void Update()
-    {
         if (Input.GetKeyDown("1"))
         {
             animator.SetBool("Axe", true);
@@ -132,7 +131,6 @@ public class PlayerControl : MonoBehaviour
             Gun.gameObject.SetActive(true);
         }
     }
-
 
     // POSICIONAR A LEFT HAND!!!!!
     //public void OnAnimatorIK(int layerIndex)
