@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
+using GameSparks.RT;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -24,7 +26,8 @@ public class GameController : MonoBehaviour
 
     void Start()
     {
-        SpawnPoint[] spawnPoints = FindObjectsOfType(typeof(SpawnPoint)) as SpawnPoint[];
+        //SpawnPoint[] spawnPoints = FindObjectsOfType(typeof(SpawnPoint)) as SpawnPoint[];
+
         playersList = new PlayerControl[GameSparksManager.Instance().SessionInformation.PlayersList.Count];
 
         for (int player = 0; player < GameSparksManager.Instance().SessionInformation.PlayersList.Count; player++)
@@ -50,6 +53,49 @@ public class GameController : MonoBehaviour
                 {
                 }
             }*/
+        }
+    }
+
+    private int _packetSizeIncomming;
+    private int _packetSizeSent;
+
+    public void PacketReceived(int packetSize)
+    {
+        _packetSizeIncomming = packetSize;
+    }
+    public void SendRTData(int opCode, GameSparksRT.DeliveryIntent intent, RTData data, int[] targetPeers)
+    {
+        _packetSizeSent = GameSparksManager.Instance().GameSparksRtUnity.SendData(opCode, intent, data, targetPeers);
+    }
+    public void SendRTData(int opCode, GameSparksRT.DeliveryIntent intent, RTData data)
+    {
+        _packetSizeSent = GameSparksManager.Instance().GameSparksRtUnity.SendData(opCode, intent, data);
+    }
+
+    public void UpdatePartnerMovement(RTPacket rtPacket)
+    {
+        for (int i = 0; i < playersList.Length; i++)
+        {
+            if (playersList[i].name == rtPacket.Sender.ToString())
+            {
+                playersList[i].transform.position = new Vector3(rtPacket.Data.GetVector4(1).Value.x, rtPacket.Data.GetVector4(1).Value.y, rtPacket.Data.GetVector4(1).Value.z);
+                playersList[i].turnAmount = rtPacket.Data.GetFloat(2).Value;
+            }
+        }
+    }
+
+    public void RegisterPartnerCollision(RTPacket rtPacket)
+    {
+        for (int i = 0; i < playersList.Length; i++)
+        {
+            if (playersList[i].name == rtPacket.Data.GetString(1))
+            {
+
+            }
+            if (rtPacket.Sender != GameSparksManager.Instance().GameSparksRtUnity.PeerId && playersList[i].name == rtPacket.Data.GetString(2))
+            {
+
+            }
         }
     }
 }

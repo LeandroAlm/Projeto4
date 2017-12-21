@@ -83,7 +83,10 @@ public class GameSparksManager : MonoBehaviour
         SessionInformation = rtSessionInfo;
         GameSparksRtUnity = gameObject.AddComponent<GameSparksRTUnity>();
 
-        GSRequestData requestData = new GSRequestData().AddNumber("port", (double)rtSessionInfo.PortId).AddString("host", rtSessionInfo.HostUrl).AddString("accessToken", rtSessionInfo.AccessToken);
+        GSRequestData requestData = new GSRequestData()
+            .AddNumber("port", (double)rtSessionInfo.PortId)
+            .AddString("host", rtSessionInfo.HostUrl)
+            .AddString("accessToken", rtSessionInfo.AccessToken);
 
         Debug.Log((double)rtSessionInfo.PortId);
         Debug.Log(rtSessionInfo.HostUrl);
@@ -106,7 +109,7 @@ public class GameSparksManager : MonoBehaviour
             },
             (packet) =>
             {
-                //OnPacketReceived(packet);
+                OnPacketReceived(packet);
             });
         GameSparksRtUnity.Connect();
     }
@@ -129,7 +132,7 @@ public class GameSparksManager : MonoBehaviour
         }
     }
 
-    /*private void OnPacketReceived(RTPacket rtPacket)
+    private void OnPacketReceived(RTPacket rtPacket)
     {
         if (GameController.Instance() != null)
         {
@@ -142,36 +145,14 @@ public class GameSparksManager : MonoBehaviour
 
         switch (rtPacket.OpCode)
         {
-            case 1:
-                if (ChatManager == null)
-                {
-                    ChatManager = GameObject.Find("ChatManager").GetComponent<ChatManager>();
-                }
-                ChatManager.OnMessageReceived(rtPacket);
-                break;
             case 2:
-                GameController.Instance().UpdateOpponentShips(rtPacket);
+                GameController.Instance().UpdatePartnerMovement(rtPacket);
                 break;
             case 3:
-                GameController.Instance().InstantiateOpponentBullet(rtPacket);
-                break;
-            case 4:
-                GameController.Instance().UpdateOpponentBullets(rtPacket);
-                break;
-            case 5:
-                GameController.Instance().RegisterOpponentCollision(rtPacket);
-                break;
-            case 100:
-                SceneManager.LoadScene(1);
-                break;
-            case 101:
-                GameController.Instance().CalculateTimeDelta(rtPacket);
-                break;
-            case 102:
-                GameController.Instance().SyncClock(rtPacket);
+                GameController.Instance().RegisterPartnerCollision(rtPacket);
                 break;
         }
-    }*/
+    }
 
     void Awake()
     {

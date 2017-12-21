@@ -11,7 +11,7 @@ public class PlayerControl : MonoBehaviour
 
     Vector3 camForward, move, moveInput;
     float forwarAmount;
-    float turnAmount;
+    public float turnAmount;
 
     public Transform Axe;
     public Transform Gun;
