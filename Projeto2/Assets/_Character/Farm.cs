@@ -10,7 +10,9 @@ public class Farm : MonoBehaviour
     private GameObject go;
     
     public GUIContent Mochila;
-    public bool isWood, isStone; //rego
+    public bool isWood, isStone; //rego, obvio!!!! nobices!
+
+    public GameObject AxeGO;
 
     Ray ray;
 
@@ -27,31 +29,29 @@ public class Farm : MonoBehaviour
 	
 	void Update ()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && AxeGO.activeSelf)
         {
+            anim.SetTrigger("Farming");
             RaycastHit hit;
-            forward = transform.TransformDirection(Vector3.forward * 10 + new Vector3(0, 0.5f, 0));
+            forward = transform.TransformDirection(Vector3.forward);
             Debug.DrawRay(transform.position + Vector3.up, forward, Color.green);
             Ray ray = new Ray(transform.position, transform.forward);
             
-            if (anim.GetBool("Sword") == true)
+            if (Physics.Raycast(ray, out hit, 4))
             {
-                if (Physics.Raycast(ray, out hit, 4))
+                if (hit.collider.tag == "Stone")
                 {
-                    if (hit.collider.tag == "Stone")
-                    {
-                        Debug.Log("Stone HIT");
-                        isStone = true;
-                        player.GetComponent<PlayerStatus>().StoneAmout(hit.collider.GetComponent<Stone>().GetAmount());
-                        hit.collider.GetComponent<Stone>().Damage();
-                    }
-                    else if (hit.collider.tag == "Tree")
-                    {
-                        Debug.Log("Wood HIT");
-                        isWood = true;
-                        player.GetComponent<PlayerStatus>().WoodAmout(hit.collider.GetComponent<Tree>().GetAmount());
-                        hit.collider.GetComponent<Tree>().Damage();
-                    }
+                    Debug.Log("Stone HIT");
+                    isStone = true;
+                    player.GetComponent<PlayerStatus>().StoneAmout(hit.collider.GetComponent<Stone>().GetAmount());
+                    hit.collider.GetComponent<Stone>().Damage();
+                }
+                else if (hit.collider.tag == "Tree")
+                {
+                    Debug.Log("Wood HIT");
+                    isWood = true;
+                    player.GetComponent<PlayerStatus>().WoodAmout(hit.collider.GetComponent<Tree>().GetAmount());
+                    hit.collider.GetComponent<Tree>().Damage();
                 }
             }
         }

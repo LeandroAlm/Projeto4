@@ -56,7 +56,7 @@ public class Shot : MonoBehaviour
         ShotEffect.gameObject.SetActive(true);
         ShotEffect.Play();
         RaycastHit hit;
-        Vector3 forward = transform.TransformDirection(Vector3.forward * 10 + new Vector3(0, 1, 0));
+        Vector3 forward = transform.TransformDirection(Vector3.forward * 10);
         Debug.DrawRay(Pistol.position, forward, Color.red);
         Ray ray = new Ray(Pistol.position, transform.forward);
 

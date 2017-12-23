@@ -37,10 +37,11 @@ GameObject:
   - component: {fileID: 4915875258623908}
   - component: {fileID: 33918590465338000}
   - component: {fileID: 23375181791415936}
-  - component: {fileID: 193213965362512598}
+  - component: {fileID: 114917880677921940}
+  - component: {fileID: 136162032067858482}
   m_Layer: 11
   m_Name: Conifer_Desktop_LOD0
-  m_TagString: Untagged
+  m_TagString: Tree
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -101,9 +102,10 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4861199780896420}
+  - component: {fileID: 114912214962838112}
   m_Layer: 11
   m_Name: Tree
-  m_TagString: Untagged
+  m_TagString: Tree
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -134,7 +136,7 @@ GameObject:
   - component: {fileID: 4435290419611088}
   - component: {fileID: 33267000173495104}
   - component: {fileID: 23583749096960236}
-  - component: {fileID: 193777741407703984}
+  - component: {fileID: 114168090081921992}
   m_Layer: 11
   m_Name: Conifer_Desktop_LOD1
   m_TagString: Untagged
@@ -168,7 +170,7 @@ GameObject:
   - component: {fileID: 4095008034988176}
   - component: {fileID: 33114986160643056}
   - component: {fileID: 23107344351392800}
-  - component: {fileID: 193796468228867426}
+  - component: {fileID: 114442123185640996}
   m_Layer: 11
   m_Name: Conifer_Desktop_LOD2
   m_TagString: Untagged
@@ -375,7 +377,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1170492396265540}
   m_LocalRotation: {x: -0, y: 0.013558068, z: 0.70658624, w: 0.70749706}
-  m_LocalPosition: {x: -29.45, y: 0.95, z: -108.54}
+  m_LocalPosition: {x: 71.14, y: 0, z: 89.34}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4520466688693310}
@@ -531,6 +533,54 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1024258179786940}
   m_Mesh: {fileID: 4300000, guid: 469edab27ab6d004d84af2c4a851bd7f, type: 3}
+--- !u!114 &114168090081921992
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1684777351209052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1562aec4ab4167a458813780bbc57837, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hp: 6
+--- !u!114 &114442123185640996
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1781058303004960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1562aec4ab4167a458813780bbc57837, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hp: 6
+--- !u!114 &114912214962838112
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1170492396265540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1562aec4ab4167a458813780bbc57837, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hp: 6
+--- !u!114 &114917880677921940
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1024258179786940}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1562aec4ab4167a458813780bbc57837, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hp: 6
 --- !u!135 &135062295898257544
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -615,6 +665,19 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 2.3177814
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!136 &136162032067858482
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1024258179786940}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.75
+  m_Height: 11.86
+  m_Direction: 1
+  m_Center: {x: 0.28, y: 5.6, z: -0.017911308}
 --- !u!136 &136565656655476962
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -628,39 +691,12 @@ CapsuleCollider:
   m_Height: 20.116917
   m_Direction: 0
   m_Center: {x: 0, y: 0, z: 0}
---- !u!193 &193213965362512598
-Tree:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1024258179786940}
-  m_SpeedTreeWindAsset: {fileID: 22800000, guid: 469edab27ab6d004d84af2c4a851bd7f,
-    type: 3}
-  m_TreeData: {fileID: 0}
 --- !u!193 &193363627594124904
 Tree:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1934322679754266}
-  m_SpeedTreeWindAsset: {fileID: 22800000, guid: 469edab27ab6d004d84af2c4a851bd7f,
-    type: 3}
-  m_TreeData: {fileID: 0}
---- !u!193 &193777741407703984
-Tree:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1684777351209052}
-  m_SpeedTreeWindAsset: {fileID: 22800000, guid: 469edab27ab6d004d84af2c4a851bd7f,
-    type: 3}
-  m_TreeData: {fileID: 0}
---- !u!193 &193796468228867426
-Tree:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1781058303004960}
   m_SpeedTreeWindAsset: {fileID: 22800000, guid: 469edab27ab6d004d84af2c4a851bd7f,
     type: 3}
   m_TreeData: {fileID: 0}

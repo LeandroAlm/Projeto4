@@ -40,13 +40,6 @@ public class PLayerControl : MonoBehaviour
         MovementTopDown();
         GunsMovementController();
         ConvertMoveInput();
-
-        // FARMAR!!!
-        if (Input.GetMouseButtonDown(0))
-        {
-            animator.SetTrigger("Farming");
-        }
-
     }
 
     void ConvertMoveInput()
