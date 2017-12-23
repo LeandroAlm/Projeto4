@@ -23,9 +23,9 @@ public class GenerateForest: MonoBehaviour
 
     public void Generate()
     {
-        for (int y = 0; y < forestSize; y++)
+        for (int y = -250; y < forestSize; y++)
         {
-            for (int x = 0; x < forestSize; x++)
+            for (int x = -250; x < forestSize; x++)
             {
                 float probability = noiseImage.GetPixel(x, y).r / (baseDensity / treeDensity);
 
