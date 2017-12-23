@@ -30,7 +30,7 @@ public class Farm : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             RaycastHit hit;
-            forward = transform.TransformDirection(Vector3.forward * 10 + new Vector3(0, 1, 0));
+            forward = transform.TransformDirection(Vector3.forward * 10 + new Vector3(0, 0.5f, 0));
             Debug.DrawRay(transform.position + Vector3.up, forward, Color.green);
             Ray ray = new Ray(transform.position, transform.forward);
             
@@ -40,12 +40,14 @@ public class Farm : MonoBehaviour
                 {
                     if (hit.collider.tag == "Stone")
                     {
+                        Debug.Log("Stone HIT");
                         isStone = true;
                         player.GetComponent<PlayerStatus>().StoneAmout(hit.collider.GetComponent<Stone>().GetAmount());
                         hit.collider.GetComponent<Stone>().Damage();
                     }
                     else if (hit.collider.tag == "Tree")
                     {
+                        Debug.Log("Wood HIT");
                         isWood = true;
                         player.GetComponent<PlayerStatus>().WoodAmout(hit.collider.GetComponent<Tree>().GetAmount());
                         hit.collider.GetComponent<Tree>().Damage();

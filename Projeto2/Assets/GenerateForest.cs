@@ -34,9 +34,18 @@ public class GenerateForest: MonoBehaviour
                     float size = Random.Range(minTreeSize, maxTreeSize);
 
                     RandomObject(Random.Range(1, 4));
-                    newGameObj.transform.localScale = Vector3.one * size;
-                    newGameObj.transform.position = new Vector3(x, 0, y);
-                    newGameObj.transform.parent = transform;
+                    if (newGameObj.tag != "Stone")
+                    {
+                        newGameObj.transform.localScale = Vector3.one * size;
+                        newGameObj.transform.position = new Vector3(x, 0, y);
+                        newGameObj.transform.parent = transform;
+                    }
+                    else
+                    {
+                        //newGameObj.transform.localScale = Vector3.one * size;
+                        newGameObj.transform.position = new Vector3(x, 0.55f, y);
+                        newGameObj.transform.parent = transform;
+                    }
                 }
             }
         }

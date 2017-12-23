@@ -50,14 +50,17 @@ public class InventoryUI : MonoBehaviour
             inventoryBag.SetActive(true);
             inventoryTitle.SetActive(true);
             craftTitle.SetActive(true);
+            PlayerTransform.GetComponent<Shot>().enabled = false;
         }
 
         else if (Input.GetKeyDown(KeyCode.I) || Input.GetKeyDown(KeyCode.Escape) && isOpen == true)
         {
+            // O QUE ESTA AQUI TEM DE PASSAR PARA UMA FUNÇÃO, DPS PARA CHAMAR TBM QUANDO APLICAS OBJS
             isOpen = false;
             inventoryBag.SetActive(false);
             inventoryTitle.SetActive(false);
             craftTitle.SetActive(false);
+            PlayerTransform.GetComponent<Shot>().enabled = true;
         }
     }
 

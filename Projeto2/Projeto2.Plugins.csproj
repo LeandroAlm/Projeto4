@@ -76,6 +76,12 @@
     <Reference Include="UnityEngine.HoloLens">
       <HintPath>Library\UnityAssemblies\UnityEngine.HoloLens.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEditor.iOS.Extensions.Xcode">
+      <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.iOS.Extensions.Common">
+      <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Common.dll</HintPath>
+    </Reference>
     <Reference Include="BouncyCastle_GameSparks">
       <HintPath>Assets\GameSparks\Plugins\BouncyCastle_GameSparks.dll</HintPath>
     </Reference>
@@ -124,6 +130,7 @@
     <None Include="Assets\Downloads\Particles\WarFX\Shaders\WFX_S Smoke Scroll.shader" />
     <None Include="Assets\Downloads\Particles\WarFX\_Effects (Mobile)\MuzzleFlashes\!MuzzleFlash Differences.txt" />
     <None Include="Assets\Downloads\Particles\WarFX\_Effects\MuzzleFlashes\!MuzzleFlash Differences.txt" />
+    <None Include="Assets\Downloads\Stone Age Weapons Pack\Readme.txt" />
     <None Include="Assets\GameSparks\Plugins\GameSparks.Api.XML" />
     <None Include="Assets\GameSparks\Plugins\GameSparks.XML" />
     <None Include="Assets\GameSparks\Plugins\GameSparksRT.xml" />
