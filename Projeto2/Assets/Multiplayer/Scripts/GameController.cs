@@ -12,7 +12,7 @@ public class GameController : MonoBehaviour
 
     public GameObject[] PlayerPrefabs;
     public Text[] PlayerNameList;
-    private PLayerControl[] playersList;
+    private PlayerControl[] playersList;
 
     public static GameController Instance()
     {
@@ -28,7 +28,7 @@ public class GameController : MonoBehaviour
     {
         //SpawnPoint[] spawnPoints = FindObjectsOfType(typeof(SpawnPoint)) as SpawnPoint[];
 
-        playersList = new PLayerControl[GameSparksManager.Instance().SessionInformation.PlayersList.Count];
+        playersList = new PlayerControl[GameSparksManager.Instance().SessionInformation.PlayersList.Count];
 
         for (int player = 0; player < GameSparksManager.Instance().SessionInformation.PlayersList.Count; player++)
         {
@@ -39,11 +39,11 @@ public class GameController : MonoBehaviour
 
             if (GameSparksManager.Instance().SessionInformation.PlayersList[player].PeerId == GameSparksManager.Instance().GameSparksRtUnity.PeerId)
             {
-                Debug.Log("Entrou caralho!");
-                newPlayer.GetComponent<PLayerControl>().SetupPlayer(new Vector3(70, 0, 90));
+                Debug.Log("Entrou!");
+                newPlayer.GetComponent<PlayerControl>().SetupPlayer(new Vector3(70, 0, 90));
             }
 
-            playersList[player] = newPlayer.GetComponent<PLayerControl>();
+            playersList[player] = newPlayer.GetComponent<PlayerControl>();
             PlayerNameList[player].text = GameSparksManager.Instance().SessionInformation.PlayersList[player].DisplayName;
             break;
 

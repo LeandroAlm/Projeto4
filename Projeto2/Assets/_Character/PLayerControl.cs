@@ -5,7 +5,7 @@ using Org.BouncyCastle.Math.Field;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PLayerControl : MonoBehaviour
+public class PlayerControl : MonoBehaviour
 {
     private Animator animator;
     private Rigidbody rb;
