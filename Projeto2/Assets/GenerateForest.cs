@@ -16,7 +16,7 @@ public class GenerateForest: MonoBehaviour
     private float baseDensity = 5.0f;
 
 
-    void Start()
+    void Awake()
     {
         Generate();
     }
