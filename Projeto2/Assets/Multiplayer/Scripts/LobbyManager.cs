@@ -10,7 +10,8 @@ using UnityEngine.UI;
 
 public class LobbyManager : MonoBehaviour
 {
-    public GameObject readyButton, exitButton, cancelButton, searchingPlayersText, sliderGameObject, playerNameInstruction, passwordInstruction;
+    public GameObject readyButton, exitButton, cancelButton, startSessionButton, matchMakebutton, startGameButton;
+    public GameObject searchingPlayersText, sliderGameObject, playerNameInstruction, passwordInstruction;
     public InputField playerNameInputField, passwordInputField;
     public Slider loadingSlider;
     private SessionInformation sessionInformation;
@@ -30,10 +31,32 @@ public class LobbyManager : MonoBehaviour
 	        }
 	    };
 
-	    searchingPlayersText.GetComponent<Text>();
+	    MatchNotFoundMessage.Listener = (message) =>
+	    {
+	        Debug.Log("No Match Found");
+	    };
+
+	    MatchFoundMessage.Listener += OnMatchFound;
+
+        searchingPlayersText.GetComponent<Text>();
 	    playerNameInstruction.GetComponent<Text>();
 	    passwordInstruction.GetComponent<Text>();
-	    readyButton.GetComponent<Button>().onClick.AddListener(PlayerReady);
+
+	    readyButton.GetComponent<Button>().onClick.AddListener(() =>
+	    {
+	        GameSparksManager.Instance().AuthenticateUser(playerNameInputField.text, passwordInputField.text, OnRegistration, OnAuthentication);
+        });
+
+        startSessionButton.GetComponent<Button>().onClick.AddListener(() =>
+        {
+            GameSparksManager.Instance().StartNewRtSession(sessionInformation);
+        });
+
+        startGameButton.GetComponent<Button>().onClick.AddListener(() =>
+        {
+            GameSparksManager.Instance().FindPlayers();
+        });
+
 	    exitButton.GetComponent<Button>().onClick.AddListener(ExitScene);
 	    cancelButton.GetComponent<Button>().onClick.AddListener(CancelScene);
 
@@ -57,12 +80,12 @@ public class LobbyManager : MonoBehaviour
         }
     }
 
-    public void PlayerReady()
+    /*public void PlayerReady()
     {
-        playerNameInputField.DeactivateInputField();
-        passwordInputField.DeactivateInputField();
+        playerNameInputField.IsDestroyed();
+        passwordInputField.IsDestroyed();
 
-        readyButton.SetActive(false);
+        
         exitButton.SetActive(false);
         playerNameInstruction.SetActive(false);
         passwordInstruction.SetActive(false);
@@ -70,10 +93,13 @@ public class LobbyManager : MonoBehaviour
         searchingPlayersText.SetActive(true);
         sliderGameObject.SetActive(true);
 
-        GameSparksManager.Instance().AuthenticateUser(playerNameInputField.text,passwordInputField.text, OnRegistration, OnAuthentication);
-
+        GameSparksManager.Instance().AuthenticateUser(playerNameInputField.text, passwordInputField.text, OnRegistration, OnAuthentication);
+        GameSparksManager.Instance().FindPlayers();
+        GameSparksManager.Instance().StartNewRtSession(sessionInformation);
+        
+        
         SceneManager.LoadScene("Cena");       
-    }
+    }*/
 
     public void ExitScene()
     {
@@ -95,6 +121,8 @@ public class LobbyManager : MonoBehaviour
     {
         Debug.Log("User ID: " + authenticationResponse.UserId);
         Debug.Log("User Authenticated.");
+        readyButton.SetActive(false);
+        startSessionButton.SetActive(true);
     }
 
     private void OnMatchFound(MatchFoundMessage matchFoundMessage)
@@ -112,5 +140,10 @@ public class LobbyManager : MonoBehaviour
         }
 
         sessionInformation = new SessionInformation(matchFoundMessage);
+
+        startSessionButton.SetActive(false);
+        startGameButton.SetActive(true);
+
+        SceneManager.LoadScene("Cena");
     }
 }

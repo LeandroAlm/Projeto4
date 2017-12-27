@@ -80,13 +80,12 @@ public class GameSparksManager : MonoBehaviour
     public void StartNewRtSession(SessionInformation rtSessionInfo)
     {
         Debug.Log("Creating New RT Session Instance");
+
         SessionInformation = rtSessionInfo;
+
         GameSparksRtUnity = gameObject.AddComponent<GameSparksRTUnity>();
 
-        GSRequestData requestData = new GSRequestData()
-            .AddNumber("port", (double)rtSessionInfo.PortId)
-            .AddString("host", rtSessionInfo.HostUrl)
-            .AddString("accessToken", rtSessionInfo.AccessToken);
+        GSRequestData requestData = new GSRequestData().AddNumber("port", (double)rtSessionInfo.PortId).AddString("host", rtSessionInfo.HostUrl).AddString("accessToken", rtSessionInfo.AccessToken);
 
         Debug.Log((double)rtSessionInfo.PortId);
         Debug.Log(rtSessionInfo.HostUrl);
@@ -111,6 +110,7 @@ public class GameSparksManager : MonoBehaviour
             {
                 OnPacketReceived(packet);
             });
+
         GameSparksRtUnity.Connect();
     }
 
