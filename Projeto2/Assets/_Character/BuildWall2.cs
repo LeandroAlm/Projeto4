@@ -24,6 +24,8 @@ public class BuildWall2 : MonoBehaviour
 
     Ray ray;
 
+
+
     void Start()
     {
         check = false;
@@ -98,7 +100,9 @@ public class BuildWall2 : MonoBehaviour
           
             stepCount = ParentObj.transform.childCount;
         }
+
     }
+
 
     void RotateWall()
     {

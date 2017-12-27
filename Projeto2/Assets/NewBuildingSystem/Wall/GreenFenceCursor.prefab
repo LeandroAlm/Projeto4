@@ -235,20 +235,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsBuilding: 0
+  check: 0
+  move1slot: 0
   wallPrefab: {fileID: 1875773067935440, guid: f1578dd0645de8c44b18ddf3a8c447f6, type: 2}
   wallPrefabGreen: {fileID: 1816372379788206, guid: 9849bb6cda3a78742b8d61b4f314d36f,
     type: 2}
   wallPrefabCursor: {fileID: 1816372379788206}
+  ParentObj: {fileID: 0}
+  fence: {fileID: 0}
   stepDuration: 1.5
-  _lastDir: {x: 0, y: 0, z: 0}
-  lastDir: {x: 0, y: 0, z: 0, w: 0}
-  mouseVector: {x: 0, y: 0, z: 0}
-  LastMouseVector: {x: 0, y: 0, z: 0}
-  BuildingManagerObj: {fileID: 0}
-  isSnapped: 0
-  mask:
-    serializedVersion: 2
-    m_Bits: 4294967295
 --- !u!114 &114142214644422920
 MonoBehaviour:
   m_ObjectHideFlags: 1

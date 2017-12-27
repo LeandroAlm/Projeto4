@@ -20,45 +20,42 @@ public class InstaceHouse : MonoBehaviour
 
     void Start()
     {
+        CanBuild = true;
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        //if (!isPlaced)
-        //{
-        //BuildingManager.isBuilding = true;
+      
         Vector3 pos = transform.position;
-
 
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
-        if (Physics.Raycast(ray, out hit))
+        if (Physics.Raycast(ray, out hit, 100f, 1 << 8))
         {
             this.transform.position = new Vector3(hit.point.x, 0, hit.point.z);
 
         }
-        //}
+        
 
         if (Input.GetAxis("Mouse ScrollWheel") > 0f)
         {
             Debug.Log("tou");
-            this.transform.Rotate(Vector3.up * 250 * Time.deltaTime, Space.World);
+            this.transform.Rotate(new Vector3(0, 1 * 250 * Time.deltaTime, 0), Space.World);
         }
 
         else if (Input.GetAxis("Mouse ScrollWheel") < 0f) // backwards
         {
             Debug.Log("tou");
-            this.transform.Rotate(Vector3.up * -250 * Time.deltaTime, Space.World);
+            this.transform.Rotate(new Vector3(0, 1 * -250 * Time.deltaTime, 0), Space.World);
         }
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && CanBuild)
         {
-            CanBuild = true;
             isPlaced = true;
-            BuildingManager.isBuilding = false;
 
+            BuildingManager.isBuilding = false;
 
             Instantiate(housePrefab, this.transform.position, this.transform.rotation);
 
@@ -68,9 +65,10 @@ public class InstaceHouse : MonoBehaviour
 
     }
 
-    private void OnCollisionEnter(Collision collision)
+    void OnCollisionEnter(Collision collision)
     {
         CanBuild = false;
+
         for (int i = 0; i < transform.childCount; i++)
         {
             Renderer rend = transform.GetChild(i).GetComponent<Renderer>();
@@ -78,6 +76,7 @@ public class InstaceHouse : MonoBehaviour
             rend.material = redMaterial;
 
         }
+
 
     }
 
