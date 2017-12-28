@@ -24,6 +24,8 @@ public class PLayerControl : MonoBehaviour
     private Camera mainCamera;
     private bool usingAxe = true, usingGun = false;
 
+    public PlayerStatus PlayerStatus;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -31,6 +33,7 @@ public class PLayerControl : MonoBehaviour
         //cam = Camera.main.transform;
         animator = GetComponent<Animator>();
         mainCamera = FindObjectOfType<Camera>();
+        PlayerStatus = GetComponent<PlayerStatus>();
     }
 
     // Update is called once per frame
@@ -40,6 +43,11 @@ public class PLayerControl : MonoBehaviour
         MovementTopDown();
         GunsMovementController();
         ConvertMoveInput();
+    }
+
+    void Update()
+    {
+        DistanceToEnemy();
     }
 
     void ConvertMoveInput()
@@ -161,4 +169,36 @@ public class PLayerControl : MonoBehaviour
     {
         
     }*/
+
+    public void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Enemy")
+        {
+            PlayerStatus.hp -= 30;
+            Debug.Log("Player Life: " + PlayerStatus.hp);
+        }
+    }
+
+    public void DistanceToEnemy()
+    {
+        float distance = 0;
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+
+        for (int enemy = 0; enemy < enemies.Length; enemy++)
+        {
+            distance = Vector3.Distance(transform.position, enemies[enemy].transform.position);
+        }
+
+        if (distance > 2f)
+        {
+            PlayerStatus.distanceToRecover = true;
+        }
+
+        else
+        {
+            PlayerStatus.distanceToRecover = false;
+        }
+
+        Debug.Log("Distance to enemy: " + distance);
+    }
 }

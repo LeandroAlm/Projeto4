@@ -10,6 +10,10 @@ using UnityEngine.SceneManagement;
 public class GameSparksManager : MonoBehaviour
 {
     private static GameSparksManager _instance;
+    public GameSparksRTUnity GameSparksRtUnity { get; set; }
+    public SessionInformation SessionInformation { get; set; }
+    public delegate void AuthenticationCallback(AuthenticationResponse authenticationResponse);
+    public delegate void RegistrationCallback(RegistrationResponse registrationResponse);
 
     public static GameSparksManager Instance()
     {
@@ -24,25 +28,19 @@ public class GameSparksManager : MonoBehaviour
             return null;
         }
     }
-
-    public GameSparksRTUnity GameSparksRtUnity { get; set; }
-    public SessionInformation SessionInformation { get; set; }
-
-    public delegate void AuthenticationCallback(AuthenticationResponse authenticationResponse);
-    public delegate void RegistrationCallback(RegistrationResponse registrationResponse);
-
+    
     public void AuthenticateUser(string userName, string password, RegistrationCallback registrationCallback, AuthenticationCallback authenticationCallback)
     {
-        new RegistrationRequest().SetUserName(userName).SetPassword(password).SetDisplayName(userName).Send((registrationResposnse) =>
+        new RegistrationRequest().SetUserName(userName).SetPassword(password).SetDisplayName(userName).Send((registrationResponse) =>
         {
-            if (!registrationResposnse.HasErrors)
+            if (!registrationResponse.HasErrors)
             {
                 Debug.Log("Registration Successful");
-                registrationCallback(registrationResposnse);
+                registrationCallback(registrationResponse);
             }
             else
             {
-                if (registrationResposnse.NewPlayer == false)
+                if (registrationResponse.NewPlayer == false)
                 {
                     new AuthenticationRequest().SetUserName(userName).SetPassword(password).Send((authenticationResponse) =>
                         {
@@ -59,7 +57,7 @@ public class GameSparksManager : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("Authentication Error " + registrationResposnse.Errors.JSON);
+                    Debug.Log("Authentication Error " + registrationResponse.Errors.JSON);
                 }
             }
         });
@@ -85,7 +83,10 @@ public class GameSparksManager : MonoBehaviour
 
         GameSparksRtUnity = gameObject.AddComponent<GameSparksRTUnity>();
 
-        GSRequestData requestData = new GSRequestData().AddNumber("port", (double)rtSessionInfo.PortId).AddString("host", rtSessionInfo.HostUrl).AddString("accessToken", rtSessionInfo.AccessToken);
+        GSRequestData requestData = new GSRequestData()
+            .AddNumber("port", (double)rtSessionInfo.PortId)
+            .AddString("host", rtSessionInfo.HostUrl)
+            .AddString("accessToken", rtSessionInfo.AccessToken);
 
         Debug.Log((double)rtSessionInfo.PortId);
         Debug.Log(rtSessionInfo.HostUrl);
