@@ -30,7 +30,7 @@ public class WerewolfAnimController : MonoBehaviour {
     void Roar()
     {
         animator.SetBool("roar", true);
-
+        
     }
 
     void Walk()
@@ -73,7 +73,5 @@ public class WerewolfAnimController : MonoBehaviour {
             
         }
         timer -= Time.deltaTime;
-
-        
     }
 }

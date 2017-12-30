@@ -27,7 +27,7 @@ public class GameController : MonoBehaviour
     void Start()
     {
         //SpawnPoint[] spawnPoints = FindObjectsOfType(typeof(SpawnPoint)) as SpawnPoint[];
-
+        Debug.Log("LISTA: " + GameSparksManager.Instance().SessionInformation.PlayersList.Count);
         playersList = new PLayerControl[GameSparksManager.Instance().SessionInformation.PlayersList.Count];
 
         for (int player = 0; player < GameSparksManager.Instance().SessionInformation.PlayersList.Count; player++)

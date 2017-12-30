@@ -13,9 +13,11 @@ public class EnemySmartAI : MonoBehaviour
     private List<Vector3> positions;
     private int Rotate, etapa;
     bool TimeOnOff;
+    Transform GOTarget;
 
     void Start ()
     {
+        GOTarget = transform; 
         //covilpos = Vector3.zero;
         Rotate = 1;
         etapa = 0;
@@ -45,28 +47,21 @@ public class EnemySmartAI : MonoBehaviour
             DecisionIdle();
         if (transform.tag == "Enemy2")
             DesicionRotation();
-
-        /*Debug.Log("Pos aleatoria: " + posDestino);
-        Debug.Log("Etapa: " + etapa);
-        Debug.Log("Rotate: " + Rotate);*/
     }
 
     void DecisionIdle()
     {
         // Inimigo branco
-
         DTBinaryDecision tree = new DTBinaryDecision(
                 () => { return distance > 10; },
                 new DTAction(() =>
                 {
                     // Mover aleatoriamente de x em x segundos
-                    //Debug.Log("Move random!");
                     MoveRandom(transform);
                 }),
                 new DTAction(() =>
                 {
                     // Caso esteja < 10
-                    //Debug.Log("I'm watching you!");
                     GoToPlayer();
                 })
             );
@@ -171,11 +166,13 @@ public class EnemySmartAI : MonoBehaviour
         {
             if (enemy.position != posDestino)
             {
-                float speed = 1f;
-                float step = speed * Time.deltaTime;
-                enemy.position = Vector3.MoveTowards(enemy.position, posDestino, step);
-                // Correção de olhar
-                enemy.LookAt(posDestino);
+                //float speed = 1f;
+                //float step = speed * Time.deltaTime;
+                //enemy.position = Vector3.MoveTowards(enemy.position, posDestino, step);
+                //// Correção de olhar
+                //enemy.LookAt(posDestino);
+                GOTarget.position = posDestino;
+                transform.GetComponent<Unit>().target = GOTarget;
             }
             else
             {
@@ -250,11 +247,12 @@ public class EnemySmartAI : MonoBehaviour
         // AQUI IRA TER UMA ARVORE DE DECISAO, PARA SIMPLIFICAR ESTA A ANDAR SO ATRAZ DO PLAYER
         // decisao de se estiver longe continua a andar atraz dele, se ja estiver perto ataca!
 
-        float speed = 1f;
-        float step = speed * Time.deltaTime;
-        transform.position = Vector3.MoveTowards(transform.position, player.position + Vector3.up / 2, step);
-        // Correção de olhar
-        transform.LookAt(player.position);
+        //float speed = 1f;
+        //float step = speed * Time.deltaTime;
+        //transform.position = Vector3.MoveTowards(transform.position, player.position + Vector3.up / 2, step);
+        //// Correção de olhar
+        //transform.LookAt(player.position);
+        transform.GetComponent<Unit>().target = player;
     }
 
     Vector3 RandomPos()

@@ -47,7 +47,7 @@ public class PLayerControl : MonoBehaviour
 
     void Update()
     {
-        DistanceToEnemy();
+        //DistanceToEnemy();
     }
 
     void ConvertMoveInput()
@@ -170,35 +170,27 @@ public class PLayerControl : MonoBehaviour
         
     }*/
 
-    public void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag == "Enemy")
-        {
-            PlayerStatus.hp -= 30;
-            Debug.Log("Player Life: " + PlayerStatus.hp);
-        }
-    }
+    //REGO
+    //public void DistanceToEnemy()
+    //{
+    //    float distance = 0;
+    //    GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
 
-    public void DistanceToEnemy()
-    {
-        float distance = 0;
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+    //    for (int enemy = 0; enemy < enemies.Length; enemy++)
+    //    {
+    //        distance = Vector3.Distance(transform.position, enemies[enemy].transform.position);
+    //    }
 
-        for (int enemy = 0; enemy < enemies.Length; enemy++)
-        {
-            distance = Vector3.Distance(transform.position, enemies[enemy].transform.position);
-        }
+    //    if (distance > 2f)
+    //    {
+    //        PlayerStatus.distanceToRecover = true;
+    //    }
 
-        if (distance > 2f)
-        {
-            PlayerStatus.distanceToRecover = true;
-        }
+    //    else
+    //    {
+    //        PlayerStatus.distanceToRecover = false;
+    //    }
 
-        else
-        {
-            PlayerStatus.distanceToRecover = false;
-        }
-
-        Debug.Log("Distance to enemy: " + distance);
-    }
+    //    Debug.Log("Distance to enemy: " + distance);
+    //}
 }

@@ -51,30 +51,30 @@ public class BuildingManager : MonoBehaviour
             isBuilding = true;
             Instantiate(foundationPrefab3, Vector3.zero, foundationPrefab3.transform.rotation);
             buildHouse = false;
+            InventoryUI.isOpen = false;
         }
-
-        if (buildTower == true) //&& !isBuilding)
+        else if (buildTower == true) //&& !isBuilding)
         {
             isBuilding = true;
             Instantiate(foundationPrefab4, Vector3.zero, foundationPrefab4.transform.rotation);
             buildTower = false;
+            InventoryUI.isOpen = false;
         }
-
-        if (buildFence == true)
+        else if (buildFence == true)
         {
             isBuilding = true;
             newFence = Instantiate(fenceGreen, Vector3.zero, fenceGreen.transform.rotation);
             buildFence = false;
+            InventoryUI.isOpen = false;
         }
-
-        if (buildFirePit)
+        else if (buildFirePit)
         {
             isBuilding = true;
             newFence = Instantiate(FirePitGreen, Vector3.zero, FirePitGreen.transform.rotation);
             buildFirePit = false;
+            InventoryUI.isOpen = false;
         }
-
-        if (gate)
+        else if (gate)
         {
 
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -93,6 +93,7 @@ public class BuildingManager : MonoBehaviour
                 GateObjGreen = Instantiate(gatePrefabGreen, hit.collider.transform.position, hit.collider.transform.rotation);
 
                 gatePlaced = true;
+                InventoryUI.isOpen = false;
             }
             else
             {
@@ -102,9 +103,6 @@ public class BuildingManager : MonoBehaviour
 
         }
     
-
-      
-
         if (Input.GetMouseButtonDown(0))
         {
             Destroy(fence);
@@ -115,15 +113,12 @@ public class BuildingManager : MonoBehaviour
             }
             gate = false;
         }
+
         //if(isPlaced)
         //{
         //    hitedObj = hit.collider.gameObject;
         //    hitedObj.SetActive(false);
         //    isPlaced = false;
         //}
-
-
-
-        
     }
 }

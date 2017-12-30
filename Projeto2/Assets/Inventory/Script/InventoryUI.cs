@@ -9,7 +9,7 @@ public class InventoryUI : MonoBehaviour
     public GameObject inventoryTitle, craftTitle;
     public Transform PlayerTransform;
     private List<Transform> slotsList;
-    private bool isOpen;
+    public static bool isOpen;
     private PlayerStatus playerStatus;
     public Texture wood, stone, DefaultTexture;
     public Text SlotText;
