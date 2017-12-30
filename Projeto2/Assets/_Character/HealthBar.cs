@@ -17,7 +17,7 @@ public class HealthBar : MonoBehaviour
 
 	void Update ()
     {
-        hp.fillAmount = player.transform.GetComponent<PlayerStatus>().hp / 100f;
+        hp.fillAmount = player.transform.GetComponent<PlayerStatus>().HP / 100f;
         Armor.fillAmount = player.transform.GetComponent<PlayerStatus>().armor / 100f;
     }
 }

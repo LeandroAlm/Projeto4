@@ -4,27 +4,33 @@ using UnityEngine;
 
 public class PlayerStatus : MonoBehaviour
 {
-    public float maxHp = 100, hp;
-    public bool distanceToRecover;
+    public float maxHp = 100, HP;
     public float armor;
-    public float recoverTimer = 0;
     public int wood, stone;
     public GameObject Bag;
     //public GameObject mochila;
     private InventoryUI inventoryUI;
     public bool ExistWood, ExistStone;
+    int HealBuff = 1;
+    float Timer = 0;
 
     private void Start()
     {
         ExistStone = false;
         ExistWood = false;
-        distanceToRecover = true;
         inventoryUI = Bag.GetComponent<InventoryUI>();
     }
 
     void Update()
     {
-        RecoverDamage();
+        
+        if (Input.GetKeyDown(KeyCode.Y))
+        {
+            // If (tem poções)
+            BuffHP();
+        }
+
+        RecouverHP();
     }
 
     public void StoneAmout(int value)
@@ -39,15 +45,42 @@ public class PlayerStatus : MonoBehaviour
         inventoryUI.SetSlot("wood");
     }
 
-    public void RecoverDamage()
+    public void GetDamage(int DamageAmount)
     {
-        if (distanceToRecover == true && hp < maxHp)
+        HP -= DamageAmount;
+    }
+
+    void CheckDie()
+    {
+        if(HP <= 0)
         {
-            //recoverTimer = 0
+            // PLAYER DEAD
+            Debug.Log("Player died!");
+        }
+    }
 
-            hp += 0.1f;
-
-            Debug.Log("Player Recover Life: " + hp);          
+    void RecouverHP()
+    {
+        if (HP < maxHp)
+        {
+            HP += 0.1f * Time.deltaTime * HealBuff;
+            Debug.Log("Player is healing: " + HP);          
+        }
+    }
+    
+    void BuffHP()
+    {
+        if (Timer < 10)
+        {
+            // Buff of HP ON
+            HealBuff = 5;
+            Timer += 1 * Time.deltaTime;
+        }
+        else
+        {
+            // Buff of HP OFF
+            HealBuff = 1;
+            Timer = 0;
         }
     }
 }

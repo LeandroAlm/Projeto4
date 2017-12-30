@@ -22,7 +22,7 @@ public class LobbyManager : MonoBehaviour
 	    {
 	        if (isAvailable)
 	        {
-	            Debug.Log("GameParks Connected");
+	            Debug.Log("GameSparks Connected");
 	        }
 
 	        else

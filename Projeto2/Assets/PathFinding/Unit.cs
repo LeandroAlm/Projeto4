@@ -3,27 +3,39 @@ using System.Collections;
 
 public class Unit : MonoBehaviour
 {
-
-
+    Transform OldTarget;
     public Transform target;
-    float speed = 5;
+    float speed = 1;
     Vector3[] path;
     int targetIndex;
+    
 
     void Start()
     {
+        target = transform;
         PathRequestManager.RequestPath(transform.position, target.position, OnPathFound);
+        OldTarget = target;
     }
 
     public void OnPathFound(Vector3[] newPath, bool pathSuccessful)
     {
-        if (pathSuccessful)
+        if (OldTarget == target)
         {
-            path = newPath;
-            targetIndex = 0;
-            StopCoroutine("FollowPath");
-            StartCoroutine("FollowPath");
+            if (pathSuccessful)
+            {
+                path = newPath;
+                targetIndex = 0;
+                StopCoroutine("FollowPath");
+                StartCoroutine("FollowPath");
+            }
         }
+        else
+        {
+            // Mudou de target temos de calcular de novo!
+            PathRequestManager.RequestPath(transform.position, target.position, OnPathFound);
+        OldTarget = target;
+        }
+        
     }
 
     IEnumerator FollowPath()

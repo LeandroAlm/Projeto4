@@ -14,6 +14,7 @@ public class Shot : MonoBehaviour
     bool shooting;
     float attackSpeed = 3f;
     float attackColdown = 0f;
+    public int PistolDamage;
 
     void Start ()
     {
@@ -74,6 +75,10 @@ public class Shot : MonoBehaviour
                 {
                     GameObject go =  Instantiate(WoodEffect, hit.point, Quaternion.LookRotation(hit.normal));
                     Destroy(go, 1f);
+                }
+                else if (hit.collider.tag == "Enemy")
+                {
+                    hit.collider.GetComponentInParent<WolfAnimController>().GetDamage(PistolDamage);
                 }
             }
         }
