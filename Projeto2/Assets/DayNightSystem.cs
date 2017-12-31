@@ -21,7 +21,7 @@ public class DayNightSystem : MonoBehaviour
         width = 250;
         height = 250;
 
-        mapCenter = new Vector3(250, 0, 250);
+        mapCenter = new Vector3(0, 0,0);
 
         light = GetComponent<Light>();
     }
@@ -31,9 +31,9 @@ public class DayNightSystem : MonoBehaviour
         RenderSettings.ambientIntensity = 100;
         timeCounter += Time.deltaTime * speed;
 
-        float x = Mathf.Cos(timeCounter) * width + 340;
+        float x = Mathf.Cos(timeCounter) * width;
         float y = Mathf.Sin(timeCounter) * height;
-        float z = 250;
+        float z = 0;
 
         transform.position = new Vector3(x, y, z);
         transform.LookAt(mapCenter);
