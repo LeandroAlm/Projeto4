@@ -112,7 +112,7 @@
     <Compile Include="Assets\BasicBandit\DemoSceneBasicBandit\Scripts\ButtonFunction.cs" />
     <Compile Include="Assets\BasicBandit\DemoSceneBasicBandit\Scripts\MovementCamera.cs" />
     <Compile Include="Assets\BasicBandit\PlayerController1.cs" />
-    <Compile Include="Assets\DayNightSystem.cs" />
+    <Compile Include="Assets\DayNight.cs" />
     <Compile Include="Assets\Downloads\Nature Pack\Standard Assets\Characters\FirstPersonCharacter\Scripts\FirstPersonController.cs" />
     <Compile Include="Assets\Downloads\Nature Pack\Standard Assets\Characters\FirstPersonCharacter\Scripts\HeadBob.cs" />
     <Compile Include="Assets\Downloads\Nature Pack\Standard Assets\Characters\FirstPersonCharacter\Scripts\MouseLook.cs" />
