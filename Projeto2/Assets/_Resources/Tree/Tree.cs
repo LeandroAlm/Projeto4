@@ -11,9 +11,12 @@ public class Tree : MonoBehaviour
 
     bool fade = false;
 
+    private GameObject player;
+
     private void Start()
     {
         cam = Camera.main;
+
 
     }
 
@@ -34,6 +37,7 @@ public class Tree : MonoBehaviour
 
         }
 
+
     }
 
     public int GetAmount()
@@ -47,11 +51,24 @@ public class Tree : MonoBehaviour
         hp--;
         if (hp == 0)
         {
-            Destroy(gameObject, 0.5f);
+            player = GameObject.FindGameObjectWithTag("Player");
+
+            Rigidbody rigidBody = this.gameObject.AddComponent<Rigidbody>();
+
+            rigidBody.mass = 5;
+
+            rigidBody.AddForce(player.gameObject.transform.forward, ForceMode.Impulse);
+
+
+            Invoke("Destroy", 9f);
         }
     }
 
+    void Destroy()
+    {
+        Destroy(gameObject, 0.5f);
 
+    }
 }
 
 
