@@ -60,13 +60,13 @@ public class Tree : MonoBehaviour
             rigidBody.AddForce(player.gameObject.transform.forward, ForceMode.Impulse);
 
 
-            Invoke("Destroy", 9f);
+            Invoke("Destroy", 5f);
         }
     }
 
     void Destroy()
     {
-        Destroy(gameObject, 0.5f);
+        Destroy(gameObject);
 
     }
 }

@@ -13,21 +13,26 @@ public class PlayerStatus : MonoBehaviour
     public bool ExistWood, ExistStone;
     int HealBuff = 1;
     float Timer = 0;
+    public static List<Transform> Campfire;
 
     private void Start()
     {
         ExistStone = false;
         ExistWood = false;
         inventoryUI = Bag.GetComponent<InventoryUI>();
+        Campfire = new List<Transform>();
     }
 
     void Update()
     {
-        
-        if (Input.GetKeyDown(KeyCode.Y))
+        foreach (Transform CF in Campfire)
         {
-            // If (tem poções)
-            BuffHP();
+            float DistanceToBuff;
+            DistanceToBuff = Vector3.Distance(transform.position, CF.transform.position);
+            if (DistanceToBuff < 1)
+            {
+                BuffHP();
+            }
         }
 
         RecouverHP();
@@ -70,6 +75,7 @@ public class PlayerStatus : MonoBehaviour
     
     void BuffHP()
     {
+        Debug.Log("Buff HP ++");
         if (Timer < 10)
         {
             // Buff of HP ON

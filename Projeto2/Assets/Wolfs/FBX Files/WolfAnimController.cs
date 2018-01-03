@@ -76,7 +76,7 @@ public class WolfAnimController : MonoBehaviour {
 
     public void GetDamage(int DamageAmount)
     {
-        HP -= DamageAmount * Time.deltaTime;
+        HP -= DamageAmount;
         CheckDie();
     }
 

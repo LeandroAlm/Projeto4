@@ -36,7 +36,10 @@ public class LobbyManager : MonoBehaviour
 	        Debug.Log("No Match Found");
 	    };
 
-	    MatchFoundMessage.Listener += OnMatchFound;
+	    MatchFoundMessage.Listener += OnMatchFound =>
+        {
+            Debug.Log("Levei no pacote!");
+        };
 
         searchingPlayersText.GetComponent<Text>();
 	    playerNameInstruction.GetComponent<Text>();

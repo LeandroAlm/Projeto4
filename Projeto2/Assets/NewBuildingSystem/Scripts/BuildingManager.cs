@@ -19,8 +19,7 @@ public class BuildingManager : MonoBehaviour
     public static bool gate = false;
     public static bool buildFence = false;
     public static bool buildFirePit = false;
-
-
+    
 
     public static bool isBuilding;
 
@@ -71,6 +70,7 @@ public class BuildingManager : MonoBehaviour
         {
             isBuilding = true;
             newFence = Instantiate(FirePitGreen, Vector3.zero, FirePitGreen.transform.rotation);
+            PlayerStatus.Campfire.Add(newFence.transform);
             buildFirePit = false;
             InventoryUI.isOpen = false;
         }

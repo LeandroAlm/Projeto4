@@ -57,7 +57,6 @@ public class CraftUI : MonoBehaviour
         else if (slotNumber == 4)
         {
             BuildingManager.buildFirePit = true;
-
         }
 
         Craft.SetActive(false);

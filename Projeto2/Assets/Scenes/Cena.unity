@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.368
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.26917684, g: 0.3005585, b: 0.3534719, a: 0.368}
+  m_IndirectSpecularColor: {r: 0.2691767, g: 0.3005581, b: 0.35347015, a: 0.368}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -1197,7 +1197,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4489722470658526, guid: 519d456c4513afb4888fb9b455df8ecf, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -36.6
+      value: -26.65
       objectReference: {fileID: 0}
     - target: {fileID: 4489722470658526, guid: 519d456c4513afb4888fb9b455df8ecf, type: 2}
       propertyPath: m_LocalPosition.y
@@ -1205,7 +1205,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4489722470658526, guid: 519d456c4513afb4888fb9b455df8ecf, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 151.3
+      value: 67.1
       objectReference: {fileID: 0}
     - target: {fileID: 4489722470658526, guid: 519d456c4513afb4888fb9b455df8ecf, type: 2}
       propertyPath: m_LocalRotation.x
@@ -4672,6 +4672,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4c10e5fc43c09a247b69b2e08359f902, type: 3}
   m_IsPrefabParent: 0
+--- !u!1 &760285126 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1160392739011286, guid: 519d456c4513afb4888fb9b455df8ecf,
+    type: 2}
+  m_PrefabInternal: {fileID: 199608869}
 --- !u!1 &769742353
 GameObject:
   m_ObjectHideFlags: 0
@@ -4936,6 +4941,10 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: ccc74a1e2c0fedf4799f4c234219b9f2, type: 2}
+    - target: {fileID: 100000, guid: 2c2bd3d067467cd4280c1f645dda39e2, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2c2bd3d067467cd4280c1f645dda39e2, type: 3}
   m_IsPrefabParent: 0
@@ -11022,7 +11031,7 @@ MonoBehaviour:
   craftBag: {fileID: 231664093}
   inventoryTitle: {fileID: 979816914}
   craftTitle: {fileID: 1372281068}
-  PlayerTransform: {fileID: 1720502774}
+  Player: {fileID: 760285126}
   wood: {fileID: 2800000, guid: d64eda2c3b63c604c8937846808bdc7b, type: 3}
   stone: {fileID: 2800000, guid: 8ce9942adbf677943ac71e411b95a83b, type: 3}
   DefaultTexture: {fileID: 2800000, guid: 8e99cf9c22ff8664392214db8b1976b9, type: 3}

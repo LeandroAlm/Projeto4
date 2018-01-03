@@ -7,7 +7,7 @@ public class InventoryUI : MonoBehaviour
 {
     public GameObject inventoryBag, craftBag;
     public GameObject inventoryTitle, craftTitle;
-    public Transform PlayerTransform;
+    public GameObject Player;
     private List<Transform> slotsList;
     public static bool isOpen;
     private PlayerStatus playerStatus;
@@ -18,51 +18,61 @@ public class InventoryUI : MonoBehaviour
     [HideInInspector]
     public Farm farm;
 
-	void Start ()
-	{
+    void Start()
+    {
         inventoryBag.SetActive(false);
         inventoryTitle.SetActive(false);
         craftBag.SetActive(false);
         craftTitle.SetActive(false);
-	    isOpen = false;
-
-	    playerStatus = PlayerTransform.GetComponent<PlayerStatus>();
-	    farm = GetComponent<Farm>();
+        isOpen = false;
+        playerStatus = Player.GetComponent<PlayerStatus>();
+        farm = GetComponent<Farm>();
         slotsList = new List<Transform>();
 
-	    Button craftButton = CraftButton.GetComponent<Button>();
-	    Button inventoryButton = InventoryButton.GetComponent<Button>();
+        Button craftButton = CraftButton.GetComponent<Button>();
+        Button inventoryButton = InventoryButton.GetComponent<Button>();
 
         craftButton.onClick.AddListener(CraftClickButton);
         inventoryButton.onClick.AddListener(InventoryClickButton);
 
-	    for (int i = 0; i < 20; i++)
-	    {
-	        slotsList.Add(inventoryBag.transform.GetChild(i));
-        }
-	}
-	
-	void Update ()
-    {
-        if (Input.GetKeyDown(KeyCode.I) && isOpen == false)
+        for (int i = 0; i < 20; i++)
         {
-            isOpen = true;
-            inventoryBag.SetActive(true);
-            inventoryTitle.SetActive(true);
-            craftTitle.SetActive(true);
-            PlayerTransform.GetComponent<Shot>().enabled = false;
-        }
-
-        else if (Input.GetKeyDown(KeyCode.I) || Input.GetKeyDown(KeyCode.Escape) && isOpen == true)
-        {
-            // O QUE ESTA AQUI TEM DE PASSAR PARA UMA FUNÇÃO, DPS PARA CHAMAR TBM QUANDO APLICAS OBJS
-            isOpen = false;
-            inventoryBag.SetActive(false);
-            inventoryTitle.SetActive(false);
-            craftTitle.SetActive(false);
-            PlayerTransform.GetComponent<Shot>().enabled = true;
+            slotsList.Add(inventoryBag.transform.GetChild(i));
         }
     }
+
+    void Update()
+    {
+        if (isOpen == false)
+        {
+            Invoke("WaitToShoot", 2);
+            if (Input.GetKeyDown(KeyCode.I))
+            {
+                isOpen = true;
+                inventoryBag.SetActive(true);
+                inventoryTitle.SetActive(true);
+                craftTitle.SetActive(true);
+            }
+        }
+        else
+        {
+            Player.GetComponent<Shot>().enabled = false;
+            if (Input.GetKeyDown(KeyCode.I) || Input.GetKeyDown(KeyCode.Escape))
+            {
+                // O QUE ESTA AQUI TEM DE PASSAR PARA UMA FUNÇÃO, DPS PARA CHAMAR TBM QUANDO APLICAS OBJS
+                isOpen = false;
+                inventoryBag.SetActive(false);
+                inventoryTitle.SetActive(false);
+                craftTitle.SetActive(false);
+            }
+        }
+    }
+
+    void WaitToShoot()
+    {
+        Player.GetComponent<Shot>().enabled = true;
+    }
+    
 
     public void CraftClickButton()
     {
