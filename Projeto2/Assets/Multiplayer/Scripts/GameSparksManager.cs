@@ -66,6 +66,7 @@ public class GameSparksManager : MonoBehaviour
     public void FindPlayers()
     {
         Debug.Log("Attempting Matchmaking");
+
         new MatchmakingRequest().SetMatchShortCode("MRLMatch").SetSkill(0).Send((matchmakingResponse) =>
             {
                 if (matchmakingResponse.HasErrors)
@@ -80,6 +81,8 @@ public class GameSparksManager : MonoBehaviour
         Debug.Log("Creating New RT Session Instance");
 
         SessionInformation = rtSessionInfo;
+
+        Debug.Log(rtSessionInfo);
 
         GameSparksRtUnity = gameObject.AddComponent<GameSparksRTUnity>();
 
