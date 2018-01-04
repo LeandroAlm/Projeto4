@@ -5,23 +5,24 @@ public class Unit : MonoBehaviour
 {
 
     public Transform target;
-    float speed = 20;
+    float speed = 7f;
     Vector3[] path;
     int targetIndex;
-    Vector3 OldPos;
+    
+
+    Vector3 playerPos;
 
     void Start()
     {
-        OldPos = transform.position;
+        playerPos = target.transform.position;
         PathRequestManager.RequestPath(transform.position, target.position, OnPathFound);
     }
 
     private void Update()
     {
-        if (OldPos != transform.position)
+        if (playerPos != target.transform.position)
         {
             // Muda a Pos logo tem de recalcular o caminho!
-            OldPos = transform.position;
             PathRequestManager.RequestPath(transform.position, target.position, OnPathFound);
         }
 
