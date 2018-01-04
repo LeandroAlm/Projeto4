@@ -18,7 +18,7 @@ public class WerewolfAnimController : MonoBehaviour {
 
     void Update ()
     {
-        
+        Run();
     }
 
     void Death()

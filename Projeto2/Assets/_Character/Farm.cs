@@ -18,42 +18,61 @@ public class Farm : MonoBehaviour
 
     Vector3 forward;
 
-	// Use this for initialization
-	void Start ()
+    // Use this for initialization
+    void Start ()
     {
         player = GetComponent<Transform>();
         anim = GetComponent<Animator>();
         isStone = false;
         isWood = false;
     }
-	
-	void Update ()
+
+    private void OnTriggerEnter(Collider collision)
+    {
+        if (collision.gameObject.tag == "Stone")
+        {
+            isStone = true;
+            player.GetComponent<PlayerStatus>().StoneAmout(collision.GetComponent<Stone>().GetAmount());
+            collision.GetComponent<Stone>().Damage();
+        }
+        else if (collision.tag == "Tree")
+        {
+            Debug.Log("Wood HIT");
+            isWood = true;
+            player.GetComponent<PlayerStatus>().WoodAmout(collision.GetComponent<Tree>().GetAmount());
+            collision.GetComponent<Tree>().Damage();
+        }
+    }
+
+
+
+    void Update ()
     {
         if (Input.GetMouseButtonDown(0) && AxeGO.activeSelf)
         {
             anim.SetTrigger("Farming");
-            RaycastHit hit;
-            forward = transform.TransformDirection(Vector3.forward);
-            Debug.DrawRay(transform.position + Vector3.up, forward, Color.green);
-            Ray ray = new Ray(transform.position, transform.forward);
+            //RaycastHit hit;
+            //forward = transform.TransformDirection(Vector3.forward);
+            //Debug.DrawRay(transform.position + Vector3.up, forward, Color.green);
+            //Ray ray = new Ray(transform.position, transform.forward);
             
-            if (Physics.Raycast(ray, out hit, 4))
-            {
-                if (hit.collider.tag == "Stone")
-                {
-                    Debug.Log("Stone HIT");
-                    isStone = true;
-                    player.GetComponent<PlayerStatus>().StoneAmout(hit.collider.GetComponent<Stone>().GetAmount());
-                    hit.collider.GetComponent<Stone>().Damage();
-                }
-                else if (hit.collider.tag == "Tree")
-                {
-                    Debug.Log("Wood HIT");
-                    isWood = true;
-                    player.GetComponent<PlayerStatus>().WoodAmout(hit.collider.GetComponent<Tree>().GetAmount());
-                    hit.collider.GetComponent<Tree>().Damage();
-                }
-            }
+            //if (Physics.Raycast(ray, out hit, 4))
+            //{
+            //    if (hit.collider.tag == "Stone")
+            //    {
+            //        Debug.Log("Stone HIT");
+            //        isStone = true;
+            //        player.GetComponent<PlayerStatus>().StoneAmout(hit.collider.GetComponent<Stone>().GetAmount());
+            //        hit.collider.GetComponent<Stone>().Damage();
+            //    }
+            //    else if (hit.collider.tag == "Tree")
+            //    {
+            //        Debug.Log("Wood HIT");
+            //        isWood = true;
+            //        player.GetComponent<PlayerStatus>().WoodAmout(hit.collider.GetComponent<Tree>().GetAmount());
+            //        hit.collider.GetComponent<Tree>().Damage();
+            //    }
+            //}
         }
 
         isStone = false;
