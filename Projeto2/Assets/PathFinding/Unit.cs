@@ -3,39 +3,39 @@ using System.Collections;
 
 public class Unit : MonoBehaviour
 {
-    Transform OldTarget;
+
     public Transform target;
-    float speed = 1;
+    float speed = 20;
     Vector3[] path;
     int targetIndex;
-    
+    Vector3 OldPos;
 
     void Start()
     {
-        target = transform;
+        OldPos = transform.position;
         PathRequestManager.RequestPath(transform.position, target.position, OnPathFound);
-        OldTarget = target;
+    }
+
+    private void Update()
+    {
+        if (OldPos != transform.position)
+        {
+            // Muda a Pos logo tem de recalcular o caminho!
+            OldPos = transform.position;
+            PathRequestManager.RequestPath(transform.position, target.position, OnPathFound);
+        }
+
     }
 
     public void OnPathFound(Vector3[] newPath, bool pathSuccessful)
     {
-        if (OldTarget == target)
+        if (pathSuccessful)
         {
-            if (pathSuccessful)
-            {
-                path = newPath;
-                targetIndex = 0;
-                StopCoroutine("FollowPath");
-                StartCoroutine("FollowPath");
-            }
+            path = newPath;
+            targetIndex = 0;
+            StopCoroutine("FollowPath");
+            StartCoroutine("FollowPath");
         }
-        else
-        {
-            // Mudou de target temos de calcular de novo!
-            PathRequestManager.RequestPath(transform.position, target.position, OnPathFound);
-        OldTarget = target;
-        }
-        
     }
 
     IEnumerator FollowPath()
@@ -65,7 +65,7 @@ public class Unit : MonoBehaviour
         {
             for (int i = targetIndex; i < path.Length; i++)
             {
-                Gizmos.color = Color.red;
+                Gizmos.color = Color.black;
                 Gizmos.DrawCube(path[i], Vector3.one);
 
                 if (i == targetIndex)

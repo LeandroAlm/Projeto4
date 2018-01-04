@@ -144,6 +144,12 @@ public class GameSparksManager : MonoBehaviour
         }
         else
         {
+            switch (rtPacket.OpCode)
+            {
+                case 100:
+                    SceneManager.LoadScene(1);
+                    break;
+            }
             return;
         }
 
@@ -154,6 +160,9 @@ public class GameSparksManager : MonoBehaviour
                 break;
             case 3:
                 GameController.Instance().RegisterPartnerCollision(rtPacket);
+                break;
+            case 100:
+                SceneManager.LoadScene(1);
                 break;
         }
     }

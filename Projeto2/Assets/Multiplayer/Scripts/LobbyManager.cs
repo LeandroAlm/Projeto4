@@ -35,8 +35,8 @@ public class LobbyManager : MonoBehaviour
 	    {
 	        Debug.Log("No Match Found");
 	    };
-
-	    MatchFoundMessage.Listener += OnMatchFound;
+        
+        MatchFoundMessage.Listener += OnMatchFound;
 
         searchingPlayersText.GetComponent<Text>();
 	    playerNameInstruction.GetComponent<Text>();
@@ -73,7 +73,7 @@ public class LobbyManager : MonoBehaviour
 	void Update ()
     {
         loadingSlider.value += 0.01f;
-
+        
         if (loadingSlider.value >= 1)
         {
             loadingSlider.value = 0;
@@ -133,7 +133,7 @@ public class LobbyManager : MonoBehaviour
         Debug.Log("Access Token: " + matchFoundMessage.AccessToken);
         Debug.Log("Match Id: " + matchFoundMessage.MatchId);
         Debug.Log("Opponents: " + matchFoundMessage.Participants.Count());
-
+        
         foreach (MatchFoundMessage._Participant participant in matchFoundMessage.Participants)
         {
             Debug.Log("Player: " + participant.PeerId);
