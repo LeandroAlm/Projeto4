@@ -76,7 +76,7 @@ public class EnemyAIunit : MonoBehaviour {
             Debug.Log("A ir para um Random!!!");
 
             //NODE------------------------------------------------------------------------------------
-            Node node = grid.NodeFromWorldPoint(player.transform.position);
+            Node node = grid.NodeFromWorldPoint(posDestino);
             GOTarget.position = node.worldPosition;
 
             transform.GetComponent<Unit>().playerPos = posDestino;
