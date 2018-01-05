@@ -25,9 +25,16 @@ public class BuildWall2 : MonoBehaviour
     Ray ray;
 
 
+    Grid grid;
 
+    public GameObject pathFindingObj;
     void Start()
     {
+        pathFindingObj = GameObject.FindGameObjectWithTag("A");
+
+        grid = pathFindingObj.gameObject.GetComponent<Grid>();
+
+
         check = false;
 
         canBuild = false;
@@ -123,6 +130,8 @@ public class BuildWall2 : MonoBehaviour
         {
             if (sizeDistance > 2.6f)
             {
+
+                
                 nextPos = fence.gameObject.transform.position;
 
                 newDir = mouseVector - posIni;
@@ -133,6 +142,7 @@ public class BuildWall2 : MonoBehaviour
                 posIni = mouseVector;
 
                 sizeDistance = 0;
+
 
                 InstantiateWallGreen();
             }
@@ -152,6 +162,12 @@ public class BuildWall2 : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit, 100f, 1 << 8))
         {
+            if (Input.GetMouseButton(0))
+            {
+                Node node = grid.NodeFromWorldPoint(hit.point);
+                node.walkable = false;
+            }
+
             return true;
         }
         else

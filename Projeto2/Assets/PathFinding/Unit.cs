@@ -15,6 +15,8 @@ public class Unit : MonoBehaviour
 
     Vector3 direction;
 
+    Vector3 lastVector;
+
     //public static bool isAttacking;
 
     void Start()
@@ -53,12 +55,16 @@ public class Unit : MonoBehaviour
             path = newPath;
             targetIndex = 0;
             StopCoroutine("FollowPath");
+
             StartCoroutine("FollowPath");
+
         }
     }
 
     IEnumerator FollowPath()
     {
+        Debug.Log("lastVector" + lastVector);
+
         currentWaypoint = path[0];
         while (true)
         {
@@ -72,10 +78,14 @@ public class Unit : MonoBehaviour
                 currentWaypoint = path[targetIndex];
             }
 
+
             transform.position = Vector3.MoveTowards(transform.position, currentWaypoint, speed * Time.deltaTime);
+
             yield return null;
 
         }
+
+
     }
 
     public void CalculateWay()

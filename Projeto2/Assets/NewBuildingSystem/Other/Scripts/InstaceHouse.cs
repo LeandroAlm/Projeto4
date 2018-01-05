@@ -66,6 +66,8 @@ public class InstaceHouse : MonoBehaviour
 
     }
 
+  
+
     void OnCollisionEnter(Collision collision)
     {
         CanBuild = false;

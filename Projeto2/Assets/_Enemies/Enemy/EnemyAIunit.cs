@@ -78,7 +78,7 @@ public class EnemyAIunit : MonoBehaviour {
             //NODE------------------------------------------------------------------------------------
             Node node = grid.NodeFromWorldPoint(posDestino);
             GOTarget.position = node.worldPosition;
-
+            
             transform.GetComponent<Unit>().playerPos = posDestino;
             transform.GetComponent<Unit>().CalculateWay();
         }

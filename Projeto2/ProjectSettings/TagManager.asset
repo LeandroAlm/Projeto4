@@ -21,6 +21,7 @@ TagManager:
   - SouthColliderVert
   - SouthCollider
   - woodFence
+  - A
   layers:
   - Default
   - TransparentFX
