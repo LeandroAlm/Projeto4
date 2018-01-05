@@ -19,14 +19,16 @@ public class Farm : MonoBehaviour
     Vector3 forward;
 
     public static bool axeSwing;
+    public bool playerFarmed;
 
     // Use this for initialization
-    void Start ()
+    public void Start ()
     {
         player = GetComponent<Transform>();
         anim = GetComponent<Animator>();
         isStone = false;
         isWood = false;
+        playerFarmed = false;
     }
 
     private void OnTriggerEnter(Collider collision)
@@ -34,35 +36,35 @@ public class Farm : MonoBehaviour
         if (collision.gameObject.tag == "Stone")
         {
             isStone = true;
-            player.GetComponent<PlayerStatus>().StoneAmout(collision.GetComponent<Stone>().GetAmount());
-            collision.GetComponent<Stone>().Damage();
+            playerFarmed = true;
+            player.GetComponent<PlayerStatus>().StoneAmount(collision.GetComponent<Stone>().GetAmount());
+            collision.GetComponent<Stone>().Damage();         
         }
+
         else if (collision.tag == "Tree")
         {
             Debug.Log("Wood HIT");
             isWood = true;
-            player.GetComponent<PlayerStatus>().WoodAmout(collision.GetComponent<Tree>().GetAmount());
+            playerFarmed = true;
+            player.GetComponent<PlayerStatus>().WoodAmount(collision.GetComponent<Tree>().GetAmount());
             collision.GetComponent<Tree>().Damage();
         }
     }
 
 
 
-    void Update ()
+    public void Update ()
     {
         if (Input.GetMouseButtonDown(0) && AxeGO.activeSelf)
         {
             //axeSwing = true;
             anim.SetTrigger("Farming");
 
-
-
-
             //RaycastHit hit;
             //forward = transform.TransformDirection(Vector3.forward);
             //Debug.DrawRay(transform.position + Vector3.up, forward, Color.green);
             //Ray ray = new Ray(transform.position, transform.forward);
-            
+
             //if (Physics.Raycast(ray, out hit, 4))
             //{
             //    if (hit.collider.tag == "Stone")
@@ -85,7 +87,6 @@ public class Farm : MonoBehaviour
         else if (Input.GetMouseButtonDown(1) && AxeGO.activeSelf)
         {
             anim.SetTrigger("attack2");
-
         }
 
         isStone = false;

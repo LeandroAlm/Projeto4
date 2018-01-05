@@ -73,7 +73,6 @@ public class InventoryUI : MonoBehaviour
         Player.GetComponent<Shot>().enabled = true;
     }
     
-
     public void CraftClickButton()
     {
         Debug.Log("Craft button clicked");

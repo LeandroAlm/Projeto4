@@ -71,13 +71,13 @@ public class PlayerClickMovement : MonoBehaviour
 
                     if (hit.collider.tag == "Stone")
                     {
-                        transform.GetComponent<PlayerStatus>().StoneAmout(hit.collider.GetComponent<Stone>().GetAmount());
+                        transform.GetComponent<PlayerStatus>().StoneAmount(hit.collider.GetComponent<Stone>().GetAmount());
                         hit.collider.GetComponent<Stone>().Damage();
                     }
 
                     else if (hit.collider.tag == "Tree")
                     {
-                        transform.GetComponent<PlayerStatus>().WoodAmout(hit.collider.GetComponent<Tree>().GetAmount());
+                        transform.GetComponent<PlayerStatus>().WoodAmount(hit.collider.GetComponent<Tree>().GetAmount());
                         hit.collider.GetComponent<Tree>().Damage();
                     }
                 }               

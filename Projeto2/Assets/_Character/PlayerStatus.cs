@@ -38,13 +38,13 @@ public class PlayerStatus : MonoBehaviour
         RecouverHP();
     }
 
-    public void StoneAmout(int value)
+    public void StoneAmount(int value)
     {
         stone += value;
         inventoryUI.SetSlot("stone");
     }
 
-    public void WoodAmout(int value)
+    public void WoodAmount(int value)
     {
         wood += value;
         inventoryUI.SetSlot("wood");
