@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.368
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.26917684, g: 0.3005585, b: 0.3534719, a: 0.368}
+  m_IndirectSpecularColor: {r: 0.2691767, g: 0.3005581, b: 0.35347015, a: 0.368}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -3211,6 +3211,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   howlSound: {fileID: 8300000, guid: a982a6fd16cf165479023e3efda739c1, type: 3}
   Mouth: {fileID: 223292526}
+  Meat: {fileID: 1000011546679732, guid: c50664c203e2d3d4bbe40a0ffea7d149, type: 2}
   Bite: 15
   HP: 100
 --- !u!82 &405386805
@@ -4494,6 +4495,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1720502774}
+  playerPos: {x: 0, y: 0, z: 0}
 --- !u!4 &681445407 stripped
 Transform:
   m_PrefabParentObject: {fileID: 410354, guid: ce9ff620d79392c4c8280b4156f55870, type: 2}
@@ -4656,7 +4658,7 @@ Prefab:
         type: 2}
       propertyPath: target
       value: 
-      objectReference: {fileID: 1720502774}
+      objectReference: {fileID: 1851483316}
     - target: {fileID: 114566020176277706, guid: b739a525cf5eeca488763d8f9b3474cb,
         type: 2}
       propertyPath: player
@@ -4676,7 +4678,8 @@ Prefab:
       propertyPath: GOTarget
       value: 
       objectReference: {fileID: 1851483316}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114566020176277706, guid: b739a525cf5eeca488763d8f9b3474cb, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: b739a525cf5eeca488763d8f9b3474cb, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &726070417
@@ -5146,6 +5149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1720502774}
+  playerPos: {x: 0, y: 0, z: 0}
 --- !u!1001 &819492528
 Prefab:
   m_ObjectHideFlags: 0
@@ -5203,7 +5207,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 2c2bd3d067467cd4280c1f645dda39e2, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2c2bd3d067467cd4280c1f645dda39e2, type: 3}
@@ -5758,6 +5762,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 23
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
+--- !u!1 &955659575 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1792479780489628, guid: b739a525cf5eeca488763d8f9b3474cb,
+    type: 2}
+  m_PrefabInternal: {fileID: 721692889}
+--- !u!114 &955659577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 955659575}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b251fab3003861140b5c0436e7864bc1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GOTarget: {fileID: 1851483316}
+  player: {fileID: 1720502774}
 --- !u!1001 &956205000
 Prefab:
   m_ObjectHideFlags: 0
@@ -7889,7 +7911,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1388488535
 Transform:
   m_ObjectHideFlags: 0
@@ -11549,6 +11571,7 @@ MonoBehaviour:
   Player: {fileID: 760285126}
   wood: {fileID: 2800000, guid: d64eda2c3b63c604c8937846808bdc7b, type: 3}
   stone: {fileID: 2800000, guid: 8ce9942adbf677943ac71e411b95a83b, type: 3}
+  meat: {fileID: 2800000, guid: 8fee25decd5980b45b6197fe91206b62, type: 3}
   DefaultTexture: {fileID: 2800000, guid: 8e99cf9c22ff8664392214db8b1976b9, type: 3}
   SlotText: {fileID: 146721890}
   InventoryButton: {fileID: 919598317}

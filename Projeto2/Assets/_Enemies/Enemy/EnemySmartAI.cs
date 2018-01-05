@@ -15,6 +15,10 @@ public class EnemySmartAI : MonoBehaviour
     bool TimeOnOff;
     public Transform GOTarget;
 
+    
+    //##############################################CODIGO SO PARA O COVIL########################################
+
+
     void Start ()
     {
         //covilpos = Vector3.zero;
@@ -25,47 +29,25 @@ public class EnemySmartAI : MonoBehaviour
         WaitThisTime = 0.0f;
         TimeOnOff = true;
 
-        if (transform.tag == "Enemy2")
-        {
-            bichos = new Dictionary<Vector3, Transform>();
-            bichos.Add(transform.GetChild(0).position, transform.GetChild(0));
-            bichos.Add(transform.GetChild(1).position, transform.GetChild(1));
-            bichos.Add(transform.GetChild(2).position, transform.GetChild(2));
-            positions = new List<Vector3>();
-            positions.Add(transform.GetChild(0).position);
-            positions.Add(transform.GetChild(1).position);
-            positions.Add(transform.GetChild(2).position);
-        }
+        AddToLists();
     }
     
-
 	void Update ()
     {
         distance = Vector3.Distance(transform.position, player.position);
-        if (transform.tag == "Enemy")
-            DecisionIdle();
-        if (transform.tag == "Enemy2")
-            DesicionRotation();
+        DesicionRotation();
     }
 
-    void DecisionIdle()
+    void AddToLists()
     {
-        // Inimigo branco
-        DTBinaryDecision tree = new DTBinaryDecision(
-                () => { return distance > 10; },
-                new DTAction(() =>
-                {
-                    // Mover aleatoriamente de x em x segundos
-                    Debug.Log("Estou a ir random!");
-                    MoveRandom(transform);
-                }),
-                new DTAction(() =>
-                {
-                    // Caso esteja < 10
-                    GoToPlayer();
-                })
-            );
-        tree.MakeDecision().Run();
+        bichos = new Dictionary<Vector3, Transform>();
+        bichos.Add(transform.GetChild(0).position, transform.GetChild(0));
+        bichos.Add(transform.GetChild(1).position, transform.GetChild(1));
+        bichos.Add(transform.GetChild(2).position, transform.GetChild(2));
+        positions = new List<Vector3>();
+        positions.Add(transform.GetChild(0).position);
+        positions.Add(transform.GetChild(1).position);
+        positions.Add(transform.GetChild(2).position);
     }
 
     void DesicionRotation()
@@ -162,49 +144,23 @@ public class EnemySmartAI : MonoBehaviour
 
     void MoveRandom(Transform enemy)
     {
-        if (transform.tag != "Enemy2")
+        if (enemy.position != posDestino)
         {
-            if (enemy.position != posDestino)
-            {
-                //float speed = 1f;
-                //float step = speed * Time.deltaTime;
-                //enemy.position = Vector3.MoveTowards(enemy.position, posDestino, step);
-                //// Correção de olhar
-                //enemy.LookAt(posDestino);
-                GOTarget.position = posDestino;
-                transform.GetComponent<Unit>().target.position = GOTarget.position;
-            }
-            else
-            {
-                if (takeTime > 10.0f)
-                {
-                    takeTime = 0.0f;
-                    posDestino = RandomPos();
-                }
-                else
-                    takeTime += Time.deltaTime;
-            }
+            //float speed = 1f;
+            //float step = speed * Time.deltaTime;
+            //enemy.position = Vector3.MoveTowards(enemy.position, posDestino, step);
+            //// Correção de olhar
+            //enemy.LookAt(posDestino);
+            transform.GetComponent<Unit>().target.position = posDestino;
+            transform.GetComponent<Unit>().playerPos = posDestino;
         }
         else
         {
-            if (enemy.position != posDestino)
-            {
-                //float speed = 1f;
-                //float step = speed * Time.deltaTime;
-                //enemy.position = Vector3.MoveTowards(enemy.position, posDestino, step);
-                //// Correção de olhar
-                //enemy.LookAt(posDestino);
-                GOTarget.position = posDestino;
-                transform.GetComponent<Unit>().target.position = GOTarget.position;
-            }
-            else
-            {
-                if (etapa < 2)
-                    etapa++;
+            if (etapa < 2)
+                etapa++;
 
-                posDestino = RandomPos();
-            }
-        }
+            posDestino = RandomPos();
+        }   
     }
 
     void BackCovil(Transform enemy)

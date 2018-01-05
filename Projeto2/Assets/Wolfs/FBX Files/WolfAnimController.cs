@@ -12,6 +12,8 @@ public class WolfAnimController : MonoBehaviour {
 
     public Transform Mouth;
 
+    public GameObject Meat;
+
     public int Bite;
     public float HP;
 
@@ -61,6 +63,8 @@ public class WolfAnimController : MonoBehaviour {
     {
         animator.SetBool("dead", true);
         Destroy(gameObject, 1.5f);
+        // Aparecer Carne!!!
+        Instantiate(Meat, transform.position + Vector3.up, Quaternion.identity);
     }
 
     void Gethit()

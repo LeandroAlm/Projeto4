@@ -6,11 +6,11 @@ public class PlayerStatus : MonoBehaviour
 {
     public float maxHp = 100, HP;
     public float armor;
-    public int wood, stone;
+    public int wood, stone, meat;
     public GameObject Bag;
     //public GameObject mochila;
     private InventoryUI inventoryUI;
-    public bool ExistWood, ExistStone;
+    public bool ExistWood, ExistStone, ExistMeat;
     int HealBuff = 1;
     float Timer = 0;
     public static List<Transform> Campfire;
@@ -19,6 +19,7 @@ public class PlayerStatus : MonoBehaviour
     {
         ExistStone = false;
         ExistWood = false;
+        ExistMeat = false;
         inventoryUI = Bag.GetComponent<InventoryUI>();
         Campfire = new List<Transform>();
     }
@@ -48,6 +49,12 @@ public class PlayerStatus : MonoBehaviour
     {
         wood += value;
         inventoryUI.SetSlot("wood");
+    }
+
+    public void MeatAmount(int value)
+    {
+        meat += value;
+        inventoryUI.SetSlot("meat");
     }
 
     public void GetDamage(int DamageAmount)

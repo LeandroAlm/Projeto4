@@ -76,6 +76,12 @@
     <Reference Include="UnityEngine.HoloLens">
       <HintPath>Library\UnityAssemblies\UnityEngine.HoloLens.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEditor.iOS.Extensions.Xcode">
+      <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.iOS.Extensions.Common">
+      <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Common.dll</HintPath>
+    </Reference>
     <Reference Include="BouncyCastle_GameSparks">
       <HintPath>Assets\GameSparks\Plugins\BouncyCastle_GameSparks.dll</HintPath>
     </Reference>
@@ -104,7 +110,9 @@
     <Compile Include="Assets\_Character\PlayerMove.cs" />
     <Compile Include="Assets\_Character\PlayerStatus.cs" />
     <Compile Include="Assets\_Character\Shot.cs" />
+    <Compile Include="Assets\_Enemies\Enemy\EnemyAIunit.cs" />
     <Compile Include="Assets\_Enemies\Enemy\EnemySmartAI.cs" />
+    <Compile Include="Assets\_Resources\Meat\CollectMeat.cs" />
     <Compile Include="Assets\_Resources\Stone\Stone.cs" />
     <Compile Include="Assets\_Resources\Tree\Tree.cs" />
     <Compile Include="Assets\_Scripts\CameraFollow.cs" />
@@ -211,6 +219,7 @@
     <Compile Include="Assets\Wolfs\FBX Files\WolfAnimController.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\Downloads\Food Pack\Shaders\Food.shader" />
     <None Include="Assets\Downloads\LowPolyVegetationPackLite\Readme.txt" />
     <None Include="Assets\Downloads\LowpolyVegetationPackFree\Readme.txt" />
     <None Include="Assets\Downloads\Mega Fantasy Props Pack\README.txt" />

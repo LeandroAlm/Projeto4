@@ -11,7 +11,7 @@ public class InventoryUI : MonoBehaviour
     private List<Transform> slotsList;
     public static bool isOpen;
     private PlayerStatus playerStatus;
-    public Texture wood, stone, DefaultTexture;
+    public Texture wood, stone, meat, DefaultTexture;
     public Text SlotText;
     public Button InventoryButton, CraftButton;
 
@@ -120,6 +120,18 @@ public class InventoryUI : MonoBehaviour
                 playerStatus.ExistStone = true;
             }
         }
+        else if (Object == "meat")
+        {
+            if (playerStatus.ExistMeat)
+            {
+                CheckMeat();
+            }
+            else
+            {
+                SetSlot("meat");
+                playerStatus.ExistMeat = true;
+            }
+        }
     }
 
     //public void SetSlot(string slot, int SlotNumber)
@@ -225,6 +237,32 @@ public class InventoryUI : MonoBehaviour
                 }
             }
         }
+        else if (Slot == "meat")
+        {
+            if (CheckMeat() == 0)
+            {
+                // 1st empety slot possivel
+                SlotEmpty(Slot);
+            }
+            else
+            {
+                // exist meat in somewhere!
+                int i = 1;
+                int Aux = CheckMeat();
+                foreach (Transform Trans in slotsList)
+                {
+                    // Quando o SLot que recebemos que ja tem meat é igual ao i
+                    if (i == Aux)
+                    {
+                        // mudar tetxo
+                        Trans.GetChild(2).GetComponent<Text>().text = "" + playerStatus.meat;
+                        break;
+                    }
+                    else
+                        i++;
+                }
+            }
+        }
     }
 
     void SlotEmpty(string Obj)
@@ -232,28 +270,38 @@ public class InventoryUI : MonoBehaviour
         // procura por um slot empety e quando encontra poem logo a ima e o txt
         if (Obj == "wood")
         {
-            foreach (Transform x in slotsList)
+            foreach (Transform slot in slotsList)
             {
-                if (x.GetChild(0).GetChild(0).GetComponent<RawImage>().texture == DefaultTexture)
+                if (slot.GetChild(0).GetChild(0).GetComponent<RawImage>().texture == DefaultTexture)
                 {
-                    x.GetChild(0).GetChild(0).GetComponent<RawImage>().texture = wood;
-                    x.GetChild(2).GetComponent<Text>().text = "" + playerStatus.wood;
+                    slot.GetChild(0).GetChild(0).GetComponent<RawImage>().texture = wood;
+                    slot.GetChild(2).GetComponent<Text>().text = "" + playerStatus.wood;
                     break;
                 }
-                
             }
         }
         else if (Obj == "stone")
         {
-            foreach (Transform x in slotsList)
+            foreach (Transform slot in slotsList)
             {
-                if (x.GetChild(0).GetChild(0).GetComponent<RawImage>().texture == DefaultTexture)
+                if (slot.GetChild(0).GetChild(0).GetComponent<RawImage>().texture == DefaultTexture)
                 {
-                    x.GetChild(0).GetChild(0).GetComponent<RawImage>().texture = stone;
-                    x.GetChild(2).GetComponent<Text>().text = "" + playerStatus.stone;
+                    slot.GetChild(0).GetChild(0).GetComponent<RawImage>().texture = stone;
+                    slot.GetChild(2).GetComponent<Text>().text = "" + playerStatus.stone;
                     break;
                 }
-                
+            }
+        }
+        else if (Obj == "meat")
+        {
+            foreach (Transform slot in slotsList)
+            {
+                if (slot.GetChild(0).GetChild(0).GetComponent<RawImage>().texture == DefaultTexture)
+                {
+                    slot.GetChild(0).GetChild(0).GetComponent<RawImage>().texture = meat;
+                    slot.GetChild(2).GetComponent<Text>().text = "" + playerStatus.meat;
+                    break;
+                }
             }
         }
     }
@@ -281,6 +329,22 @@ public class InventoryUI : MonoBehaviour
         foreach (Transform slot in slotsList)
         {
             if (slot.GetChild(0).GetChild(0).GetComponent<RawImage>().texture == stone)
+            {
+                return i;
+            }
+            else
+                i++;
+        }
+        return 0;
+    }
+
+    int CheckMeat()
+    {
+        // se houver meat envia o nr do Slot, caso contrario envia 0
+        int i = 1;
+        foreach (Transform slot in slotsList)
+        {
+            if (slot.GetChild(0).GetChild(0).GetComponent<RawImage>().texture == meat)
             {
                 return i;
             }
