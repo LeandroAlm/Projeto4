@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class CraftUI : MonoBehaviour
 {
     public List<Transform> Buttons;
-    public GameObject Craft, CTitle, ITitle;
+    public GameObject Craft, CTitle, ITitle, Player;
 
     public RawImage HouseImage, FenceImage, TowerImage, FireplaceImage, GateImage;
     public PlayerStatus PlayerStatus;
@@ -14,7 +14,7 @@ public class CraftUI : MonoBehaviour
 
 	void Start ()
 	{
-	    PlayerStatus = GetComponent<PlayerStatus>();
+	    PlayerStatus = Player.GetComponent<PlayerStatus>();
 
 	    Buttons = new List<Transform>();
 
@@ -65,14 +65,8 @@ public class CraftUI : MonoBehaviour
 
     public void TexturesManagement()
     {
-        Color transparentColor = new Color(255, 255, 255, 100);
+        Color transparentColor = new Color(255, 255, 255, 30);
         Color buildColor = new Color(255, 255, 255, 255);
-
-        HouseImage.GetComponent<Color>();
-        FenceImage.GetComponent<Color>();
-        TowerImage.GetComponent<Color>();
-        FireplaceImage.GetComponent<Color>();
-        GateImage.GetComponent<Color>();
 
         if(canBuildFence)
             FenceImage.color = buildColor;
@@ -97,17 +91,14 @@ public class CraftUI : MonoBehaviour
 
     public void BuildManager()
     {
-        int woodAmount = PlayerStatus.wood;
-        int stoneAmount = PlayerStatus.stone;
-
-        if (woodAmount >= 5 && stoneAmount >= 5)
+        if (PlayerStatus.wood >= 5 && PlayerStatus.stone >= 5)
         {
             canBuildFence = true;
         }
         else
             canBuildFence = false;
 
-        if (woodAmount >= 10 && stoneAmount >= 5)
+        if (PlayerStatus.wood >= 10 && PlayerStatus.stone >= 5)
         {
             canBuildHouse = true;
         }
