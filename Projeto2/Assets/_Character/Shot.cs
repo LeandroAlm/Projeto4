@@ -11,7 +11,7 @@ public class Shot : MonoBehaviour
     public GameObject StoneEffect;
     Animator anim;
     float ShotDuration;
-    bool shooting;
+    public static bool shooting;
     float attackSpeed = 3f;
     float attackColdown = 0f;
     public int PistolDamage;

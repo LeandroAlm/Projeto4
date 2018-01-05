@@ -43,6 +43,7 @@ public class PLayerControl : MonoBehaviour
         MovementTopDown();
         GunsMovementController();
         ConvertMoveInput();
+
     }
 
     void Update()
@@ -94,11 +95,15 @@ public class PLayerControl : MonoBehaviour
             animator.SetBool("Axe", false);
             animator.SetFloat("Forward", forwardAmount, 0.1f, Time.deltaTime);
             animator.SetFloat("Turn", turnAmount, 0.1f, Time.deltaTime);
+
+            
         }
 
         if (animator.GetBool("Axe") == true)
         {
             animator.SetBool("Gun", false);
+
+
 
             if (Input.GetKeyDown(KeyCode.LeftShift))
             {
@@ -114,8 +119,23 @@ public class PLayerControl : MonoBehaviour
 
             animator.SetFloat("ForwardS", forwardAmount, 0.1f, Time.deltaTime);
             animator.SetFloat("TurnS", turnAmount, 0.1f, Time.deltaTime);
-        }
 
+            if (Farm.axeSwing)
+            {
+                animator.SetFloat("ForwardS", 0, 0.1f, Time.deltaTime);
+            }
+
+        }
+        if (Shot.shooting && forwardAmount == 0)
+        {
+            animator.SetBool("isShooting", true);
+           
+        }
+        else
+        {
+            animator.SetBool("isShooting", false);
+
+        }
         if (Input.GetKeyDown("1"))
         {
             animator.SetBool("Axe", true);

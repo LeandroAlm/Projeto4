@@ -18,6 +18,8 @@ public class Farm : MonoBehaviour
 
     Vector3 forward;
 
+    public static bool axeSwing;
+
     // Use this for initialization
     void Start ()
     {
@@ -50,7 +52,12 @@ public class Farm : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0) && AxeGO.activeSelf)
         {
+            //axeSwing = true;
             anim.SetTrigger("Farming");
+
+
+
+
             //RaycastHit hit;
             //forward = transform.TransformDirection(Vector3.forward);
             //Debug.DrawRay(transform.position + Vector3.up, forward, Color.green);
@@ -73,6 +80,12 @@ public class Farm : MonoBehaviour
             //        hit.collider.GetComponent<Tree>().Damage();
             //    }
             //}
+        }
+
+        else if (Input.GetMouseButtonDown(1) && AxeGO.activeSelf)
+        {
+            anim.SetTrigger("attack2");
+
         }
 
         isStone = false;
