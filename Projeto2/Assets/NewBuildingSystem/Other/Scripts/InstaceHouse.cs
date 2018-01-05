@@ -60,7 +60,8 @@ public class InstaceHouse : MonoBehaviour
             Instantiate(housePrefab, this.transform.position, this.transform.rotation);
 
             this.gameObject.SetActive(false);
-
+            
+            // Reativar O Shoot(); do Iventory!!!!
         }
 
     }

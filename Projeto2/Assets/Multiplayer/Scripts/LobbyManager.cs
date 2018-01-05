@@ -10,7 +10,7 @@ using UnityEngine.UI;
 
 public class LobbyManager : MonoBehaviour
 {
-    public GameObject readyButton, exitButton, cancelButton, startSessionButton, matchMakebutton, startGameButton;
+    public GameObject readyButton, exitButton, cancelButton, startSessionButton, startGameButton;
     public GameObject searchingPlayersText, sliderGameObject, playerNameInstruction, passwordInstruction;
     public InputField playerNameInputField, passwordInputField;
     public Slider loadingSlider;
@@ -37,7 +37,7 @@ public class LobbyManager : MonoBehaviour
 	    };
         
         MatchFoundMessage.Listener += OnMatchFound;
-
+        
         searchingPlayersText.GetComponent<Text>();
 	    playerNameInstruction.GetComponent<Text>();
 	    passwordInstruction.GetComponent<Text>();
@@ -49,12 +49,13 @@ public class LobbyManager : MonoBehaviour
 
         startSessionButton.GetComponent<Button>().onClick.AddListener(() =>
         {
-            GameSparksManager.Instance().StartNewRtSession(sessionInformation);
+            GameSparksManager.Instance().FindPlayers();
+            
         });
 
         startGameButton.GetComponent<Button>().onClick.AddListener(() =>
         {
-            GameSparksManager.Instance().FindPlayers();
+            GameSparksManager.Instance().StartNewRtSession(sessionInformation);
         });
 
 	    exitButton.GetComponent<Button>().onClick.AddListener(ExitScene);
