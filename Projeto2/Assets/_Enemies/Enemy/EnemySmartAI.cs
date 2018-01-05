@@ -13,11 +13,10 @@ public class EnemySmartAI : MonoBehaviour
     private List<Vector3> positions;
     private int Rotate, etapa;
     bool TimeOnOff;
-    Transform GOTarget;
+    public Transform GOTarget;
 
     void Start ()
     {
-        GOTarget = transform; 
         //covilpos = Vector3.zero;
         Rotate = 1;
         etapa = 0;
@@ -57,6 +56,7 @@ public class EnemySmartAI : MonoBehaviour
                 new DTAction(() =>
                 {
                     // Mover aleatoriamente de x em x segundos
+                    Debug.Log("Estou a ir random!");
                     MoveRandom(transform);
                 }),
                 new DTAction(() =>
@@ -172,7 +172,7 @@ public class EnemySmartAI : MonoBehaviour
                 //// Correção de olhar
                 //enemy.LookAt(posDestino);
                 GOTarget.position = posDestino;
-                transform.GetComponent<Unit>().target = GOTarget;
+                transform.GetComponent<Unit>().target.position = GOTarget.position;
             }
             else
             {
@@ -189,11 +189,13 @@ public class EnemySmartAI : MonoBehaviour
         {
             if (enemy.position != posDestino)
             {
-                float speed = 1f;
-                float step = speed * Time.deltaTime;
-                enemy.position = Vector3.MoveTowards(enemy.position, posDestino, step);
-                // Correção de olhar
-                enemy.LookAt(posDestino);
+                //float speed = 1f;
+                //float step = speed * Time.deltaTime;
+                //enemy.position = Vector3.MoveTowards(enemy.position, posDestino, step);
+                //// Correção de olhar
+                //enemy.LookAt(posDestino);
+                GOTarget.position = posDestino;
+                transform.GetComponent<Unit>().target.position = GOTarget.position;
             }
             else
             {

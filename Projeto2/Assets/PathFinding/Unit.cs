@@ -16,14 +16,19 @@ public class Unit : MonoBehaviour
 
     Vector3 direction;
 
+    public static bool isAttacking;
+
     void Start()
     {
-        playerPos = target.transform.position;
+        playerPos = target.position;
+        target = transform.GetChild(1);
         PathRequestManager.RequestPath(transform.position, target.position, OnPathFound);
+        isAttacking = false;
     }
 
     private void Update()
     {
+        // Quando esta em persiguição
         if (playerPos != target.transform.position)
         {
             // Muda a Pos logo tem de recalcular o caminho!
@@ -33,9 +38,9 @@ public class Unit : MonoBehaviour
         //Inimigo vira se para os nodos principais para um movimento mais realista
         direction = currentWaypoint - this.transform.position;
         this.transform.rotation = Quaternion.Slerp(this.transform.rotation,
-            Quaternion.LookRotation(direction), 0.17f);
-
-
+         Quaternion.LookRotation(direction), 0.17f);
+        
+        
     }
 
     public void OnPathFound(Vector3[] newPath, bool pathSuccessful)
