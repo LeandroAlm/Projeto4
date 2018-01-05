@@ -9,9 +9,13 @@ public class EnemyAIunit : MonoBehaviour {
     float distance, takeTime;
     public Transform GOTarget;
     public Transform player;
+    Grid grid;
+    public GameObject pathFindingObj;
+
 
     void Start ()
     {
+        grid = pathFindingObj.gameObject.GetComponent<Grid>();
         posDestino = transform.position;
         takeTime = 11.0f;
     }
@@ -32,12 +36,15 @@ public class EnemyAIunit : MonoBehaviour {
                 {
                     // Mover aleatoriamente de x em x segundos
                     Debug.Log("Estou a ir random!!!");
+                  
                     MoveRandom();
                 }),
                 new DTAction(() =>
                 {
                     // Caso esteja < 10
                     Debug.Log("Estou a ser def!!!");
+               
+
                     GoToPlayer();
                 })
             );
@@ -67,7 +74,11 @@ public class EnemyAIunit : MonoBehaviour {
             //// Correção de olhar
             //enemy.LookAt(posDestino);
             Debug.Log("A ir para um Random!!!");
-            GOTarget.position = posDestino;
+
+            //NODE------------------------------------------------------------------------------------
+            Node node = grid.NodeFromWorldPoint(player.transform.position);
+            GOTarget.position = node.worldPosition;
+
             transform.GetComponent<Unit>().playerPos = posDestino;
             transform.GetComponent<Unit>().CalculateWay();
         }
