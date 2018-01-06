@@ -16,6 +16,7 @@ public class PLayerControl : MonoBehaviour
 
     public Transform Axe;
     public Transform Gun;
+    private Transform _spawnPosition;
     public GameObject posHandL;
 
     private Vector3 moveVelocity;
@@ -180,9 +181,9 @@ public class PLayerControl : MonoBehaviour
         }
     }
 
-    public void SetupPlayer(Vector3 spawnPosition)
+    public void SetupPlayer(Transform spawnPosition)
     {
-        transform.position = spawnPosition;
+        _spawnPosition = spawnPosition;
     }
 
     /*private IEnumerator SendPlayerMovement()

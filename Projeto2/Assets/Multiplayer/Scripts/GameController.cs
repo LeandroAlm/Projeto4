@@ -11,7 +11,7 @@ public class GameController : MonoBehaviour
     private static GameController _instance;
 
     public GameObject[] PlayerPrefabs;
-    public Text[] PlayerNameList;
+    //public Text[] PlayerNameList;
     private PLayerControl[] playersList;
 
     public static GameController Instance()
@@ -26,38 +26,34 @@ public class GameController : MonoBehaviour
 
     void Start()
     {
-        //SpawnPoint[] spawnPoints = FindObjectsOfType(typeof(SpawnPoint)) as SpawnPoint[];
-        
-        Debug.Log("Lista de Players: ");
+        SpawnPoint[] spawnPoints = FindObjectsOfType(typeof(SpawnPoint)) as SpawnPoint[];
+
+        Debug.Log("Lista: " + GameSparksManager.Instance().SessionInformation.PlayersList.Count);
 
         playersList = new PLayerControl[GameSparksManager.Instance().SessionInformation.PlayersList.Count];
 
-        
-        Debug.Log("LISTA: " + GameSparksManager.Instance().SessionInformation.PlayersList.Count);
-
-        for (int player = 0; player < GameSparksManager.Instance().SessionInformation.PlayersList.Count; player++)
+        for (int playerIndex = 0; playerIndex < GameSparksManager.Instance().SessionInformation.PlayersList.Count; playerIndex++)
         {
-            GameObject newPlayer = Instantiate(PlayerPrefabs[player], PlayerPrefabs[player].transform.position, PlayerPrefabs[player].transform.rotation);
-
-            newPlayer.name = GameSparksManager.Instance().SessionInformation.PlayersList[player].PeerId.ToString();
-            newPlayer.transform.SetParent(transform);
-
-            if (GameSparksManager.Instance().SessionInformation.PlayersList[player].PeerId == GameSparksManager.Instance().GameSparksRtUnity.PeerId)
+            for (int spawnIndex = 0; spawnIndex < spawnPoints.Length; spawnIndex++)
             {
-                Debug.Log("Entrou!");
-                newPlayer.GetComponent<PLayerControl>().SetupPlayer(new Vector3(70, 0, 90));
-            }
-
-            playersList[player] = newPlayer.GetComponent<PLayerControl>();
-            PlayerNameList[player].text = GameSparksManager.Instance().SessionInformation.PlayersList[player].DisplayName;
-            break;
-
-            /*for (int spawnPoint = 0; spawnPoint < spawnPoints.Length; spawnPoint++)
-            {
-                if (spawnPoints[spawnPoint].PlayerPeerId == GameSparksManager.Instance().SessionInformation.PlayersList[player].PeerId)
+                if (spawnPoints[spawnIndex].PlayerPeerId == GameSparksManager.Instance().SessionInformation.PlayersList[playerIndex].PeerId)
                 {
-                }
-            }*/
+                    GameObject newPlayer = Instantiate(PlayerPrefabs[playerIndex], spawnPoints[spawnIndex].transform.position, spawnPoints[spawnIndex].transform.rotation);
+
+                    newPlayer.name = GameSparksManager.Instance().SessionInformation.PlayersList[playerIndex].PeerId.ToString();
+                    newPlayer.transform.SetParent(transform);
+
+                    if (GameSparksManager.Instance().SessionInformation.PlayersList[playerIndex].PeerId == GameSparksManager.Instance().GameSparksRtUnity.PeerId)
+                    {
+                        Debug.Log("Entrou!");
+                        newPlayer.GetComponent<PLayerControl>().SetupPlayer(spawnPoints[spawnIndex].gameObject.transform);
+                    }
+
+                    playersList[playerIndex] = newPlayer.GetComponent<PLayerControl>();
+                    //PlayerNameList[playerIndex].text = GameSparksManager.Instance().SessionInformation.PlayersList[playerIndex].DisplayName;
+                    break;
+                }                
+            }
         }
     }
 

@@ -22,7 +22,8 @@ public class SessionInformation : MonoBehaviour
 
         foreach (MatchFoundMessage._Participant participant in matchFoundMessage.Participants)
         {
-            PlayersList.Add(new PlayerInformation(participant.DisplayName, participant.Id, (int)participant.PeerId));  
+            PlayersList.Add(new PlayerInformation(participant.DisplayName, participant.Id, (int)participant.PeerId)); 
+            Debug.Log("Players Count: " + PlayersList.Count);
         }
     }
 }

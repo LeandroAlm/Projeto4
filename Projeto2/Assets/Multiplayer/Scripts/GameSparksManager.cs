@@ -82,8 +82,6 @@ public class GameSparksManager : MonoBehaviour
 
         SessionInformation = rtSessionInfo;
 
-        Debug.Log(rtSessionInfo);
-
         GameSparksRtUnity = gameObject.AddComponent<GameSparksRTUnity>();
 
         GSRequestData requestData = new GSRequestData()
