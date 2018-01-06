@@ -28,13 +28,13 @@ public class CameraController : MonoBehaviour
 
     private Camera mainCamera;
 
-
+    private GameObject house;
 
     private void Start()
     {
         mainCamera = FindObjectOfType<Camera>();
 
-        
+        house = GameObject.FindGameObjectWithTag("house");
     }
 
     void Update()
@@ -76,8 +76,17 @@ public class CameraController : MonoBehaviour
         //transform.RotateAround(target.position, Vector3.right, currentPitch);
 
         cameraRay = mainCamera.ScreenPointToRay(Input.mousePosition);
-        
+
+        //if (FadeOutRoof.isInside)
+        //{
+        //    currentZoom = 3;
+        //}
     }
 
+    void PosCam(GameObject obj)
+    {
+        transform.position = obj.transform.position + (Vector3.up * 6);
+        transform.LookAt(obj.transform);
+    }
 
 }

@@ -23,9 +23,12 @@ public class PLayerControl : MonoBehaviour
     public float moveSpeed;
 
     private Camera mainCamera;
-    private bool usingAxe = true, usingGun = false;
+    public static bool usingAxe = false, usingGun = false;
+
+    public bool canMove;
 
     public PlayerStatus PlayerStatus;
+
 
     void Start()
     {
@@ -35,15 +38,19 @@ public class PLayerControl : MonoBehaviour
         animator = GetComponent<Animator>();
         mainCamera = FindObjectOfType<Camera>();
         PlayerStatus = GetComponent<PlayerStatus>();
+        canMove = true;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        rb.velocity = new Vector3(moveVelocity.x,rb.velocity.y,moveVelocity.z);
-        MovementTopDown();
-        GunsMovementController();
-        ConvertMoveInput();
+        if (canMove)
+        {
+            rb.velocity = new Vector3(moveVelocity.x, rb.velocity.y, moveVelocity.z);
+            MovementTopDown();
+            GunsMovementController();
+            ConvertMoveInput();
+        }
 
     }
 
@@ -139,6 +146,8 @@ public class PLayerControl : MonoBehaviour
         }
         if (Input.GetKeyDown("1"))
         {
+            usingAxe = true;
+            usingGun = false;
             animator.SetBool("Axe", true);
             animator.SetBool("Gun", false);
             Axe.gameObject.SetActive(true);
@@ -147,6 +156,8 @@ public class PLayerControl : MonoBehaviour
 
         if (Input.GetKeyDown("2"))
         {
+            usingAxe = false;
+            usingGun = true;
             animator.SetBool("Gun", true);
             animator.SetBool("Axe", false);
             Axe.gameObject.SetActive(false);

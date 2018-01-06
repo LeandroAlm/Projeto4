@@ -20,6 +20,8 @@ public class Grid : MonoBehaviour
         gridSizeX = Mathf.RoundToInt(gridWorldSize.x / nodeDiameter);
         gridSizeY = Mathf.RoundToInt(gridWorldSize.y / nodeDiameter);
         CreateGrid();
+
+        Debug.Log("grid X : " + gridSizeX);
     }
 
     public int MaxSize

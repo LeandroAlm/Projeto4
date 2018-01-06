@@ -11,31 +11,40 @@ public class DayNight : MonoBehaviour
 
     public Light MoonLight;
 
+    private Light towerLight;
+
+    private Light spotLight;
+
 
     void Start()
     {
         time = 0;
+
+
 
     }
 
     void Update()
     {
 
+
         time += Time.deltaTime;
 
-        transform.RotateAround(Vector3.zero, Vector3.right, 2 * Time.deltaTime);
+        transform.RotateAround(Vector3.zero, Vector3.right, 1 * Time.deltaTime);
         transform.LookAt(Vector3.zero);
 
         if (MoonLight.transform.position.y > 130) // 40 segundos
         {
-     
+ 
+
+            
 
             if (sunLight.intensity >= 0)
             {
                 sunLight.intensity -= 0.04f;
             }
 
-            if (MoonLight.intensity < 0.44f)
+            if (MoonLight.intensity < 0.7f)
             {
                 MoonLight.intensity += 0.001f;
             }
@@ -44,7 +53,9 @@ public class DayNight : MonoBehaviour
             {
                 RenderSettings.ambientIntensity -= 0.004f;
             }
+            //RenderSettings.ambientSkyColor = Color.red;
 
+            
 
             if (RenderSettings.reflectionIntensity > 0)
             {
@@ -56,7 +67,7 @@ public class DayNight : MonoBehaviour
         else
         {
 
-   
+            //isNight = false;
 
             if (sunLight.intensity < 0.5f)
             {

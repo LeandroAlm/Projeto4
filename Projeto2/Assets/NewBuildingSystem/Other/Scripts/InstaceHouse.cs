@@ -17,13 +17,14 @@ public class InstaceHouse : MonoBehaviour
 
     public GameObject housePrefab;
 
-
+    
     void Start()
     {
         CanBuild = true;
 
-    }
 
+
+    }
     // Update is called once per frame
     void Update()
     {
@@ -53,7 +54,9 @@ public class InstaceHouse : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0) && CanBuild)
         {
+
             isPlaced = true;
+
 
             BuildingManager.isBuilding = false;
 
@@ -63,8 +66,8 @@ public class InstaceHouse : MonoBehaviour
             
             // Reativar O Shoot(); do Iventory!!!!
         }
-
     }
+
 
   
 

@@ -6,6 +6,11 @@ public class FadeOutRoof : MonoBehaviour {
 
     public GameObject Roof = null;
     public GameObject Roof2 = null;
+    public GameObject wall1 = null;
+    public GameObject wall2 = null;
+    public GameObject wall3 = null;
+    public GameObject wall4 = null;
+
 
 
     public static bool isInside = false;
@@ -18,8 +23,16 @@ public class FadeOutRoof : MonoBehaviour {
 
             SetMaterialTransparent(Roof);
             SetMaterialTransparent(Roof2);
+            SetMaterialTransparent(wall1);
+            SetMaterialTransparent(wall2);
+            SetMaterialTransparent(wall3);
+            SetMaterialTransparent(wall4);
             iTween.FadeTo(Roof, 0, 1);
             iTween.FadeTo(Roof2, 0, 1);
+            iTween.FadeTo(wall1, 0, 1);
+            iTween.FadeTo(wall2, 0, 1);
+            iTween.FadeTo(wall3, 0, 1);
+            iTween.FadeTo(wall4, 0, 1);
         }
     }
     
@@ -89,6 +102,10 @@ public class FadeOutRoof : MonoBehaviour {
             // Set material to opaque
             iTween.FadeTo(Roof, 1, 1);
             iTween.FadeTo(Roof2, 1, 1);
+            iTween.FadeTo(wall1, 1, 1);
+            iTween.FadeTo(wall2, 1, 1);
+            iTween.FadeTo(wall3, 1, 1);
+            iTween.FadeTo(wall4, 1, 1);
             Invoke("SetMaterialOpaque", 1.0f);
         }
     }

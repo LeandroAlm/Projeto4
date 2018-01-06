@@ -16,15 +16,23 @@ public class Shot : MonoBehaviour
     float attackColdown = 0f;
     public int PistolDamage;
 
+    public int bulletCount;
+    public static bool canShoot;
+
+
+
     void Start ()
     {
         anim = GetComponent<Animator>();
         ShotDuration = 0.0f;
         shooting = false;
-	}
+        bulletCount = 0;
+        canShoot = true;
+    }
 
 	void Update ()
     {
+       
         attackColdown -= Time.deltaTime;
 
         if (Input.GetMouseButtonDown(0))
@@ -33,8 +41,11 @@ public class Shot : MonoBehaviour
             {
                 ShotFire();
                 shooting = true;
+                bulletCount++;
+                Debug.Log(bulletCount);
                 Tiro.Play();
                 attackColdown = 1f / attackSpeed;
+                
             }
         }
 
@@ -48,39 +59,50 @@ public class Shot : MonoBehaviour
                 ShotEffect.gameObject.SetActive(false);
                 ShotDuration = 0.0f;
                 shooting = false;
-            } 
+            }
+        }
+        if (bulletCount > 15)
+        {
+            anim.SetBool("Gun", false);
+            canShoot = false;
+
         }
     }
 
     void ShotFire()
     {
-        ShotEffect.gameObject.SetActive(true);
-        ShotEffect.Play();
-        RaycastHit hit;
-        Vector3 forward = transform.TransformDirection(Vector3.forward * 10);
-        Debug.DrawRay(Pistol.position, forward, Color.red);
-        Ray ray = new Ray(Pistol.position, transform.forward);
-
-        if (anim.GetBool("Gun") == true)
+        if (canShoot)
         {
-            if (Physics.Raycast(ray, out hit, 200))
+
+            ShotEffect.gameObject.SetActive(true);
+            ShotEffect.Play();
+            RaycastHit hit;
+            Vector3 forward = transform.TransformDirection(Vector3.forward * 10);
+            Debug.DrawRay(Pistol.position, forward, Color.red);
+            Ray ray = new Ray(Pistol.position, transform.forward);
+
+            if (anim.GetBool("Gun") == true)
             {
-                Debug.Log("Hit: " + hit.collider.tag);
-                if (hit.collider.tag == "Stone")
+                if (Physics.Raycast(ray, out hit, 200))
                 {
-                    GameObject go = Instantiate(StoneEffect, hit.point, Quaternion.identity);
-                    Destroy(go, 1f);
-                }
-                else if (hit.collider.tag == "Tree")
-                {
-                    GameObject go =  Instantiate(WoodEffect, hit.point, Quaternion.LookRotation(hit.normal));
-                    Destroy(go, 1f);
-                }
-                else if (hit.collider.tag == "Enemy")
-                {
-                    hit.collider.GetComponentInParent<WolfAnimController>().GetDamage(PistolDamage);
+                    Debug.Log("Hit: " + hit.collider.tag);
+                    if (hit.collider.tag == "Stone")
+                    {
+                        GameObject go = Instantiate(StoneEffect, hit.point, Quaternion.identity);
+                        Destroy(go, 1f);
+                    }
+                    else if (hit.collider.tag == "Tree")
+                    {
+                        GameObject go = Instantiate(WoodEffect, hit.point, Quaternion.LookRotation(hit.normal));
+                        Destroy(go, 1f);
+                    }
+                    else if (hit.collider.tag == "Enemy")
+                    {
+                        hit.collider.GetComponentInParent<WolfAnimController>().GetDamage(PistolDamage);
+                    }
                 }
             }
         }
     }
+
 }
