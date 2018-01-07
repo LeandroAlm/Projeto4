@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AutomaticBuild : MonoBehaviour {
-
-
+public class AutomaticBuild : MonoBehaviour
+{
     public GameObject Part1;
     public GameObject Part2;
     public GameObject Part3;
@@ -50,27 +49,19 @@ public class AutomaticBuild : MonoBehaviour {
 
         Debug.Log("childs" + transform.childCount);
 
-
         buttonDown = false;
 
-       
         m_gameObjects = new GameObject[transform.childCount];
 
         for (int i = 0; i < transform.childCount - 1; i++)
         {
             m_gameObjects[i] = transform.GetChild(i).gameObject;
-
-
         }
 
     }
 
-
-
-    // Update is called once per frame
     void Update ()
     {
-
         if (InstaceHouse.isPlaced)
         {
             for (int i = 0; i < m_gameObjects.Length; i++)
@@ -79,25 +70,15 @@ public class AutomaticBuild : MonoBehaviour {
 
                 if (timeLeft < 0)
                 {
-
                     m_gameObjects[i].gameObject.SetActive(true);
                     //HouseParts.Pop().gameObject.SetActive(true);
 
                     //Debug.Log(houseParts[i].gameObject.name);
 
-                    timeLeft = 5.0f;
-
-                        
+                    timeLeft = 5.0f;                        
                 }
             }
-
-
-
-        }
-
-            
+        }           
     }
-   
-
 }
 

@@ -44,8 +44,9 @@ public class BuildingManager : MonoBehaviour
 
     void Update()
     {
-        if (buildHouse == true) //&& !isBuilding)
+        if (buildHouse == true) /*&& CraftUI.canBuildHouse == true)*/ //&& !isBuilding)
         {
+            Debug.Log("Entrou");
             isBuilding = true;
             Instantiate(foundationPrefab3, Vector3.zero, foundationPrefab3.transform.rotation);
             buildHouse = false;

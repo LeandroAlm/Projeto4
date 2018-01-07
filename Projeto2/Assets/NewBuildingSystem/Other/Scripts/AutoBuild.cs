@@ -26,13 +26,9 @@ public class AutoBuild : MonoBehaviour
         stepCount = transform.childCount;
         currentBuildStep = 0;
 
-
         pathFindingObj = GameObject.FindGameObjectWithTag("A");
 
         grid = pathFindingObj.gameObject.GetComponent<Grid>();
-
-
-
     }
 
     void Update()
@@ -41,13 +37,9 @@ public class AutoBuild : MonoBehaviour
         {
             timer = stepDuration;
             NextBuildStep();
-
-
         }
-
-
+  
         timer -= Time.deltaTime;
-
     }
 
     void NextBuildStep()
