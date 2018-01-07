@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.368
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.26917684, g: 0.3005585, b: 0.3534719, a: 0.368}
+  m_IndirectSpecularColor: {r: 0.2691767, g: 0.3005581, b: 0.35347015, a: 0.368}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -11671,6 +11671,7 @@ MonoBehaviour:
   wood: {fileID: 2800000, guid: d64eda2c3b63c604c8937846808bdc7b, type: 3}
   stone: {fileID: 2800000, guid: 8ce9942adbf677943ac71e411b95a83b, type: 3}
   meat: {fileID: 2800000, guid: 8fee25decd5980b45b6197fe91206b62, type: 3}
+  cookmeat: {fileID: 2800000, guid: 189c25c608a07094b9c46375691c13b0, type: 3}
   DefaultTexture: {fileID: 2800000, guid: 8e99cf9c22ff8664392214db8b1976b9, type: 3}
   SlotText: {fileID: 146721890}
   InventoryButton: {fileID: 919598317}

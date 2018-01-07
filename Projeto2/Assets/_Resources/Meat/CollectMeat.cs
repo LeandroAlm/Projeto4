@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class CollectMeat : MonoBehaviour {
     
-	void Start () {
+	void Start ()
+    {
 		
 	}
 	
@@ -17,9 +18,8 @@ public class CollectMeat : MonoBehaviour {
     {
         if(collision.transform.tag == "Player")
         {
-            Debug.Log("Colidi!!!!!!!!!!!!!");
-            collision.gameObject.GetComponent<PlayerStatus>().MeatAmount(1);
-            Destroy(gameObject, 1);
+            collision.gameObject.GetComponent<PlayerStatus>().MeatAmount(2);
+            Destroy(gameObject);
         }
     }
 }

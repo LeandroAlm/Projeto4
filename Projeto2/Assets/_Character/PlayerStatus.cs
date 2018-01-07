@@ -6,7 +6,7 @@ public class PlayerStatus : MonoBehaviour
 {
     public float maxHp = 100, HP;
     public float armor;
-    public int wood, stone, meat;
+    public int wood, stone, meat, cookmeat;
     public GameObject Bag;
     //public GameObject mochila;
     private InventoryUI inventoryUI;
@@ -55,6 +55,12 @@ public class PlayerStatus : MonoBehaviour
     {
         meat += value;
         inventoryUI.SetSlot("meat");
+    }
+
+    public void CookMeatAmount(int value)
+    {
+        cookmeat += value;
+        inventoryUI.SetSlot("cookmeat");
     }
 
     public void GetDamage(int DamageAmount)

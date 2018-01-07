@@ -31,7 +31,6 @@ public class FixWeapons : MonoBehaviour {
 	void Update ()
     {
         Fixing();
-
     }
 
 
@@ -52,7 +51,6 @@ public class FixWeapons : MonoBehaviour {
         {
             if (PLayerControl.usingAxe)
             {
-
                 FixeAxe();
             }
 

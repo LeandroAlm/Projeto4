@@ -44,7 +44,6 @@ public class BuildingManager : MonoBehaviour
 
     void Update()
     {
-
         if (buildHouse == true) //&& !isBuilding)
         {
             isBuilding = true;
@@ -76,7 +75,6 @@ public class BuildingManager : MonoBehaviour
         }
         else if (gate)
         {
-
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit, 100, 1 << 12) && !gatePlaced)
@@ -97,7 +95,6 @@ public class BuildingManager : MonoBehaviour
             }
             else
             {
-
                 gatePlaced = false;
             }
 

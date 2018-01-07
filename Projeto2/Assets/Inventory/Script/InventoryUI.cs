@@ -11,7 +11,7 @@ public class InventoryUI : MonoBehaviour
     private List<Transform> slotsList;
     public static bool isOpen;
     private PlayerStatus playerStatus;
-    public Texture wood, stone, meat, DefaultTexture;
+    public Texture wood, stone, meat, cookmeat, DefaultTexture;
     public Text SlotText;
     public Button InventoryButton, CraftButton;
 
@@ -131,6 +131,10 @@ public class InventoryUI : MonoBehaviour
                 SetSlot("meat");
                 playerStatus.ExistMeat = true;
             }
+        }
+        else if (Object == "mcookeat")
+        {
+            SetSlot("cookmeat");
         }
     }
 
@@ -263,6 +267,33 @@ public class InventoryUI : MonoBehaviour
                 }
             }
         }
+        else if (Slot == "cookmeat")
+        {
+            if (CheckCookMeat() == 0)
+            {
+                // 1st empety slot possivel
+                SlotEmpty(Slot);
+            }
+            else
+            {
+                Debug.Log("COZINHEI!!!!");
+                // exist meat in somewhere!
+                int i = 1;
+                int Aux = CheckCookMeat();
+                foreach (Transform Trans in slotsList)
+                {
+                    // Quando o SLot que recebemos que ja tem meat é igual ao i
+                    if (i == Aux)
+                    {
+                        // mudar tetxo
+                        Trans.GetChild(2).GetComponent<Text>().text = "" + playerStatus.cookmeat;
+                        break;
+                    }
+                    else
+                        i++;
+                }
+            }
+        }
     }
 
     void SlotEmpty(string Obj)
@@ -300,6 +331,18 @@ public class InventoryUI : MonoBehaviour
                 {
                     slot.GetChild(0).GetChild(0).GetComponent<RawImage>().texture = meat;
                     slot.GetChild(2).GetComponent<Text>().text = "" + playerStatus.meat;
+                    break;
+                }
+            }
+        }
+        else if (Obj == "cookmeat")
+        {
+            foreach (Transform slot in slotsList)
+            {
+                if (slot.GetChild(0).GetChild(0).GetComponent<RawImage>().texture == DefaultTexture)
+                {
+                    slot.GetChild(0).GetChild(0).GetComponent<RawImage>().texture = cookmeat;
+                    slot.GetChild(2).GetComponent<Text>().text = "" + playerStatus.cookmeat;
                     break;
                 }
             }
@@ -345,6 +388,22 @@ public class InventoryUI : MonoBehaviour
         foreach (Transform slot in slotsList)
         {
             if (slot.GetChild(0).GetChild(0).GetComponent<RawImage>().texture == meat)
+            {
+                return i;
+            }
+            else
+                i++;
+        }
+        return 0;
+    }
+
+    int CheckCookMeat()
+    {
+        // se houver meat envia o nr do Slot, caso contrario envia 0
+        int i = 1;
+        foreach (Transform slot in slotsList)
+        {
+            if (slot.GetChild(0).GetChild(0).GetComponent<RawImage>().texture == cookmeat)
             {
                 return i;
             }
