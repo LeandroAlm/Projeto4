@@ -37,7 +37,7 @@ public class Shot : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            if (attackColdown <= 0f)
+            if (attackColdown <= 0f && canShoot)
             {
                 ShotFire();
                 shooting = true;

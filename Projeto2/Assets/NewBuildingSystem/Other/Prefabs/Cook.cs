@@ -23,7 +23,7 @@ public class Cook : MonoBehaviour {
 
         playerControlScript = Player.GetComponent<PLayerControl>();
 
-        timer = 7;
+        timer = 6;
 
         isCooking = false;
     }
@@ -38,13 +38,16 @@ public class Cook : MonoBehaviour {
         {
            if (distance < 2)
            {
+                isCooking = false;
+
                 //Perto da fogueira
                 if (Player.GetComponent<PlayerStatus>().wood >= 1)
                 {
+                    isCooking = false;
                     // Tem madeira
                     if (Player.GetComponent<PlayerStatus>().meat >= 1)
                     {
-                        timer = 7;
+                        timer = 6;
                         isCooking = true;
                         //timer = 7f;
                         //anim.SetBool("isCooking", true);
@@ -89,7 +92,6 @@ public class Cook : MonoBehaviour {
             if (timer <= 0)
             {
                 playerControlScript.canMove = true;
-                Debug.Log("ola linda");
                 Player.GetComponent<PlayerStatus>().WoodAmount(-1);
                 // desconta 1 de meat
                 Player.GetComponent<PlayerStatus>().MeatAmount(-1);

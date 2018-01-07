@@ -38,9 +38,7 @@ public class FixWeapons : MonoBehaviour {
     {
         if (collision.name == "Player")
         {
-            onTable = true;
-           
-           
+            onTable = true;        
         }
 
     }
