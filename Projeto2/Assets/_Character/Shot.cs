@@ -96,6 +96,21 @@ public class Shot : MonoBehaviour
                         GameObject go = Instantiate(WoodEffect, hit.point, Quaternion.LookRotation(hit.normal));
                         Destroy(go, 1f);
                     }
+                    else if (hit.collider.tag == "house")
+                    {
+                        GameObject go = Instantiate(WoodEffect, hit.point, Quaternion.LookRotation(hit.normal));
+                        Destroy(go, 1f);
+                    }
+                    else if (hit.collider.tag == "Foundation")
+                    {
+                        GameObject go = Instantiate(WoodEffect, hit.point, Quaternion.LookRotation(hit.normal));
+                        Destroy(go, 1f);
+                    }
+                    else if (hit.collider.tag == "woodFence")
+                    {
+                        GameObject go = Instantiate(WoodEffect, hit.point, Quaternion.LookRotation(hit.normal));
+                        Destroy(go, 1f);
+                    }
                     else if (hit.collider.tag == "Enemy")
                     {
                         hit.collider.GetComponentInParent<WolfAnimController>().GetDamage(PistolDamage);

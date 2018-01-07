@@ -15,6 +15,8 @@ public class InventoryUI : MonoBehaviour
     public Text SlotText;
     public Button InventoryButton, CraftButton;
 
+
+
     [HideInInspector]
     public Farm farm;
 
@@ -32,8 +34,10 @@ public class InventoryUI : MonoBehaviour
         Button craftButton = CraftButton.GetComponent<Button>();
         Button inventoryButton = InventoryButton.GetComponent<Button>();
 
+
         craftButton.onClick.AddListener(CraftClickButton);
         inventoryButton.onClick.AddListener(InventoryClickButton);
+
 
         for (int i = 0; i < 20; i++)
         {
@@ -124,6 +128,7 @@ public class InventoryUI : MonoBehaviour
         {
             if (playerStatus.ExistMeat)
             {
+
                 CheckMeat();
             }
             else
