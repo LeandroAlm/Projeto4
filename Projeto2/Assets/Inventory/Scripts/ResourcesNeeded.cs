@@ -50,7 +50,7 @@ public class ResourcesNeeded : MonoBehaviour
             woodAmount.text = "20";
             stoneAmount.text = "10";
 
-            DescriptionText.text = "Create a wall with this fences but be aware that they do not last forever";
+            DescriptionText.text = "Create a wall with these fences but be aware that they do not last forever";
         }
 
         else if (SlotNumber == 2)
