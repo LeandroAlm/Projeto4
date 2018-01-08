@@ -2103,7 +2103,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1122110145551034}
-  m_LocalRotation: {x: 0.018411018, y: 0.46939147, z: 0.41685262, w: -0.7781817}
+  m_LocalRotation: {x: 0.018411016, y: 0.4693914, z: 0.41685256, w: -0.77818155}
   m_LocalPosition: {x: -0.00013508121, y: 0.0012452261, z: 0.00004695032}
   m_LocalScale: {x: 1, y: 1.0000001, z: 1}
   m_Children:
@@ -2268,7 +2268,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1343476123188502}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -26.65, y: 0.094, z: 67.1}
+  m_LocalPosition: {x: -8.45, y: 0.094, z: 61.89}
   m_LocalScale: {x: 1.1116904, y: 1.1116914, z: 1.1116914}
   m_Children:
   - {fileID: 4837146625929490}
@@ -2838,6 +2838,7 @@ MonoBehaviour:
   Gun: {fileID: 4948196783474022}
   posHandL: {fileID: 0}
   moveSpeed: 3
+  canMove: 0
   PlayerStatus: {fileID: 0}
 --- !u!114 &114082243089005794
 MonoBehaviour:
@@ -3051,6 +3052,7 @@ MonoBehaviour:
   wood: 0
   stone: 0
   meat: 0
+  cookmeat: 0
   Bag: {fileID: 0}
   ExistWood: 0
   ExistStone: 0
@@ -3072,6 +3074,7 @@ MonoBehaviour:
   WoodEffect: {fileID: 100002, guid: 855f647f81ad9774a905ff23fdc26618, type: 2}
   StoneEffect: {fileID: 100002, guid: 556d09d7fda29fd4185eed4067d5777b, type: 2}
   PistolDamage: 34
+  bulletCount: 0
 --- !u!114 &114692629098427378
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3091,6 +3094,8 @@ MonoBehaviour:
   isStone: 0
   AxeGO: {fileID: 1446247603770586}
   playerFarmed: 0
+  axeCount: 0
+  canFarm: 0
 --- !u!114 &114852441308771772
 MonoBehaviour:
   m_ObjectHideFlags: 1

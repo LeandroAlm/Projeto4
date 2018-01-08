@@ -44,18 +44,25 @@ public class LobbyManager : MonoBehaviour
 
 	    readyButton.GetComponent<Button>().onClick.AddListener(() =>
 	    {
+            Debug.Log("Login");
 	        GameSparksManager.Instance().AuthenticateUser(playerNameInputField.text, passwordInputField.text, OnRegistration, OnAuthentication);
+	        readyButton.SetActive(false);
+	        startSessionButton.SetActive(true);
         });
 
         startSessionButton.GetComponent<Button>().onClick.AddListener(() =>
         {
+            Debug.Log("Find Players");
             GameSparksManager.Instance().FindPlayers();
-            
+            startSessionButton.SetActive(false);
+            startGameButton.SetActive(true);
         });
 
         startGameButton.GetComponent<Button>().onClick.AddListener(() =>
         {
+            Debug.Log("Start Session");
             GameSparksManager.Instance().StartNewRtSession(sessionInformation);
+            SceneManager.LoadScene("Cena");
         });
 
 	    exitButton.GetComponent<Button>().onClick.AddListener(ExitScene);
@@ -122,8 +129,6 @@ public class LobbyManager : MonoBehaviour
     {
         Debug.Log("User ID: " + authenticationResponse.UserId);
         Debug.Log("User Authenticated.");
-        readyButton.SetActive(false);
-        startSessionButton.SetActive(true);
     }
 
     private void OnMatchFound(MatchFoundMessage matchFoundMessage)
@@ -140,11 +145,6 @@ public class LobbyManager : MonoBehaviour
             Debug.Log("Player: " + participant.PeerId);
         }
 
-        sessionInformation = new SessionInformation(matchFoundMessage);
-
-        startSessionButton.SetActive(false);
-        startGameButton.SetActive(true);
-
-        SceneManager.LoadScene("Cena");
+        sessionInformation = new SessionInformation(matchFoundMessage);     
     }
 }

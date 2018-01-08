@@ -28,7 +28,8 @@ public class GameController : MonoBehaviour
     {
         SpawnPoint[] spawnPoints = FindObjectsOfType(typeof(SpawnPoint)) as SpawnPoint[];
 
-        Debug.Log("Lista: " + GameSparksManager.Instance().SessionInformation.PlayersList.Count);
+        Debug.Log("Sessions info: " + GameSparksManager.Instance().SessionInformation);
+        Debug.Log("Player List: " + GameSparksManager.Instance().SessionInformation.PlayersList);
 
         playersList = new PLayerControl[GameSparksManager.Instance().SessionInformation.PlayersList.Count];
 
@@ -93,6 +94,7 @@ public class GameController : MonoBehaviour
             {
 
             }
+
             if (rtPacket.Sender != GameSparksManager.Instance().GameSparksRtUnity.PeerId && playersList[i].name == rtPacket.Data.GetString(2))
             {
 
