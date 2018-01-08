@@ -3,11 +3,12 @@
 public class GenerateForest: MonoBehaviour
 {
     public GameObject tree;
-    public GameObject tree2;
     public GameObject rock;
 
     public float minTreeSize;
     public float maxTreeSize;
+    public float minRockSize;
+    public float maxRockSize;
     public Texture2D noiseImage;
     public float forestSize;
     public float treeDensity;
@@ -31,19 +32,22 @@ public class GenerateForest: MonoBehaviour
 
                 if (CanPlace(probability))
                 {
-                    float size = Random.Range(minTreeSize, maxTreeSize);
+                    float treeSize = Random.Range(minTreeSize, maxTreeSize);
 
-                    RandomObject(Random.Range(1, 4));
+                    float rockSize = Random.Range(minRockSize, maxRockSize);
+
+                    RandomObject(Random.Range(1, 3));
                     if (newGameObj.tag != "Stone")
                     {
-                        newGameObj.transform.localScale = Vector3.one * size;
+                        newGameObj.transform.localScale = Vector3.one * treeSize;
                         newGameObj.transform.position = new Vector3(x, 0, y);
                         newGameObj.transform.parent = transform;
                     }
                     else
                     {
-                        //newGameObj.transform.localScale = Vector3.one * size;
+                        newGameObj.transform.localScale = Vector3.one * rockSize;
                         newGameObj.transform.position = new Vector3(x, 0.55f, y);
+                        newGameObj.transform.rotation = Random.rotation;
                         newGameObj.transform.parent = transform;
                     }
                 }
@@ -56,13 +60,12 @@ public class GenerateForest: MonoBehaviour
         {
             newGameObj = Instantiate(tree);
         }
-
         if (random == 2)
         {
-            newGameObj = Instantiate(tree2);
+            newGameObj = Instantiate(tree);
         }
 
-        if (random == 3)
+        if (random == 2)
         {
             newGameObj = Instantiate(rock);
         }
