@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using GameSparks.RT;
 using Org.BouncyCastle.Math.Field;
@@ -7,28 +8,26 @@ using UnityEngine.UI;
 
 public class PLayerControl : MonoBehaviour
 {
+    public PlayerStatus PlayerStatus;
     private Animator animator;
     private Rigidbody rb;
-
-    Vector3 camForward, move, moveInput;
-    float forwardAmount;
-    public float turnAmount;
-
     public Transform Axe;
     public Transform Gun;
     private Transform _spawnPosition;
     public GameObject posHandL;
+    private Camera mainCamera;
 
     private Vector3 moveVelocity;
+    private Vector3 position, previousPosition;
+    private Vector3 camForward, move, moveInput;
+
+    private float updateRate = 0.1f;
+    private float forwardAmount;
+    public float turnAmount;
     public float moveSpeed;
 
-    private Camera mainCamera;
     public static bool usingAxe = false, usingGun = false;
-
     public bool canMove;
-
-    public PlayerStatus PlayerStatus;
-
 
     void Start()
     {
@@ -39,6 +38,7 @@ public class PLayerControl : MonoBehaviour
         mainCamera = FindObjectOfType<Camera>();
         PlayerStatus = GetComponent<PlayerStatus>();
         canMove = true;
+        previousPosition = transform.position;
     }
 
     // Update is called once per frame
@@ -69,6 +69,8 @@ public class PLayerControl : MonoBehaviour
     void MovementTopDown()
     {
         {
+            position = transform.position;
+
             moveInput = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical"));
 
             moveInput = transform.TransformDirection(moveInput);
@@ -89,6 +91,8 @@ public class PLayerControl : MonoBehaviour
                 transform.LookAt(new Vector3 (pointToLook.x, transform.position.y, pointToLook.z));
                 //transform.TransformDirection(moveVelocity);
             }
+
+            previousPosition = transform.position;
         }
     }
    
@@ -195,12 +199,33 @@ public class PLayerControl : MonoBehaviour
     public void SetupPlayer(Transform spawnPosition)
     {
         _spawnPosition = spawnPosition;
+        previousPosition = position;
+
+        StartCoroutine(SendPlayerMovement());
     }
 
-    /*private IEnumerator SendPlayerMovement()
+    private IEnumerator SendPlayerMovement()
     {
-        
-    }*/
+        if (position != previousPosition || Mathf.Abs(Input.GetAxis("Vertical")) > 0 || Mathf.Abs(Input.GetAxis("Horizontal")) > 0)
+        {
+            using(RTData data = RTData.Get())
+            {
+                Debug.Log("Entrou no SendPlayerMovement");
+
+                data.SetVector3(1, new Vector3(position.x, position.y, position.z));
+                data.SetFloat(2, transform.eulerAngles.x);
+                data.SetFloat(3, transform.eulerAngles.y);
+                data.SetFloat(4, transform.eulerAngles.z);
+
+                GameSparksManager.Instance().GameSparksRtUnity.SendData(2, GameSparksRT.DeliveryIntent.UNRELIABLE_SEQUENCED, data);
+            }
+
+            previousPosition = position;
+        }
+
+        yield return new WaitForSeconds(updateRate);
+        StartCoroutine(SendPlayerMovement());
+    }
 
     //REGO
     //public void DistanceToEnemy()

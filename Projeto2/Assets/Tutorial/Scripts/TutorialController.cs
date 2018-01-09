@@ -44,7 +44,7 @@ public class TutorialController : MonoBehaviour
             InventoryText.SetActive(false);
         }
 
-        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.I) && InventoryUI.isOpen == true)
+        if (Input.GetKeyDown(KeyCode.Escape) && InventoryUI.isOpen == true|| Input.GetKeyDown(KeyCode.I) && InventoryUI.isOpen == true)
         {
             InstructionText.SetActive(true);
             WeaponsText.SetActive(false);

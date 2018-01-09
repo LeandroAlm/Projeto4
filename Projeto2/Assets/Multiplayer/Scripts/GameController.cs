@@ -29,7 +29,7 @@ public class GameController : MonoBehaviour
         SpawnPoint[] spawnPoints = FindObjectsOfType(typeof(SpawnPoint)) as SpawnPoint[];
 
         Debug.Log("Sessions info: " + GameSparksManager.Instance().SessionInformation);
-        Debug.Log("Player List: " + GameSparksManager.Instance().SessionInformation.PlayersList);
+        Debug.Log("Player List Count: " + GameSparksManager.Instance().SessionInformation.PlayersList.Count);
 
         playersList = new PLayerControl[GameSparksManager.Instance().SessionInformation.PlayersList.Count];
 
@@ -47,7 +47,13 @@ public class GameController : MonoBehaviour
                     if (GameSparksManager.Instance().SessionInformation.PlayersList[playerIndex].PeerId == GameSparksManager.Instance().GameSparksRtUnity.PeerId)
                     {
                         Debug.Log("Entrou!");
+                        Debug.Log("Spawn Index: " + spawnIndex);
                         newPlayer.GetComponent<PLayerControl>().SetupPlayer(spawnPoints[spawnIndex].gameObject.transform);
+                    }
+
+                    else
+                    {
+                        Debug.Log("Não é player");
                     }
 
                     playersList[playerIndex] = newPlayer.GetComponent<PLayerControl>();

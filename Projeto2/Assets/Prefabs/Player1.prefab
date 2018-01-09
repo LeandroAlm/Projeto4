@@ -2474,8 +2474,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1438441059211950}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.45, y: 0.094, z: 61.89}
-  m_LocalScale: {x: 1.1116904, y: 1.1116914, z: 1.1116914}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4790568243219114}
   - {fileID: 4320594079086588}
@@ -3056,13 +3056,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87484a78b980d7e4382f8f93fd912ced, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  turnAmount: 0
+  PlayerStatus: {fileID: 0}
   Axe: {fileID: 4540268006882724}
   Gun: {fileID: 4227122874496594}
   posHandL: {fileID: 0}
+  turnAmount: 0
   moveSpeed: 3
   canMove: 0
-  PlayerStatus: {fileID: 0}
 --- !u!114 &114765878379984640
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3106,8 +3106,6 @@ MonoBehaviour:
     m_Text: 
     m_Image: {fileID: 0}
     m_Tooltip: 
-  isWood: 0
-  isStone: 0
   AxeGO: {fileID: 1703538219500294}
   playerFarmed: 0
   axeCount: 0

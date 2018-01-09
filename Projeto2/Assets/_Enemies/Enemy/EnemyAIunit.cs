@@ -35,7 +35,7 @@ public class EnemyAIunit : MonoBehaviour {
                 new DTAction(() =>
                 {
                     // Mover aleatoriamente de x em x segundos
-                    Debug.Log("Estou a ir random!!!");
+                    //Debug.Log("Estou a ir random!!!");
                   
                     MoveRandom();
                 }),
