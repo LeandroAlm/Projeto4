@@ -77,7 +77,7 @@ public class EnemyAIunit : MonoBehaviour {
             Debug.Log("A ir para um Random!!!");
             
             transform.GetComponent<Unit>().target.position = posDestino;
-            transform.GetComponent<Unit>().CalculateWay();
+            //transform.GetComponent<Unit>().CalculateWay();
         }
         else
         {

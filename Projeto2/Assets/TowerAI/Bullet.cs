@@ -15,11 +15,12 @@ public class Bullet : MonoBehaviour
 
 	void Update ()
     {
-        if (target == null)
-        {
-            Destroy(gameObject);
-            return;
-        }
+        // se tirares isto isto aquele bug das balas instanciarem e desapareceram logo desaparece
+        //if (target == null)
+        //{
+        //    Destroy(gameObject);
+        //    return;
+        //}
 
         Vector3 direction = target.position - transform.position;
 

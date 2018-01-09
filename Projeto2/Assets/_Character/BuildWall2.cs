@@ -76,6 +76,10 @@ public class BuildWall2 : MonoBehaviour
                     posEnd = hit.point;
                     check = false;
                     SnapWalls();
+
+                    //pathFinding
+                    Unit.wallBuilded = true;
+
                     ParentObj.AddComponent<WallAutoBuild>();
                     ParentObj.GetComponent<WallAutoBuild>().wallPrefab = wallPrefab;
                     ParentObj.GetComponent<WallAutoBuild>().stepDuration = 1.5f;
@@ -130,8 +134,6 @@ public class BuildWall2 : MonoBehaviour
         {
             if (sizeDistance > 2.6f)
             {
-
-                
                 nextPos = fence.gameObject.transform.position;
 
                 newDir = mouseVector - posIni;
@@ -165,7 +167,11 @@ public class BuildWall2 : MonoBehaviour
             if (Input.GetMouseButton(0))
             {
                 Node node = grid.NodeFromWorldPoint(hit.point);
+                //node.worldPosition = hit.point;
+                //node.gridX = (int)hit.transform.position.x;
+                //node.gridY = (int)hit.transform.position.y;
                 node.walkable = false;
+
             }
 
             return true;

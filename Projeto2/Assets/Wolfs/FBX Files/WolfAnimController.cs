@@ -19,14 +19,37 @@ public class WolfAnimController : MonoBehaviour {
     public float HP;
     float distance;
 
+    public static bool canFollow;
+
+    Unit unitScript;
+
+    GameObject walls;
+
+    float distance2;
+
     void Start ()
     {
+        walls = GameObject.FindGameObjectWithTag("woodFence");
+        canFollow = true;
         animator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
+        unitScript = GetComponent<Unit>();
     }
 
     void Update()
     {
+        //distance2
+        if (Vector3.Distance(this.transform.position,walls.transform.position) < 3)
+        {
+            //encontrou uma muralha parou
+            canFollow = false;
+        }
+        else
+        {
+            unitScript.Move();
+
+        }
+
         distance = Vector3.Distance(transform.position,Player.transform.position);
         
         Manager();
@@ -34,18 +57,17 @@ public class WolfAnimController : MonoBehaviour {
 
     void Manager()
     {
-        //if (distance <= 1)
-        //{
-        //    // Chegou ao inimigo
-        //    Run(false);
-        //    IdleAttack(true);
-        //}
-        //else
-        //{
-        //    IdleAttack(false);
-        //    Run(true);
-        //}
-        Run(true);
+        if (Unit.lastPoint)
+        {
+            // Chegou ao inimigo
+            Run(false);
+            IdleAttack(true);
+        }
+        else
+        {
+            IdleAttack(false);
+            Run(true);
+        }
     }
 
     void Run(bool Aux)
@@ -61,7 +83,6 @@ public class WolfAnimController : MonoBehaviour {
         if (Aux)
         {
             animator.SetBool("standbite", true);
-
             // Dentada
             RaycastHit hit;
             Ray ray = new Ray(Mouth.position, transform.forward);

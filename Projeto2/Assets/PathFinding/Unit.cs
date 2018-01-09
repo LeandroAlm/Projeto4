@@ -4,84 +4,121 @@ using System.Collections;
 public class Unit : MonoBehaviour
 {
 
+
     public Transform target;
-    float speed = 3f;
+    float speed = 5;
     Vector3[] path;
     int targetIndex;
+
+    public Vector3 playerPos;
 
     Vector3 currentWaypoint;
 
     Vector3 direction;
 
-    Vector3 lastVector;
+    float distance;
 
-    Vector3 playerPos;
+    public static bool lastPoint;
 
-    //public static bool isAttacking;
+    bool newRotation, wallisDown;
+
+    public static bool wallBuilded;
+
 
     void Start()
-    {
+    { 
+
+        wallBuilded = false;
+        wallisDown = false;
+        newRotation = false;
+        lastPoint = false;
         playerPos = target.position;
+
         PathRequestManager.RequestPath(transform.position, target.position, OnPathFound);
-        //isAttacking = false;
     }
 
     private void Update()
     {
-        // Quando esta em persiguição
-        if (playerPos != target.position)
+        if(wallBuilded)
         {
-            // Muda a Pos logo tem de recalcular o caminho!
             PathRequestManager.RequestPath(transform.position, target.position, OnPathFound);
-            playerPos = target.position;
+            wallBuilded = false;
+        }
+ 
+
+        distance = Vector3.Distance(this.transform.position, target.position);
+    
+        if(!newRotation)
+        { 
+            direction = currentWaypoint - this.transform.position;
+            this.transform.rotation = Quaternion.Slerp(this.transform.rotation,
+            Quaternion.LookRotation(direction), 0.18f);
+        }
+        else
+        {
+            Vector3 newdirection = target.position - this.transform.position;
+            this.transform.rotation = Quaternion.Slerp(this.transform.rotation,
+            Quaternion.LookRotation(newdirection), 0.18f);
         }
 
-        //Inimigo vira se para os nodos principais para um movimento mais realista
-        direction = currentWaypoint - this.transform.position;
-        this.transform.rotation = Quaternion.Slerp(this.transform.rotation,
-        Quaternion.LookRotation(direction), 0.17f);
+
+
+        if (distance > 3 && lastPoint)
+        {  
+            PathRequestManager.RequestPath(transform.position, target.position, OnPathFound);
+            
+            lastPoint = false;
+        }
+
+        
+
     }
 
     public void OnPathFound(Vector3[] newPath, bool pathSuccessful)
     {
+
         if (pathSuccessful)
         {
             path = newPath;
             targetIndex = 0;
-            StopCoroutine(FollowPath());
-
-            StartCoroutine(FollowPath());
-
+            StopCoroutine("FollowPath");
+            StartCoroutine("FollowPath");
         }
     }
 
     IEnumerator FollowPath()
     {
-        Debug.Log("lastVector" + lastVector);
-
+        
         currentWaypoint = path[0];
         while (true)
         {
             if (transform.position == currentWaypoint)
-            {
+            {               
                 targetIndex++;
                 if (targetIndex >= path.Length)
                 {
+                    targetIndex = 0;
+                    path = new Vector3[0];
+                    newRotation = true;                   
+                    //newRotation = true;
+                    lastPoint = true;
+                    Debug.Log("target index" + targetIndex);
                     yield break;
                 }
                 currentWaypoint = path[targetIndex];
             }
 
-
-            transform.position = Vector3.MoveTowards(transform.position, currentWaypoint, speed * Time.deltaTime);
+            Move();
 
             yield return null;
+
         }
     }
 
-    public void CalculateWay()
+    public void Move()
     {
-        PathRequestManager.RequestPath(transform.position, target.position, OnPathFound);
+        transform.position = Vector3.MoveTowards(transform.position, currentWaypoint, speed * Time.deltaTime);
+
     }
 
     public void OnDrawGizmos()
