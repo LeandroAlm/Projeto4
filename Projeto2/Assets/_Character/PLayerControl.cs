@@ -28,6 +28,7 @@ public class PLayerControl : MonoBehaviour
 
     public static bool usingAxe = false, usingGun = false;
     public bool canMove;
+    public bool IsMyPlayer;
 
     void Start()
     {
@@ -196,12 +197,22 @@ public class PLayerControl : MonoBehaviour
         }
     }
 
-    public void SetupPlayer(Transform spawnPosition)
+    public void SetupPlayer(Transform spawnPosition, bool ismyplayer)
     {
+        IsMyPlayer = ismyplayer;
         _spawnPosition = spawnPosition;
-        previousPosition = position;
 
-        StartCoroutine(SendPlayerMovement());
+        if (IsMyPlayer == true)
+        {
+            previousPosition = position;
+            StartCoroutine(SendPlayerMovement());
+        }
+        else
+        {
+            position = transform.position;
+            turnAmount = transform.eulerAngles.z;
+        }
+        
     }
 
     private IEnumerator SendPlayerMovement()

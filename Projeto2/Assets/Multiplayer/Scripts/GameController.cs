@@ -48,12 +48,12 @@ public class GameController : MonoBehaviour
                     {
                         Debug.Log("Entrou!");
                         Debug.Log("Spawn Index: " + spawnIndex);
-                        newPlayer.GetComponent<PLayerControl>().SetupPlayer(spawnPoints[spawnIndex].gameObject.transform);
+                        newPlayer.GetComponent<PLayerControl>().SetupPlayer(spawnPoints[spawnIndex].gameObject.transform, true);
                     }
 
                     else
                     {
-                        Debug.Log("Não é player");
+                        newPlayer.GetComponent<PLayerControl>().SetupPlayer(spawnPoints[spawnIndex].gameObject.transform, false);
                     }
 
                     playersList[playerIndex] = newPlayer.GetComponent<PLayerControl>();

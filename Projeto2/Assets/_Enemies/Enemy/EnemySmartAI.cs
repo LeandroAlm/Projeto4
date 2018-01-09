@@ -152,7 +152,7 @@ public class EnemySmartAI : MonoBehaviour
             //// Correção de olhar
             //enemy.LookAt(posDestino);
             transform.GetComponent<Unit>().target.position = posDestino;
-            transform.GetComponent<Unit>().playerPos = posDestino;
+            transform.GetComponent<Unit>().CalculateWay();
         }
         else
         {

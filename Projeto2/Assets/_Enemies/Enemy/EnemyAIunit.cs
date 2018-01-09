@@ -11,7 +11,7 @@ public class EnemyAIunit : MonoBehaviour {
     public Transform player;
     Grid grid;
     public GameObject pathFindingObj;
-
+    public static Vector3 AuxNode;
 
     void Start ()
     {
@@ -25,6 +25,7 @@ public class EnemyAIunit : MonoBehaviour {
     {
         distance = Vector3.Distance(transform.position, player.position);
         DecisionIdle();
+        Debug.Log("Node final: " + AuxNode);
     }
 
     void DecisionIdle()
@@ -74,12 +75,8 @@ public class EnemyAIunit : MonoBehaviour {
             //// Correção de olhar
             //enemy.LookAt(posDestino);
             Debug.Log("A ir para um Random!!!");
-
-            //NODE------------------------------------------------------------------------------------
-            Node node = grid.NodeFromWorldPoint(posDestino);
-            GOTarget.position = node.worldPosition;
             
-            transform.GetComponent<Unit>().playerPos = posDestino;
+            transform.GetComponent<Unit>().target.position = posDestino;
             transform.GetComponent<Unit>().CalculateWay();
         }
         else

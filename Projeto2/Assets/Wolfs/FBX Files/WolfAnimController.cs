@@ -13,9 +13,11 @@ public class WolfAnimController : MonoBehaviour {
     public Transform Mouth;
 
     public GameObject Meat;
+    public GameObject Player;
 
     public int Bite;
     public float HP;
+    float distance;
 
     void Start ()
     {
@@ -25,39 +27,64 @@ public class WolfAnimController : MonoBehaviour {
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.U))
-        {
-            IdleAttack();
-        }
+        distance = Vector3.Distance(transform.position,Player.transform.position);
+        
+        Manager();
     }
 
-    void Run()
+    void Manager()
     {
-        animator.SetBool("run", true);
+        //if (distance <= 1)
+        //{
+        //    // Chegou ao inimigo
+        //    Run(false);
+        //    IdleAttack(true);
+        //}
+        //else
+        //{
+        //    IdleAttack(false);
+        //    Run(true);
+        //}
+        Run(true);
     }
 
-    void IdleAttack()
+    void Run(bool Aux)
     {
-        animator.SetBool("standbite", true);
+        if (Aux)
+            animator.SetBool("run", true);
+        else
+            animator.SetBool("run", false);
+    }
 
-        // Dentada
-        RaycastHit hit;
-        Ray ray = new Ray(Mouth.position, transform.forward);
-        if (Physics.Raycast(ray, out hit, 1))
+    void IdleAttack(bool Aux)
+    {
+        if (Aux)
         {
-            if (hit.collider.tag == "Player")
+            animator.SetBool("standbite", true);
+
+            // Dentada
+            RaycastHit hit;
+            Ray ray = new Ray(Mouth.position, transform.forward);
+            if (Physics.Raycast(ray, out hit, 1))
             {
-                Debug.Log("Wolf bite Player!");
+                if (hit.collider.tag == "Player")
+                {
+                    Debug.Log("Wolf bite Player!");
 
-                hit.collider.GetComponent<PlayerStatus>().GetDamage(Bite);
+                    hit.collider.GetComponent<PlayerStatus>().GetDamage(Bite);
+                }
             }
         }
+        else
+        {
+            animator.SetBool("standbite", false);
+        }
     }
 
-    void RunAttack()
-    {
-        animator.SetBool("runBite", true);
-    }
+    //void RunAttack()
+    //{
+    //    animator.SetBool("runBite", true);
+    //}
 
     void Death()
     {

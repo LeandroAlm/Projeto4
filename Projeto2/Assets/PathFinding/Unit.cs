@@ -5,17 +5,17 @@ public class Unit : MonoBehaviour
 {
 
     public Transform target;
-    float speed = 1f;
+    float speed = 3f;
     Vector3[] path;
     int targetIndex;
-    
-    public Vector3 playerPos;
 
     Vector3 currentWaypoint;
 
     Vector3 direction;
 
     Vector3 lastVector;
+
+    Vector3 playerPos;
 
     //public static bool isAttacking;
 
@@ -28,24 +28,18 @@ public class Unit : MonoBehaviour
 
     private void Update()
     {
-        if (transform.tag != "Enemy2")
+        // Quando esta em persiguição
+        if (playerPos != target.position)
         {
-            // Quando esta em persiguição
-            //if (playerPos != target.transform.position)
-            //{
-            //    // Muda a Pos logo tem de recalcular o caminho!
-            //    PathRequestManager.RequestPath(transform.position, target.position, OnPathFound);
-            //}
+            // Muda a Pos logo tem de recalcular o caminho!
+            PathRequestManager.RequestPath(transform.position, target.position, OnPathFound);
+            playerPos = target.position;
+        }
 
-            //Inimigo vira se para os nodos principais para um movimento mais realista
-            direction = currentWaypoint - this.transform.position;
-            this.transform.rotation = Quaternion.Slerp(this.transform.rotation,
-            Quaternion.LookRotation(direction), 0.17f);
-        }
-        else
-        {
-            // Covil!!!
-        }
+        //Inimigo vira se para os nodos principais para um movimento mais realista
+        direction = currentWaypoint - this.transform.position;
+        this.transform.rotation = Quaternion.Slerp(this.transform.rotation,
+        Quaternion.LookRotation(direction), 0.17f);
     }
 
     public void OnPathFound(Vector3[] newPath, bool pathSuccessful)
@@ -54,9 +48,9 @@ public class Unit : MonoBehaviour
         {
             path = newPath;
             targetIndex = 0;
-            StopCoroutine("FollowPath");
+            StopCoroutine(FollowPath());
 
-            StartCoroutine("FollowPath");
+            StartCoroutine(FollowPath());
 
         }
     }
@@ -82,10 +76,7 @@ public class Unit : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, currentWaypoint, speed * Time.deltaTime);
 
             yield return null;
-
         }
-
-
     }
 
     public void CalculateWay()
