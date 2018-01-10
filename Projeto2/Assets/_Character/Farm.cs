@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Farm : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class Farm : MonoBehaviour
     public GUIContent Mochila;
 
     public GameObject AxeGO;
+    public GameObject ResourcesFromFarmCanvas;
 
     Ray ray;
 
@@ -23,6 +25,9 @@ public class Farm : MonoBehaviour
     public int axeCount;
 
     public bool canFarm;
+    private int stoneCollected = 0, woodCollected = 0;
+    public Text woodGained, stoneGained;
+    private float delayTimer = 0;
 
 
     public void Start ()
@@ -32,6 +37,7 @@ public class Farm : MonoBehaviour
         playerFarmed = false;
         axeCount = 0;
         canFarm = false;
+        ResourcesFromFarmCanvas.SetActive(false);
     }
 
     private void OnTriggerEnter(Collider collision)
@@ -43,14 +49,18 @@ public class Farm : MonoBehaviour
                 axeCount++;
                 playerFarmed = true;
                 player.GetComponent<PlayerStatus>().StoneAmount(collision.GetComponent<Stone>().GetAmount());
-                collision.GetComponent<Stone>().Damage();         
+                stoneCollected += Stone.Amount;
+                stoneGained.text = "x" + stoneCollected + " Stone";
+                collision.GetComponent<Stone>().Damage();
             }
             else if (collision.tag == "Tree")
             {
                 axeCount++;
                 playerFarmed = true;
-                player.GetComponent<PlayerStatus>().WoodAmount(collision.GetComponent<Tree>().GetAmount());
-                collision.GetComponent<Tree>().Damage();
+                player.GetComponent<PlayerStatus>().WoodAmount(collision.GetComponent<Wood>().GetAmount());
+                woodCollected += Wood.Amount;
+                woodGained.text = "x" + Wood.Amount + " Wood";
+                collision.GetComponent<Wood>().Damage();
             }
 
             canFarm = false;
@@ -65,7 +75,7 @@ public class Farm : MonoBehaviour
             canFarm = false;
         }
 
-        if (Input.GetMouseButtonDown(0) && AxeGO.activeSelf)
+        if (Input.GetMouseButtonDown(0) && AxeGO.activeSelf || Input.GetMouseButton(0) && AxeGO)
         {
             canFarm = true;
             anim.SetTrigger("Farming");
@@ -74,6 +84,41 @@ public class Farm : MonoBehaviour
         {
             anim.SetTrigger("attack2");
         }
+
+        if (playerFarmed)
+        {
+            delayTimer += Time.deltaTime;
+            ResourcesFromFarmCanvas.SetActive(true);
+
+            if (woodCollected == 0)
+            {
+                woodGained.gameObject.SetActive(false);
+            }
+
+            else
+            {
+                woodGained.gameObject.SetActive(true);
+            }
+
+            if (stoneCollected == 0)
+            {
+                stoneGained.gameObject.SetActive(false);
+            }
+
+            else
+            {
+                stoneGained.gameObject.SetActive(true);
+            }
+
+            if (delayTimer > 2f)
+            {
+                playerFarmed = false;
+                delayTimer = 0;
+            }
+        }
+
+        else
+            ResourcesFromFarmCanvas.SetActive(false);
 
         //if (canFarm)
         //{

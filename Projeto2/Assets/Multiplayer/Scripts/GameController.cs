@@ -14,6 +14,15 @@ public class GameController : MonoBehaviour
     //public Text[] PlayerNameList;
     private PLayerControl[] playersList;
 
+
+    private int _timeDelta;
+    private int _latency;
+    private int _roundTrip;
+    private DateTime _serverClock;
+    private bool _clockStarted;
+    private DateTime _endTime;
+
+
     public static GameController Instance()
     {
         return _instance;
@@ -59,8 +68,47 @@ public class GameController : MonoBehaviour
                     playersList[playerIndex] = newPlayer.GetComponent<PLayerControl>();
                     //PlayerNameList[playerIndex].text = GameSparksManager.Instance().SessionInformation.PlayersList[playerIndex].DisplayName;
                     break;
-                }                
+                }
             }
+        }
+
+        StartCoroutine(SendTimeStamp());
+    }
+
+    private IEnumerator SendTimeStamp()
+    {
+        using (RTData data = RTData.Get())
+        {
+            data.SetLong(1, (long)(DateTime.UtcNow - new DateTime(1970, 1, 1, 0, 0, 0)).TotalMilliseconds);
+            GameSparksManager.Instance().GameSparksRtUnity
+                .SendData(101, GameSparksRT.DeliveryIntent.UNRELIABLE, data, 0);
+        }
+
+        yield return new WaitForSeconds(5f);
+        StartCoroutine(SendTimeStamp());
+    }
+
+    public void CalculateTimeDelta(RTPacket rtPacket)
+    {
+        _roundTrip = (int)((long)(DateTime.UtcNow - new DateTime(1970, 1, 1, 0, 0, 0)).TotalMilliseconds - rtPacket.Data.GetLong(1).Value);
+        _latency = _roundTrip / 2;
+        int serverDelta = (int)(rtPacket.Data.GetLong(2).Value - (long)(DateTime.UtcNow - new DateTime(1970, 1, 1, 0, 0, 0)).TotalMilliseconds);
+        _timeDelta = serverDelta + _latency;
+    }
+
+    public void SyncClock(RTPacket rtPacket)
+    {
+        DateTime dateTimeNow = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
+        _serverClock = dateTimeNow.AddMilliseconds(rtPacket.Data.GetLong(1).Value + _timeDelta).ToLocalTime();
+
+        if (!_clockStarted)
+        {
+            _endTime = _serverClock.AddMilliseconds(60000 + _timeDelta);
+        }
+
+        if ((_endTime - _serverClock).TotalMilliseconds <= 0)
+        {
+            GameSparksManager.Instance().GameSparksRtUnity.Disconnect();
         }
     }
 
@@ -86,8 +134,11 @@ public class GameController : MonoBehaviour
         {
             if (playersList[i].name == rtPacket.Sender.ToString())
             {
-                playersList[i].transform.position = new Vector3(rtPacket.Data.GetVector4(1).Value.x, rtPacket.Data.GetVector4(1).Value.y, rtPacket.Data.GetVector4(1).Value.z);
-                playersList[i].turnAmount = rtPacket.Data.GetFloat(2).Value;
+                Debug.Log("Entrou no UpdatePartnerMovement");
+
+                playersList[i].GoToPosition = new Vector4(rtPacket.Data.GetVector4(1).Value.x, rtPacket.Data.GetVector4(1).Value.y,
+                    rtPacket.Data.GetVector4(1).Value.z, rtPacket.Data.GetVector4(1).Value.w);
+                playersList[i].GoToRotation = rtPacket.Data.GetFloat(2).Value;
             }
         }
     }

@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 33088773670532750}
   - component: {fileID: 23729200350467660}
   - component: {fileID: 114990333217909808}
+  - component: {fileID: 114856237448561458}
   - component: {fileID: 136945017002555974}
   m_Layer: 11
   m_Name: Correct_Tree
@@ -81,6 +82,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -99,6 +101,7 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -114,7 +117,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1260586764948530}
   m_Mesh: {fileID: 4300000, guid: 469edab27ab6d004d84af2c4a851bd7f, type: 3}
---- !u!114 &114990333217909808
+--- !u!114 &114856237448561458
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -122,10 +125,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 1260586764948530}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81ed6b3c9190d3849a9049eaf648ecb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hp: 6
+--- !u!114 &114990333217909808
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1260586764948530}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1562aec4ab4167a458813780bbc57837, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 6
+  Amount: 0
 --- !u!136 &136945017002555974
 CapsuleCollider:
   m_ObjectHideFlags: 1

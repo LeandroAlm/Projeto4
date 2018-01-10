@@ -7,17 +7,18 @@ public class CraftUI : MonoBehaviour
 {
     public List<Transform> Buttons;
     public GameObject Craft, CTitle, ITitle, Player;
-    public GameObject HouseSlider, FenceSlider, TowerSlider, GateSlider, FireplaceSlider;
+    //public GameObject HouseSlider, FenceSlider, TowerSlider, GateSlider, FireplaceSlider;
 
     public RawImage HouseImage, FenceImage, TowerImage, FireplaceImage, GateImage;
     public PlayerStatus PlayerStatus;
-    public static bool canBuildHouse, canBuildFence, canBuildTower, canBuildFireplace, isBuildingSomething;
+    public static bool canBuildHouse, canBuildFence, canBuildTower, canBuildFireplace, canBuildGate, isBuildingSomething;
     public static int SlotNumber;
+    public ResourcesNeeded ResourcesNeeded;
 
-	void Start ()
+    void Start ()
 	{
 	    PlayerStatus = Player.GetComponent<PlayerStatus>();
-
+	    ResourcesNeeded = GetComponent<ResourcesNeeded>();
 	    Buttons = new List<Transform>();
 
 	    for (int i = 0; i < 20; i++)
@@ -25,22 +26,21 @@ public class CraftUI : MonoBehaviour
 	        Buttons.Add(transform.GetChild(0).GetChild(i));     
 	    }
 
-	    HouseSlider.SetActive(false);
+	    /*HouseSlider.SetActive(false);
 	    FenceSlider.SetActive(false);
 	    TowerSlider.SetActive(false);
 	    GateSlider.SetActive(false);
-	    FireplaceSlider.SetActive(false);
+	    FireplaceSlider.SetActive(false);*/
 
 	    isBuildingSomething = false;
-	    canBuildHouse = false;
 	}
 	
 	void Update ()
     {
-        //TexturesManagement();
-        //BuildManager();
+        TexturesManagement();
+        BuildManager();
 
-        if (canBuildHouse || canBuildFence || canBuildTower || canBuildFireplace)
+        if (canBuildHouse || canBuildFence || canBuildTower || canBuildFireplace || canBuildGate)
             isBuildingSomething = true;
     }
 
@@ -91,8 +91,8 @@ public class CraftUI : MonoBehaviour
 
     public void TexturesManagement()
     {
-        Color transparentColor = new Color(255, 255, 255, 30);
-        Color buildColor = new Color(255, 255, 255, 255);
+        Color32 transparentColor = new Color32(255, 255, 255, 100);
+        Color32 buildColor = new Color32(255, 255, 255, 255);
 
         if(canBuildFence)
             FenceImage.color = buildColor;
@@ -113,22 +113,48 @@ public class CraftUI : MonoBehaviour
             FireplaceImage.color = buildColor;
         else
             FireplaceImage.color = transparentColor;
+
+        if (canBuildGate)
+            GateImage.color = buildColor;
+        else
+            GateImage.color = transparentColor;
     }
 
     public void BuildManager()
     {
-        if (PlayerStatus.wood >= 5 && PlayerStatus.stone >= 5)
+        if (ResourcesNeeded.woodValue >= 20 && ResourcesNeeded.stoneValue >= 10)
         {
             canBuildFence = true;
         }
         else
             canBuildFence = false;
 
-        if (PlayerStatus.wood >= 10 && PlayerStatus.stone >= 5)
+        if (ResourcesNeeded.woodValue >= 30 && ResourcesNeeded.stoneValue >= 30)
         {
             canBuildHouse = true;
         }
         else
             canBuildHouse = false;
+
+        if (ResourcesNeeded.woodValue >= 50 && ResourcesNeeded.stoneValue >= 30)
+        {
+            canBuildTower = true;
+        }
+        else
+            canBuildTower = false;
+
+        if (ResourcesNeeded.woodValue >= 30 && ResourcesNeeded.stoneValue >= 50)
+        {
+            canBuildGate = true;
+        }
+        else
+            canBuildGate = false;
+
+        if (ResourcesNeeded.woodValue >= 20 && ResourcesNeeded.stoneValue >= 30)
+        {
+            canBuildFireplace = true;
+        }
+        else
+            canBuildFireplace = false;
     }
 }

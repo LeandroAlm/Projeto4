@@ -28,7 +28,7 @@ public class GameSparksManager : MonoBehaviour
             return null;
         }
     }
-    
+
     public void AuthenticateUser(string userName, string password, RegistrationCallback registrationCallback, AuthenticationCallback authenticationCallback)
     {
         new RegistrationRequest().SetUserName(userName).SetPassword(password).SetDisplayName(userName).Send((registrationResponse) =>
@@ -43,17 +43,17 @@ public class GameSparksManager : MonoBehaviour
                 if (registrationResponse.NewPlayer == false)
                 {
                     new AuthenticationRequest().SetUserName(userName).SetPassword(password).Send((authenticationResponse) =>
+                    {
+                        if (!authenticationResponse.HasErrors)
                         {
-                            if (!authenticationResponse.HasErrors)
-                            {
-                                Debug.Log("Authentication Successful");
-                                authenticationCallback(authenticationResponse);
-                            }
-                            else
-                            {
-                                Debug.Log("Authentication Error " + authenticationResponse.Errors.JSON);
-                            }
-                        });
+                            Debug.Log("Authentication Successful");
+                            authenticationCallback(authenticationResponse);
+                        }
+                        else
+                        {
+                            Debug.Log("Authentication Error " + authenticationResponse.Errors.JSON);
+                        }
+                    });
                 }
                 else
                 {
@@ -68,12 +68,12 @@ public class GameSparksManager : MonoBehaviour
         Debug.Log("Attempting Matchmaking");
 
         new MatchmakingRequest().SetMatchShortCode("MRLMatch").SetSkill(0).Send((matchmakingResponse) =>
+        {
+            if (matchmakingResponse.HasErrors)
             {
-                if (matchmakingResponse.HasErrors)
-                {
-                    Debug.Log("Matchmaking Error " + matchmakingResponse.Errors.JSON);
-                }
-            });
+                Debug.Log("Matchmaking Error " + matchmakingResponse.Errors.JSON);
+            }
+        });
     }
 
     public void StartNewRtSession(SessionInformation rtSessionInfo)
@@ -151,6 +151,8 @@ public class GameSparksManager : MonoBehaviour
             return;
         }
 
+        Debug.Log("RTPacket OpCode: " + rtPacket.OpCode);
+
         switch (rtPacket.OpCode)
         {
             case 2:
@@ -161,6 +163,12 @@ public class GameSparksManager : MonoBehaviour
                 break;
             case 100:
                 SceneManager.LoadScene(1);
+                break;
+            case 101:
+                GameController.Instance().CalculateTimeDelta(rtPacket);
+                break;
+            case 102:
+                GameController.Instance().SyncClock(rtPacket);
                 break;
         }
     }

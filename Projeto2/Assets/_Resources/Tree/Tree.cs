@@ -5,7 +5,7 @@ using UnityEngine;
 public class Tree : MonoBehaviour
 {
     public int hp;
-    private int Amount;
+    public int Amount;
 
     private Camera cam;
 

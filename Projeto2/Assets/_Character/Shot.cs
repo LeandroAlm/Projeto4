@@ -42,7 +42,7 @@ public class Shot : MonoBehaviour
                 ShotFire();
                 shooting = true;
                 bulletCount++;
-                Debug.Log(bulletCount);
+                //Debug.Log(bulletCount);
                 Tiro.Play();
                 attackColdown = 1f / attackSpeed;
                 

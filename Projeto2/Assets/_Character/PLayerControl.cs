@@ -20,6 +20,8 @@ public class PLayerControl : MonoBehaviour
     private Vector3 moveVelocity;
     private Vector3 position, previousPosition;
     private Vector3 camForward, move, moveInput;
+    public Vector3 GoToPosition;
+    public float GoToRotation;
 
     private float updateRate = 0.1f;
     private float forwardAmount;
@@ -28,7 +30,11 @@ public class PLayerControl : MonoBehaviour
 
     public static bool usingAxe = false, usingGun = false;
     public bool canMove;
+    public bool onlineVersion;
     public bool IsMyPlayer;
+    public bool isAttacking;
+    private string enemyTag = "Enemy";
+    private int meeleeDamage = 20;
 
     void Start()
     {
@@ -39,20 +45,42 @@ public class PLayerControl : MonoBehaviour
         mainCamera = FindObjectOfType<Camera>();
         PlayerStatus = GetComponent<PlayerStatus>();
         canMove = true;
+        onlineVersion = false;
         previousPosition = transform.position;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (canMove)
+        if (onlineVersion)
         {
-            rb.velocity = new Vector3(moveVelocity.x, rb.velocity.y, moveVelocity.z);
-            MovementTopDown();
-            GunsMovementController();
-            ConvertMoveInput();
-        }
+            if (IsMyPlayer)
+            {
+                if (canMove)
+                {
+                    rb.velocity = new Vector3(moveVelocity.x, rb.velocity.y, moveVelocity.z);
+                    MovementTopDown();
+                    GunsMovementController();
+                    ConvertMoveInput();
+                }
+            }
 
+            else
+            {
+                transform.position = Vector2.Lerp(transform.position, GoToPosition, Time.deltaTime / updateRate);
+                transform.eulerAngles = new Vector3(0, 0, Mathf.LerpAngle(transform.eulerAngles.z, GoToRotation, Time.deltaTime / updateRate));
+            }
+        }
+        else
+        {
+            if (canMove)
+            {
+                rb.velocity = new Vector3(moveVelocity.x, rb.velocity.y, moveVelocity.z);
+                MovementTopDown();
+                GunsMovementController();
+                ConvertMoveInput();
+            }
+        }
     }
 
     void Update()
@@ -182,6 +210,33 @@ public class PLayerControl : MonoBehaviour
     //    }
     //}
 
+    void AxeAttack()
+    {
+        if (Input.GetMouseButtonDown(0) && Axe.gameObject.activeSelf)
+        {
+            isAttacking = true;
+            animator.SetTrigger("Farming");
+        }
+        else if (Input.GetMouseButtonDown(1) && Axe.gameObject.activeSelf)
+        {
+            isAttacking = true;
+            animator.SetTrigger("attack2");
+        }
+
+        isAttacking = false;
+    }
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == enemyTag)
+        {
+            if (isAttacking)
+            {
+                Debug.Log("Meelee on Wolf");
+                collision.gameObject.GetComponent<WolfAnimController>().GetDamage(meeleeDamage);
+            }
+        }
+    }
+
     void SetupAnimator()
     {
         animator = GetComponent<Animator>();
@@ -199,20 +254,20 @@ public class PLayerControl : MonoBehaviour
 
     public void SetupPlayer(Transform spawnPosition, bool ismyplayer)
     {
+        onlineVersion = true;
         IsMyPlayer = ismyplayer;
         _spawnPosition = spawnPosition;
 
-        if (IsMyPlayer == true)
+        if (IsMyPlayer)
         {
             previousPosition = position;
             StartCoroutine(SendPlayerMovement());
         }
         else
         {
-            position = transform.position;
-            turnAmount = transform.eulerAngles.z;
+            GoToPosition = position;
+            GoToRotation = transform.eulerAngles.z;
         }
-        
     }
 
     private IEnumerator SendPlayerMovement()

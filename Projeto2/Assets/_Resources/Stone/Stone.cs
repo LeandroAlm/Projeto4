@@ -5,7 +5,7 @@ using UnityEngine;
 public class Stone : MonoBehaviour
 {
     public int hp;
-    private int Amount;
+    public static int Amount;
     
     public int GetAmount()
     {

@@ -9,29 +9,41 @@ public class TowerControl : MonoBehaviour
     public Transform bulletSpawnPosition;
     private Transform target;
 
-    private bool canFire, isInstantiated;
-    public float fireRate = 1f;
+    public float fireRate = 5f;
     public float fireCountDown = 0f;
-    public float range = 10f;
-    float shortestDistance = Mathf.Infinity;
+    public float range = 50f;
+    
+    public string enemyTag = "Enemy";
 
-    void Start ()
-	{
-	    canFire = false;
-	}
-
-	void Update ()
+    void Start()
     {
+        InvokeRepeating("DistanceToEnemy", 0f, 0.5f);
+    }
+
+    void Update()
+    {
+        if (target == null)
+            return;
+
         DistanceToEnemy();
-        Holding();
+
+        if (fireCountDown <= 0f)
+        {
+            Fire();
+
+            fireCountDown = 1f / fireRate;
+        }
+
+        fireCountDown -= Time.deltaTime;
     }
 
     void DistanceToEnemy()
     {
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag);
         GameObject nearestEnemy = null;
+        float shortestDistance = Mathf.Infinity;
 
-        foreach(GameObject enemy in enemies)
+        foreach (GameObject enemy in enemies)
         {
             float distance = Vector3.Distance(transform.position, enemy.transform.position);
 
@@ -54,30 +66,11 @@ public class TowerControl : MonoBehaviour
         }
     }
 
-    void Holding()
-    {
-        if (shortestDistance <= range && fireCountDown <= 0f)
-        {
-            canFire = true;
-
-            Fire();
-
-            fireCountDown = 1f / fireRate;
-        }
-
-        else
-        {
-            canFire = false;
-        }
-
-        fireCountDown -= Time.deltaTime;
-    }
-
     void Fire()
     {
         Debug.Log("Shoot");
-        GameObject bulletGameObject = (GameObject)Instantiate(bulletPrefab, bulletSpawnPosition.position, bulletSpawnPosition.rotation);
 
+        GameObject bulletGameObject = (GameObject)Instantiate(bulletPrefab, bulletSpawnPosition.position, bulletSpawnPosition.rotation);
         Bullet bullet = bulletGameObject.GetComponent<Bullet>();
 
         if (bullet != null)
