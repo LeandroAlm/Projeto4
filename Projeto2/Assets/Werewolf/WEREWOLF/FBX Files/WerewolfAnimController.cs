@@ -7,6 +7,7 @@ public class WerewolfAnimController : MonoBehaviour {
 
     private Animator animator;
 
+    int HP = 300;
     float timer = 1;
 
 
@@ -24,7 +25,7 @@ public class WerewolfAnimController : MonoBehaviour {
     void Death()
     {
         animator.SetBool("death", true);
-        
+        Destroy(gameObject, 1.5f);
     }
 
     void Roar()
@@ -55,6 +56,22 @@ public class WerewolfAnimController : MonoBehaviour {
     {
         animator.SetBool("peNaPorta", true);
 
+    }
+
+    public void GetDamage(int damageAmount)
+    {
+        HP -= damageAmount;
+        CheckDie();
+    }
+
+
+    void CheckDie()
+    {
+        Debug.Log("MATEI O FDP");
+        if (HP <= 0)
+        {
+            Death();
+        }
     }
 
     void Attack()

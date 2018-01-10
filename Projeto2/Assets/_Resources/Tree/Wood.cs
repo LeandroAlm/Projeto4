@@ -15,6 +15,7 @@ public class Wood : MonoBehaviour
 
     AudioSource audio;
 
+    public AudioClip aud;
 
     private void Start()
     {
@@ -37,10 +38,7 @@ public class Wood : MonoBehaviour
             iTween.FadeTo(this.transform.gameObject, 1, 1f);
 
             fade = false;
-
         }
-
-
     }
 
     public int GetAmount()
@@ -55,6 +53,8 @@ public class Wood : MonoBehaviour
         hp--;
         if (hp == 0)
         {
+            audio.clip = aud;
+            audio.Play();
             player = GameObject.FindGameObjectWithTag("Player");
 
             Rigidbody rigidBody = this.gameObject.AddComponent<Rigidbody>();

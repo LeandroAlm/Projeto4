@@ -55,7 +55,6 @@ public class WolfAnimController : MonoBehaviour
         //    unitScript.Move();
 
         //}
-        Debug.Log("PLAYER POS: " + Player.transform.position);
 
         distance = Vector3.Distance(transform.position,Player.transform.position);
         
@@ -82,16 +81,18 @@ public class WolfAnimController : MonoBehaviour
         {
             if (HaveWall)
             {
+                Debug.Log("ENTREI ENTRANDO!!!");
                 // player cercado com walls
                 RaycastHit hit;
-                Ray ray = new Ray(transform.position, Player.transform.position);
                 Vector3 dir = Player.transform.position - transform.position;
+                Ray ray = new Ray(transform.position, dir);
 
                 Debug.DrawRay(transform.position, dir, Color.blue);
 
                 if (Physics.Raycast(ray, out hit, 1000f, 1 << 12))
                 {
-                    Unit.SecondTarget = hit.collider.transform;
+                    Debug.Log("BATIIIIIIIIIIIIIIIIII: " + hit.collider.tag);
+                    transform.GetComponent<Unit>().SecondTarget = hit.collider.transform;
                 }
                 HaveWall = false;
             }

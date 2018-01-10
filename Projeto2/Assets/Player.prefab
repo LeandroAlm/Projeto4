@@ -227,6 +227,7 @@ GameObject:
   - component: {fileID: 114977511967864986}
   - component: {fileID: 114897158104342214}
   - component: {fileID: 114028482276860482}
+  - component: {fileID: 82928686642874216}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -2196,7 +2197,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1322163438633816}
-  m_LocalRotation: {x: 0.018411018, y: 0.46939147, z: 0.41685262, w: -0.7781817}
+  m_LocalRotation: {x: 0.018411016, y: 0.4693914, z: 0.41685256, w: -0.77818155}
   m_LocalPosition: {x: -0.00013508121, y: 0.0012452261, z: 0.00004695032}
   m_LocalScale: {x: 1, y: 1.0000001, z: 1}
   m_Children:
@@ -2753,6 +2754,86 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!82 &82928686642874216
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1160392739011286}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 04303363934187c449adf38c9f752dba, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 38
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!95 &95804191208503922
 Animator:
   serializedVersion: 3
@@ -2817,12 +2898,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87484a78b980d7e4382f8f93fd912ced, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  turnAmount: 0
+  PlayerStatus: {fileID: 0}
   Axe: {fileID: 4481902868242034}
   Gun: {fileID: 4286827036942218}
   posHandL: {fileID: 0}
+  GoToPosition: {x: 0, y: 0, z: 0}
+  GoToRotation: 0
+  turnAmount: 0
   moveSpeed: 3
-  PlayerStatus: {fileID: 0}
+  canMove: 0
+  onlineVersion: 0
+  IsMyPlayer: 0
+  isAttacking: 0
 --- !u!114 &114104990583570162
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2918,9 +3005,13 @@ MonoBehaviour:
     m_Text: 
     m_Image: {fileID: 0}
     m_Tooltip: 
-  isWood: 0
-  isStone: 0
   AxeGO: {fileID: 1149845770200136}
+  ResourcesFromFarmCanvas: {fileID: 0}
+  playerFarmed: 0
+  axeCount: 0
+  canFarm: 0
+  woodGained: {fileID: 0}
+  stoneGained: {fileID: 0}
 --- !u!114 &114675810693975268
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2977,6 +3068,7 @@ MonoBehaviour:
   WoodEffect: {fileID: 100002, guid: 855f647f81ad9774a905ff23fdc26618, type: 2}
   StoneEffect: {fileID: 100002, guid: 556d09d7fda29fd4185eed4067d5777b, type: 2}
   PistolDamage: 34
+  bulletCount: 0
 --- !u!114 &114900845975738192
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3083,9 +3175,12 @@ MonoBehaviour:
   armor: 0
   wood: 0
   stone: 0
+  meat: 0
+  cookmeat: 0
   Bag: {fileID: 0}
   ExistWood: 0
   ExistStone: 0
+  ExistMeat: 0
 --- !u!114 &114979605442909192
 MonoBehaviour:
   m_ObjectHideFlags: 1

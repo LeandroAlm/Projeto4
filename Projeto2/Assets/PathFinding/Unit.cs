@@ -4,7 +4,7 @@ using System.Collections;
 public class Unit : MonoBehaviour
 {
     public Transform target;
-    public static Transform SecondTarget;
+    public Transform SecondTarget;
     float speed = 5;
     Vector3[] path;
     int targetIndex;
@@ -25,17 +25,19 @@ public class Unit : MonoBehaviour
 
     bool canGo;
 
+    bool atuaPrima;
+
     GameObject obj;
 
     void Start()
     {
+        atuaPrima = false;
         canGo = true;
         wallBuilded = false;
         wallisDown = false;
         newRotation = false;
         lastPoint = false;
         playerPos = target.position;
-        SecondTarget = null;
 
         PathRequestManager.RequestPath(transform.position, target.position, OnPathFound);
     }
@@ -51,17 +53,20 @@ public class Unit : MonoBehaviour
         //}
         if (playerPos != target.position)
         {
-            if (canGo)
+            
+            if (canGo && !atuaPrima)
             {
+
                 PathRequestManager.RequestPath(transform.position, target.position, OnPathFound);
                 speed = 5;
                 playerPos = target.position;
             }
-            else
+            else if (!canGo || atuaPrima)
             {
                 Debug.Log("PAREDE!!!!!");
                 WolfAnimController.CloseToWall = true;
                 PathRequestManager.RequestPath(transform.position, SecondTarget.position, OnPathFound);
+                speed = 5;
                 Debug.Log("WallPos: " + SecondTarget.position);
             }
         }
@@ -96,18 +101,18 @@ public class Unit : MonoBehaviour
 
     public void OnPathFound(Vector3[] newPath, bool pathSuccessful)
     {
-
         if (pathSuccessful)
         {
             canGo = true;
             path = newPath;
             targetIndex = 0;
-            StopCoroutine("FollowPath");
-            StartCoroutine("FollowPath");
+            StopCoroutine(FollowPath());
+            StartCoroutine(FollowPath());
         }
         else
         {
             canGo = false;
+            atuaPrima = true;
         }
     }
 

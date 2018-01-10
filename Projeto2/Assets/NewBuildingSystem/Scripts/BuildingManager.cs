@@ -19,6 +19,7 @@ public class BuildingManager : MonoBehaviour
     public static bool gate = false;
     public static bool buildFence = false;
     public static bool buildFirePit = false;
+    public static bool houseIsCreated = false;
     
 
     public static bool isBuilding;
@@ -52,6 +53,7 @@ public class BuildingManager : MonoBehaviour
             Player.GetComponent<PlayerStatus>().StoneAmount(-30);
             Debug.Log("Entrou");
             isBuilding = true;
+            houseIsCreated = true;
             Instantiate(foundationPrefab3, Vector3.zero, foundationPrefab3.transform.rotation);
             buildHouse = false;
             InventoryUI.isOpen = false;

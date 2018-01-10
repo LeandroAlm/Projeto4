@@ -52,6 +52,7 @@ public class BuildWall2 : MonoBehaviour
 
     void Update()
     {
+
         FollowMouse();
 
         RotateWall();

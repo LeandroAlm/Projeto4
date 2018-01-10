@@ -10,6 +10,7 @@ public class Bullet : MonoBehaviour
     public float speed = 300f;
     public int bulletDamage = 5;
     private string enemyTag = "Enemy";
+    private string enemyTag2 = "Enemy2";
 
     public void GetTarget(Transform enemyTarget)
     {
@@ -50,8 +51,14 @@ public class Bullet : MonoBehaviour
         {
             if (collision.gameObject.tag == enemyTag)
             {
-                Debug.Log("Fode-te boi");
+                Debug.Log("Fode-te boi, lobo da merda!");
                 collision.gameObject.GetComponent<WolfAnimController>().GetDamage(bulletDamage);
+                Destroy(gameObject);
+            }
+            else if (collision.gameObject.tag == enemyTag)
+            {
+                Debug.Log("Fode-te boi, lobisomem da merda");
+                collision.gameObject.GetComponent<WerewolfAnimController>().GetDamage(bulletDamage);
                 Destroy(gameObject);
             }
         }
