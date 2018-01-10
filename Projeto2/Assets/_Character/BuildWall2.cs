@@ -28,12 +28,16 @@ public class BuildWall2 : MonoBehaviour
     Grid grid;
 
     public GameObject pathFindingObj;
+
+    public GameObject Player;
+
     void Start()
     {
+        Player = GameObject.FindGameObjectWithTag("Player");
+
         pathFindingObj = GameObject.FindGameObjectWithTag("A");
 
         grid = pathFindingObj.gameObject.GetComponent<Grid>();
-
 
         check = false;
 
@@ -83,6 +87,7 @@ public class BuildWall2 : MonoBehaviour
                     ParentObj.AddComponent<WallAutoBuild>();
                     ParentObj.GetComponent<WallAutoBuild>().wallPrefab = wallPrefab;
                     ParentObj.GetComponent<WallAutoBuild>().stepDuration = 1.5f;
+                    //ParentObj.gameObject.tag = "parentObj";
                 }
             }
 
@@ -104,7 +109,10 @@ public class BuildWall2 : MonoBehaviour
                     InstantiateWallGreen();
                 }
 
-                MoveOneSlot();
+                if (CraftUI.canBuildFence)
+                {
+                    MoveOneSlot();
+                }
                 
                 fence.transform.rotation = newXy;
             }
@@ -134,6 +142,10 @@ public class BuildWall2 : MonoBehaviour
         {
             if (sizeDistance > 2.6f)
             {
+
+                Player.GetComponent<PlayerStatus>().WoodAmount(-5);
+                Player.GetComponent<PlayerStatus>().StoneAmount(-2);
+
                 nextPos = fence.gameObject.transform.position;
 
                 newDir = mouseVector - posIni;
@@ -156,6 +168,8 @@ public class BuildWall2 : MonoBehaviour
         Foundation.isInstantiated = true;
         GameObject newWallGreen = Instantiate(wallPrefabGreen, nextPos, newXy);
         newWallGreen.transform.parent = ParentObj.transform;
+        WolfAnimController.walls.Add(wallPrefabGreen);
+
     }
 
     bool RayShooter()

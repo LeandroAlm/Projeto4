@@ -72,9 +72,13 @@ public class FixWeapons : MonoBehaviour {
         if(fix)
         {
             animator.SetBool("isFixing", true);
+
             playerControlScript.canMove = false;
             if (timer <= 0)
             {
+                animator.SetBool("Axe", true);
+
+                Farm.fixAxe = false;
                 player.transform.LookAt(this.transform);
 
                 playerControlScript.canMove = true;
@@ -104,7 +108,8 @@ public class FixWeapons : MonoBehaviour {
             animator.SetBool("isFixing", true);
             playerControlScript.canMove = false;
             if (timer <= 0)
-            {
+            {   
+                
                 playerControlScript.canMove = true;
                 player.transform.LookAt(this.transform);
                 shootScript.bulletCount = 0;

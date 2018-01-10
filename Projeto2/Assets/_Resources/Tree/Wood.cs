@@ -13,8 +13,13 @@ public class Wood : MonoBehaviour
 
     private GameObject player;
 
+    AudioSource audio;
+
+
     private void Start()
     {
+        audio = transform.GetComponent<AudioSource>();
+
         cam = Camera.main;
     }
 
@@ -40,12 +45,13 @@ public class Wood : MonoBehaviour
 
     public int GetAmount()
     {
-        Amount = Random.Range(1, 3);
+        Amount = Random.Range(3, 10);
         return Amount;
     }
 
     public void Damage()
     {
+        audio.Play();
         hp--;
         if (hp == 0)
         {

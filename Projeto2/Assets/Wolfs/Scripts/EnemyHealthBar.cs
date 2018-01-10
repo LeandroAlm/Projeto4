@@ -9,8 +9,10 @@ public class EnemyHealthBar : MonoBehaviour
 
     public GameObject enemy;
     // Update is called once per frame
+
     void Update()
     {
         HP.fillAmount = enemy.gameObject.GetComponent<WolfAnimController>().HP / 100;
+
     }
 }

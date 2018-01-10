@@ -19,7 +19,6 @@ public class Farm : MonoBehaviour
 
     Vector3 forward;
 
-    public static bool axeSwing;
     public bool playerFarmed;
 
     public int axeCount;
@@ -29,9 +28,11 @@ public class Farm : MonoBehaviour
     public Text woodGained, stoneGained;
     private float delayTimer = 0;
 
+    public static bool fixAxe;
 
     public void Start ()
     {
+        fixAxe = false;
         player = GetComponent<Transform>();
         anim = GetComponent<Animator>();
         playerFarmed = false;
@@ -70,12 +71,13 @@ public class Farm : MonoBehaviour
 
     public void Update ()
     {
-        if (axeCount > 10)
+        if (axeCount > 50)
         {
             canFarm = false;
+            fixAxe = true;
         }
 
-        if (Input.GetMouseButtonDown(0) && AxeGO.activeSelf || Input.GetMouseButton(0) && AxeGO)
+        if (Input.GetMouseButtonDown(0) && AxeGO.activeSelf && !fixAxe)// || Input.GetMouseButton(0) && AxeGO && !fixAxe)
         {
             canFarm = true;
             anim.SetTrigger("Farming");

@@ -54,9 +54,7 @@ public class InstaceHouse : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0) && CanBuild)
         {
-
             isPlaced = true;
-
 
             BuildingManager.isBuilding = false;
 

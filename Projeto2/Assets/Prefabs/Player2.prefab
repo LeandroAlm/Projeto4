@@ -2205,7 +2205,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1796762876588526}
-  m_LocalRotation: {x: 0.018411016, y: 0.4693914, z: 0.41685256, w: -0.77818155}
+  m_LocalRotation: {x: 0.018411018, y: 0.46939147, z: 0.41685262, w: -0.7781817}
   m_LocalPosition: {x: -0.00013508121, y: 0.0012452261, z: 0.00004695032}
   m_LocalScale: {x: 1, y: 1.0000001, z: 1}
   m_Children:
@@ -2914,9 +2914,12 @@ MonoBehaviour:
     m_Image: {fileID: 0}
     m_Tooltip: 
   AxeGO: {fileID: 1260177634760888}
+  ResourcesFromFarmCanvas: {fileID: 0}
   playerFarmed: 0
   axeCount: 0
   canFarm: 0
+  woodGained: {fileID: 0}
+  stoneGained: {fileID: 0}
 --- !u!114 &114264071855761572
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3023,10 +3026,14 @@ MonoBehaviour:
   Axe: {fileID: 4875454606610428}
   Gun: {fileID: 4939634590324458}
   posHandL: {fileID: 0}
+  GoToPosition: {x: 0, y: 0, z: 0}
+  GoToRotation: 0
   turnAmount: 0
   moveSpeed: 3
   canMove: 0
+  onlineVersion: 0
   IsMyPlayer: 0
+  isAttacking: 0
 --- !u!114 &114732804064565974
 MonoBehaviour:
   m_ObjectHideFlags: 1

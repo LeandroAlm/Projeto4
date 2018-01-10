@@ -7,8 +7,8 @@ public class Bullet : MonoBehaviour
     private List<Transform> targets = new List<Transform>();
     private Transform target;
 
-    public float speed = 70f;
-    public int bulletDamage = 20;
+    public float speed = 300f;
+    public int bulletDamage = 5;
     private string enemyTag = "Enemy";
 
     public void GetTarget(Transform enemyTarget)
@@ -51,7 +51,7 @@ public class Bullet : MonoBehaviour
             if (collision.gameObject.tag == enemyTag)
             {
                 Debug.Log("Fode-te boi");
-                target.gameObject.GetComponent<WolfAnimController>().GetDamage(bulletDamage);
+                collision.gameObject.GetComponent<WolfAnimController>().GetDamage(bulletDamage);
                 Destroy(gameObject);
             }
         }

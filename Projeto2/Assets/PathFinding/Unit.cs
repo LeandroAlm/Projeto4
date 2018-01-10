@@ -3,9 +3,8 @@ using System.Collections;
 
 public class Unit : MonoBehaviour
 {
-
-
     public Transform target;
+    public static Transform SecondTarget;
     float speed = 5;
     Vector3[] path;
     int targetIndex;
@@ -24,27 +23,48 @@ public class Unit : MonoBehaviour
 
     public static bool wallBuilded;
 
+    bool canGo;
+
+    GameObject obj;
 
     void Start()
-    { 
-
+    {
+        canGo = true;
         wallBuilded = false;
         wallisDown = false;
         newRotation = false;
         lastPoint = false;
         playerPos = target.position;
+        SecondTarget = null;
 
         PathRequestManager.RequestPath(transform.position, target.position, OnPathFound);
     }
 
     private void Update()
     {
-        if(wallBuilded)
+        obj = GameObject.FindGameObjectWithTag("parentObj");
+
+        //if(wallBuilded)
+        //{
+        //    PathRequestManager.RequestPath(transform.position, target.position, OnPathFound);
+        //    wallBuilded = false;
+        //}
+        if (playerPos != target.position)
         {
-            PathRequestManager.RequestPath(transform.position, target.position, OnPathFound);
-            wallBuilded = false;
+            if (canGo)
+            {
+                PathRequestManager.RequestPath(transform.position, target.position, OnPathFound);
+                speed = 5;
+                playerPos = target.position;
+            }
+            else
+            {
+                Debug.Log("PAREDE!!!!!");
+                WolfAnimController.CloseToWall = true;
+                PathRequestManager.RequestPath(transform.position, SecondTarget.position, OnPathFound);
+                Debug.Log("WallPos: " + SecondTarget.position);
+            }
         }
- 
 
         distance = Vector3.Distance(this.transform.position, target.position);
     
@@ -63,12 +83,12 @@ public class Unit : MonoBehaviour
 
 
 
-        if (distance > 3 && lastPoint)
-        {  
-            PathRequestManager.RequestPath(transform.position, target.position, OnPathFound);
+        //if (distance > 3 && lastPoint)
+        //{  
+        //    PathRequestManager.RequestPath(transform.position, target.position, OnPathFound);
             
-            lastPoint = false;
-        }
+        //    lastPoint = false;
+        //}
 
         
 
@@ -79,10 +99,15 @@ public class Unit : MonoBehaviour
 
         if (pathSuccessful)
         {
+            canGo = true;
             path = newPath;
             targetIndex = 0;
             StopCoroutine("FollowPath");
             StartCoroutine("FollowPath");
+        }
+        else
+        {
+            canGo = false;
         }
     }
 

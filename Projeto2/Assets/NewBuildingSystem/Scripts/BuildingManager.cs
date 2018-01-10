@@ -37,44 +37,53 @@ public class BuildingManager : MonoBehaviour
 
     GameObject fence;
 
+    GameObject Player;
+
     private void Start()
     {
-      
+        Player = GameObject.FindGameObjectWithTag("Player");
     }
 
     void Update()
     {
-        if (buildHouse == true) /*&& CraftUI.canBuildHouse == true)*/ //&& !isBuilding)
+        if (buildHouse == true && CraftUI.canBuildHouse) /*&& CraftUI.canBuildHouse == true)*/ //&& !isBuilding)
         {
+            Player.GetComponent<PlayerStatus>().WoodAmount(-30);
+            Player.GetComponent<PlayerStatus>().StoneAmount(-30);
             Debug.Log("Entrou");
             isBuilding = true;
             Instantiate(foundationPrefab3, Vector3.zero, foundationPrefab3.transform.rotation);
             buildHouse = false;
             InventoryUI.isOpen = false;
         }
-        else if (buildTower == true) //&& !isBuilding)
+        else if (buildTower == true && CraftUI.canBuildTower) //&& !isBuilding)
         {
+            Player.GetComponent<PlayerStatus>().WoodAmount(-50);
+            Player.GetComponent<PlayerStatus>().StoneAmount(-50);
             isBuilding = true;
             Instantiate(foundationPrefab4, Vector3.zero, foundationPrefab4.transform.rotation);
             buildTower = false;
             InventoryUI.isOpen = false;
         }
-        else if (buildFence == true)
+        else if (buildFence == true && CraftUI.canBuildFence)
         {
             isBuilding = true;
             newFence = Instantiate(fenceGreen, Vector3.zero, fenceGreen.transform.rotation);
             buildFence = false;
             InventoryUI.isOpen = false;
         }
-        else if (buildFirePit)
+        else if (buildFirePit && CraftUI.canBuildFireplace)
         {
+            Player.GetComponent<PlayerStatus>().WoodAmount(-20);
+            Player.GetComponent<PlayerStatus>().StoneAmount(-30);
+
             isBuilding = true;
             newFence = Instantiate(FirePitGreen, Vector3.zero, FirePitGreen.transform.rotation);
             PlayerStatus.Campfire.Add(newFence.transform);
             buildFirePit = false;
             InventoryUI.isOpen = false;
         }
-        else if (gate)
+        else if (gate && CraftUI.canBuildGate)
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
@@ -92,6 +101,10 @@ public class BuildingManager : MonoBehaviour
                 GateObjGreen = Instantiate(gatePrefabGreen, hit.collider.transform.position, hit.collider.transform.rotation);
 
                 gatePlaced = true;
+
+                Player.GetComponent<PlayerStatus>().WoodAmount(-20);
+                Player.GetComponent<PlayerStatus>().StoneAmount(-10);
+
                 InventoryUI.isOpen = false;
             }
             else

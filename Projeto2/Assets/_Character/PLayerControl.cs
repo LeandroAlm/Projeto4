@@ -58,10 +58,10 @@ public class PLayerControl : MonoBehaviour
             {
                 if (canMove)
                 {
-                    rb.velocity = new Vector3(moveVelocity.x, rb.velocity.y, moveVelocity.z);
+                    //rb.velocity = new Vector3(moveVelocity.x, rb.velocity.y, moveVelocity.z);
                     MovementTopDown();
-                    GunsMovementController();
-                    ConvertMoveInput();
+                    //GunsMovementController();
+                    //ConvertMoveInput();
                 }
             }
 
@@ -81,11 +81,8 @@ public class PLayerControl : MonoBehaviour
                 ConvertMoveInput();
             }
         }
-    }
 
-    void Update()
-    {
-        //DistanceToEnemy();
+        position = transform.position;
     }
 
     void ConvertMoveInput()
@@ -121,10 +118,10 @@ public class PLayerControl : MonoBehaviour
                 //transform.TransformDirection(moveVelocity);
             }
 
-            previousPosition = transform.position;
+            previousPosition = position;
         }
     }
-   
+  
     void GunsMovementController()
     {
         animator.SetBool("Axe", true);
@@ -161,10 +158,10 @@ public class PLayerControl : MonoBehaviour
             animator.SetFloat("ForwardS", forwardAmount, 0.1f, Time.deltaTime);
             animator.SetFloat("TurnS", turnAmount, 0.1f, Time.deltaTime);
 
-            if (Farm.axeSwing)
-            {
-                animator.SetFloat("ForwardS", 0, 0.1f, Time.deltaTime);
-            }
+            //if (Farm.axeSwing)
+            //{
+            //    animator.SetFloat("ForwardS", 0, 0.1f, Time.deltaTime);
+            //}
 
         }
         if (Shot.shooting && forwardAmount == 0)
@@ -177,6 +174,8 @@ public class PLayerControl : MonoBehaviour
             animator.SetBool("isShooting", false);
 
         }
+
+        //switch weapons
         if (Input.GetKeyDown("1"))
         {
             usingAxe = true;
@@ -210,21 +209,21 @@ public class PLayerControl : MonoBehaviour
     //    }
     //}
 
-    void AxeAttack()
-    {
-        if (Input.GetMouseButtonDown(0) && Axe.gameObject.activeSelf)
-        {
-            isAttacking = true;
-            animator.SetTrigger("Farming");
-        }
-        else if (Input.GetMouseButtonDown(1) && Axe.gameObject.activeSelf)
-        {
-            isAttacking = true;
-            animator.SetTrigger("attack2");
-        }
+    //void AxeAttack()
+    //{
+    //    if (Input.GetMouseButtonDown(0) && Axe.gameObject.activeSelf)
+    //    {
+    //        isAttacking = true;
+    //        animator.SetTrigger("Farming");
+    //    }
+    //    else if (Input.GetMouseButtonDown(1) && Axe.gameObject.activeSelf)
+    //    {
+    //        isAttacking = true;
+    //        animator.SetTrigger("attack2");
+    //    }
 
-        isAttacking = false;
-    }
+    //    isAttacking = false;
+    //}
     void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == enemyTag)

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using IPCA.AI.DecisionTrees;
 
 public class WolfAnimController : MonoBehaviour
 {
@@ -21,17 +22,21 @@ public class WolfAnimController : MonoBehaviour
     float distance;
 
     public static bool canFollow;
+    public static bool CloseToWall;
+    public static bool HaveWall;
 
     Unit unitScript;
 
-    GameObject walls;
+    public static List<GameObject> walls;
 
     float distance2;
 
     void Start ()
     {
-        walls = GameObject.FindGameObjectWithTag("woodFence");
+        walls = new List<GameObject>();
         canFollow = true;
+        canFollow = false;
+        HaveWall = true;
         animator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
         unitScript = GetComponent<Unit>();
@@ -39,17 +44,18 @@ public class WolfAnimController : MonoBehaviour
 
     void Update()
     {
-        //distance2
-        if (Vector3.Distance(this.transform.position,walls.transform.position) < 3)
-        {
-            //encontrou uma muralha parou
-            canFollow = false;
-        }
-        else
-        {
-            unitScript.Move();
+        ////distance2
+        //if (Vector3.Distance(this.transform.position,walls.transform.position) < 3)
+        //{
+        //    //encontrou uma muralha parou
+        //    canFollow = false;
+        //}
+        //else
+        //{
+        //    unitScript.Move();
 
-        }
+        //}
+        Debug.Log("PLAYER POS: " + Player.transform.position);
 
         distance = Vector3.Distance(transform.position,Player.transform.position);
         
@@ -58,17 +64,50 @@ public class WolfAnimController : MonoBehaviour
 
     void Manager()
     {
-        if (Unit.lastPoint)
+        if(!CloseToWall)
         {
-            // Chegou ao inimigo
-            Run(false);
-            IdleAttack(true);
+            if (distance < 1)
+            {
+                // Chegou ao inimigo
+                Run(false);
+                IdleAttack(true);
+            }
+            else
+            {
+                IdleAttack(false);
+                Run(true);
+            }
         }
         else
         {
-            IdleAttack(false);
-            Run(true);
+            if (HaveWall)
+            {
+                // player cercado com walls
+                RaycastHit hit;
+                Ray ray = new Ray(transform.position, Player.transform.position);
+                Vector3 dir = Player.transform.position - transform.position;
+
+                Debug.DrawRay(transform.position, dir, Color.blue);
+
+                if (Physics.Raycast(ray, out hit, 1000f, 1 << 12))
+                {
+                    Unit.SecondTarget = hit.collider.transform;
+                }
+                HaveWall = false;
+            }
         }
+
+        //DTBinaryDecision tree = new DTBinaryDecision(
+        //        () => { return distance > 10; },
+        //        new DTAction(() =>
+        //        {
+        //        }),
+        //        new DTAction(() =>
+        //        {
+
+        //        })
+        //    );
+        //tree.MakeDecision().Run();
     }
 
     void Run(bool Aux)

@@ -61,7 +61,7 @@ public class Shot : MonoBehaviour
                 shooting = false;
             }
         }
-        if (bulletCount > 15)
+        if (bulletCount > 20)
         {
             anim.SetBool("Gun", false);
             canShoot = false;

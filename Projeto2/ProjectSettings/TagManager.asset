@@ -25,6 +25,7 @@ TagManager:
   - house
   - Slot
   - FireplaceDescription
+  - parentObj
   layers:
   - Default
   - TransparentFX

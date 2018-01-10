@@ -95,6 +95,7 @@ public class CraftUI : MonoBehaviour
         Color32 buildColor = new Color32(255, 255, 255, 255);
 
         if(canBuildFence)
+
             FenceImage.color = buildColor;
         else
             FenceImage.color = transparentColor;
@@ -122,9 +123,11 @@ public class CraftUI : MonoBehaviour
 
     public void BuildManager()
     {
-        if (ResourcesNeeded.woodValue >= 20 && ResourcesNeeded.stoneValue >= 10)
+        if (ResourcesNeeded.woodValue >= 5 && ResourcesNeeded.stoneValue >= 2)
         {
             canBuildFence = true;
+            
+
         }
         else
             canBuildFence = false;
@@ -132,6 +135,7 @@ public class CraftUI : MonoBehaviour
         if (ResourcesNeeded.woodValue >= 30 && ResourcesNeeded.stoneValue >= 30)
         {
             canBuildHouse = true;
+       
         }
         else
             canBuildHouse = false;
@@ -139,13 +143,15 @@ public class CraftUI : MonoBehaviour
         if (ResourcesNeeded.woodValue >= 50 && ResourcesNeeded.stoneValue >= 30)
         {
             canBuildTower = true;
+         
         }
         else
             canBuildTower = false;
 
-        if (ResourcesNeeded.woodValue >= 30 && ResourcesNeeded.stoneValue >= 50)
+        if (ResourcesNeeded.woodValue >= 20 && ResourcesNeeded.stoneValue >= 10)
         {
             canBuildGate = true;
+            
         }
         else
             canBuildGate = false;
@@ -153,6 +159,7 @@ public class CraftUI : MonoBehaviour
         if (ResourcesNeeded.woodValue >= 20 && ResourcesNeeded.stoneValue >= 30)
         {
             canBuildFireplace = true;
+ 
         }
         else
             canBuildFireplace = false;

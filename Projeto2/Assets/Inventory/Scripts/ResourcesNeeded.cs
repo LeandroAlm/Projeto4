@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class ResourcesNeeded : MonoBehaviour
 {
     public Text woodNeeded, stoneNeeded, currentWood, currentStone;
-    public int woodValue, stoneValue, woodNeededValue;
+    public int woodValue, stoneValue;
     public GameObject ResourcesPanel;
     public GameObject DescriptionPanel;
     public Text DescriptionText;
@@ -24,8 +24,8 @@ public class ResourcesNeeded : MonoBehaviour
         currentWood.text = Player.GetComponent<PlayerStatus>().wood.ToString() + " /";
         currentStone.text = Player.GetComponent<PlayerStatus>().stone.ToString() + " /";
 
-        //woodValue = Player.GetComponent<PlayerStatus>().wood;
-        //stoneValue = Player.GetComponent<PlayerStatus>().stone;
+        woodValue = Player.GetComponent<PlayerStatus>().wood;
+        stoneValue = Player.GetComponent<PlayerStatus>().stone;
 
         /*woodNeededValue = int.Parse(woodNeeded.text);
 
@@ -60,8 +60,8 @@ public class ResourcesNeeded : MonoBehaviour
 
         else if (SlotNumber == 1)
         {
-            woodNeeded.text = "20";
-            stoneNeeded.text = "10";
+            woodNeeded.text = "5";
+            stoneNeeded.text = "2";
 
             DescriptionText.text = "Create a wall with these fences but be aware that they do not last forever";
         }
@@ -76,8 +76,8 @@ public class ResourcesNeeded : MonoBehaviour
 
         else if (SlotNumber == 3)
         {
-            woodNeeded.text = "30";
-            stoneNeeded.text = "50";
+            woodNeeded.text = "20";
+            stoneNeeded.text = "10";
 
             DescriptionText.text = "A gate so you can get in and out of your fence wall";
         }

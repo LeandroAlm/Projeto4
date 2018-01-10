@@ -3056,10 +3056,14 @@ MonoBehaviour:
   Axe: {fileID: 4540268006882724}
   Gun: {fileID: 4227122874496594}
   posHandL: {fileID: 0}
+  GoToPosition: {x: 0, y: 0, z: 0}
+  GoToRotation: 0
   turnAmount: 0
   moveSpeed: 3
   canMove: 0
+  onlineVersion: 0
   IsMyPlayer: 0
+  isAttacking: 0
 --- !u!114 &114765878379984640
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3104,9 +3108,12 @@ MonoBehaviour:
     m_Image: {fileID: 0}
     m_Tooltip: 
   AxeGO: {fileID: 1703538219500294}
+  ResourcesFromFarmCanvas: {fileID: 0}
   playerFarmed: 0
   axeCount: 0
   canFarm: 0
+  woodGained: {fileID: 0}
+  stoneGained: {fileID: 0}
 --- !u!136 &136337089900997346
 CapsuleCollider:
   m_ObjectHideFlags: 1
